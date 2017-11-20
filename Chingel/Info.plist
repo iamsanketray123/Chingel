@@ -2,6 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb198229360723228</string>
+            </array>
+        </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>198229360723228</string>
+    <key>FacebookDisplayName</key>
+    <string>Chingel</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    
+    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -41,5 +64,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Chingel would like to acces your Photo Library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Chingel would like to access your Camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need location to display results</string>
 </dict>
 </plist>

@@ -7,23 +7,63 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1905C4231FC1569800C62623 /* UITextFieldX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1905C4221FC1569800C62623 /* UITextFieldX.swift */; };
+		1905C4271FC176F000C62623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1905C4261FC176EF00C62623 /* GoogleService-Info.plist */; };
+		1905C4291FC1851600C62623 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1905C4281FC1851600C62623 /* SignUpViewController.swift */; };
 		19856E8B1FBED89000D4F8EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E8A1FBED89000D4F8EE /* AppDelegate.swift */; };
-		19856E8D1FBED89000D4F8EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E8C1FBED89000D4F8EE /* ViewController.swift */; };
+		19856E8D1FBED89000D4F8EE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E8C1FBED89000D4F8EE /* HomeViewController.swift */; };
 		19856E901FBED89000D4F8EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19856E8E1FBED89000D4F8EE /* Main.storyboard */; };
 		19856E931FBED89000D4F8EE /* Chingel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19856E911FBED89000D4F8EE /* Chingel.xcdatamodeld */; };
 		19856E951FBED89000D4F8EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19856E941FBED89000D4F8EE /* Assets.xcassets */; };
 		19856E981FBED89000D4F8EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19856E961FBED89000D4F8EE /* LaunchScreen.storyboard */; };
+		19856EA01FBEFA4300D4F8EE /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E9F1FBEFA4300D4F8EE /* UIButtonX.swift */; };
+		19856EA81FBF19EE00D4F8EE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856EA71FBF19EE00D4F8EE /* OnboardingView.swift */; };
+		19856EAA1FBF1D0C00D4F8EE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856EA91FBF1D0C00D4F8EE /* OnboardingViewController.swift */; };
+		19856EB01FC06FC900D4F8EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */; };
+		198592921FC1884C0052C320 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592911FC1884C0052C320 /* FirebaseReference.swift */; };
+		198592941FC1927E0052C320 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592931FC1927E0052C320 /* LocationViewController.swift */; };
+		198592B71FC1A3980052C320 /* UIImageViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592B61FC1A3980052C320 /* UIImageViewX.swift */; };
+		1994C0CB1FC218A300F86883 /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */; };
+		A959CD331173DA5022532033 /* Pods_Chingel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		19856EA41FBF14B700D4F8EE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1905C4221FC1569800C62623 /* UITextFieldX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldX.swift; sourceTree = "<group>"; };
+		1905C4261FC176EF00C62623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1905C4281FC1851600C62623 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		191C38B61FC22238000B1DA1 /* Chingel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chingel.entitlements; sourceTree = "<group>"; };
 		19856E871FBED89000D4F8EE /* Chingel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chingel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19856E8A1FBED89000D4F8EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		19856E8C1FBED89000D4F8EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		19856E8C1FBED89000D4F8EE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		19856E8F1FBED89000D4F8EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19856E921FBED89000D4F8EE /* Chingel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chingel.xcdatamodel; sourceTree = "<group>"; };
 		19856E941FBED89000D4F8EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19856E971FBED89000D4F8EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19856E991FBED89000D4F8EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19856E9F1FBEFA4300D4F8EE /* UIButtonX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
+		19856EA71FBF19EE00D4F8EE /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		19856EA91FBF1D0C00D4F8EE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		198592911FC1884C0052C320 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
+		198592931FC1927E0052C320 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		198592B61FC1A3980052C320 /* UIImageViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewX.swift; sourceTree = "<group>"; };
+		1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewController.swift; sourceTree = "<group>"; };
+		5F9448E96D86E80F1E27DE79 /* Pods-Chingel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.release.xcconfig"; sourceTree = "<group>"; };
+		AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chingel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E11C890BC07AB5D4F70F08B9 /* Pods-Chingel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A959CD331173DA5022532033 /* Pods_Chingel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +83,8 @@
 			children = (
 				19856E891FBED89000D4F8EE /* Chingel */,
 				19856E881FBED89000D4F8EE /* Products */,
+				961D1ED3FD6ACE19A638AD50 /* Pods */,
+				9295C89DE44C358B4A9686F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +99,44 @@
 		19856E891FBED89000D4F8EE /* Chingel */ = {
 			isa = PBXGroup;
 			children = (
+				191C38B61FC22238000B1DA1 /* Chingel.entitlements */,
 				19856E8A1FBED89000D4F8EE /* AppDelegate.swift */,
-				19856E8C1FBED89000D4F8EE /* ViewController.swift */,
+				19856E8C1FBED89000D4F8EE /* HomeViewController.swift */,
+				19856EA91FBF1D0C00D4F8EE /* OnboardingViewController.swift */,
+				19856EA71FBF19EE00D4F8EE /* OnboardingView.swift */,
+				19856E9F1FBEFA4300D4F8EE /* UIButtonX.swift */,
+				1905C4221FC1569800C62623 /* UITextFieldX.swift */,
+				198592B61FC1A3980052C320 /* UIImageViewX.swift */,
+				19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */,
+				1905C4281FC1851600C62623 /* SignUpViewController.swift */,
+				198592931FC1927E0052C320 /* LocationViewController.swift */,
+				1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */,
+				198592911FC1884C0052C320 /* FirebaseReference.swift */,
 				19856E8E1FBED89000D4F8EE /* Main.storyboard */,
 				19856E941FBED89000D4F8EE /* Assets.xcassets */,
 				19856E961FBED89000D4F8EE /* LaunchScreen.storyboard */,
 				19856E991FBED89000D4F8EE /* Info.plist */,
+				1905C4261FC176EF00C62623 /* GoogleService-Info.plist */,
 				19856E911FBED89000D4F8EE /* Chingel.xcdatamodeld */,
 			);
 			path = Chingel;
+			sourceTree = "<group>";
+		};
+		9295C89DE44C358B4A9686F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		961D1ED3FD6ACE19A638AD50 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E11C890BC07AB5D4F70F08B9 /* Pods-Chingel.debug.xcconfig */,
+				5F9448E96D86E80F1E27DE79 /* Pods-Chingel.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +146,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19856E9C1FBED89000D4F8EE /* Build configuration list for PBXNativeTarget "Chingel" */;
 			buildPhases = (
+				9795B2B9C1F6D681007BD345 /* [CP] Check Pods Manifest.lock */,
 				19856E831FBED89000D4F8EE /* Sources */,
 				19856E841FBED89000D4F8EE /* Frameworks */,
 				19856E851FBED89000D4F8EE /* Resources */,
+				C761E136D3749A1EC6A1DB40 /* [CP] Embed Pods Frameworks */,
+				023E2E57EBA483C18049D873 /* [CP] Copy Pods Resources */,
+				19856EA41FBF14B700D4F8EE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -100,6 +176,11 @@
 					19856E861FBED89000D4F8EE = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -127,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19856E981FBED89000D4F8EE /* LaunchScreen.storyboard in Resources */,
+				1905C4271FC176F000C62623 /* GoogleService-Info.plist in Resources */,
 				19856E951FBED89000D4F8EE /* Assets.xcassets in Resources */,
 				19856E901FBED89000D4F8EE /* Main.storyboard in Resources */,
 			);
@@ -134,14 +216,103 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		023E2E57EBA483C18049D873 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Chingel/Pods-Chingel-resources.sh",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chingel/Pods-Chingel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9795B2B9C1F6D681007BD345 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Chingel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C761E136D3749A1EC6A1DB40 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Chingel/Pods-Chingel-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/paper-onboarding/paper_onboarding.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/paper_onboarding.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chingel/Pods-Chingel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		19856E831FBED89000D4F8EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198592921FC1884C0052C320 /* FirebaseReference.swift in Sources */,
+				19856EA01FBEFA4300D4F8EE /* UIButtonX.swift in Sources */,
+				19856EAA1FBF1D0C00D4F8EE /* OnboardingViewController.swift in Sources */,
 				19856E931FBED89000D4F8EE /* Chingel.xcdatamodeld in Sources */,
-				19856E8D1FBED89000D4F8EE /* ViewController.swift in Sources */,
+				19856EA81FBF19EE00D4F8EE /* OnboardingView.swift in Sources */,
+				198592941FC1927E0052C320 /* LocationViewController.swift in Sources */,
+				1905C4231FC1569800C62623 /* UITextFieldX.swift in Sources */,
+				19856E8D1FBED89000D4F8EE /* HomeViewController.swift in Sources */,
+				1905C4291FC1851600C62623 /* SignUpViewController.swift in Sources */,
+				198592B71FC1A3980052C320 /* UIImageViewX.swift in Sources */,
+				1994C0CB1FC218A300F86883 /* RestaurantsListViewController.swift in Sources */,
 				19856E8B1FBED89000D4F8EE /* AppDelegate.swift in Sources */,
+				19856EB01FC06FC900D4F8EE /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +447,10 @@
 		};
 		19856E9D1FBED89000D4F8EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E11C890BC07AB5D4F70F08B9 /* Pods-Chingel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chingel/Chingel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4H33JVA49;
 				INFOPLIST_FILE = Chingel/Info.plist;
@@ -291,8 +464,10 @@
 		};
 		19856E9E1FBED89000D4F8EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F9448E96D86E80F1E27DE79 /* Pods-Chingel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chingel/Chingel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J4H33JVA49;
 				INFOPLIST_FILE = Chingel/Info.plist;
