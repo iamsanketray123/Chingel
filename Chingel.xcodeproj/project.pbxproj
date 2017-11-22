@@ -10,6 +10,9 @@
 		1905C4231FC1569800C62623 /* UITextFieldX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1905C4221FC1569800C62623 /* UITextFieldX.swift */; };
 		1905C4271FC176F000C62623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1905C4261FC176EF00C62623 /* GoogleService-Info.plist */; };
 		1905C4291FC1851600C62623 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1905C4281FC1851600C62623 /* SignUpViewController.swift */; };
+		192E00F41FC4033400BF053F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F31FC4033400BF053F /* Restaurant.swift */; };
+		192E00F61FC403EC00BF053F /* ZomatoNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */; };
+		192E00F81FC408B400BF053F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F71FC408B400BF053F /* TableViewCell.swift */; };
 		19856E8B1FBED89000D4F8EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E8A1FBED89000D4F8EE /* AppDelegate.swift */; };
 		19856E8D1FBED89000D4F8EE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E8C1FBED89000D4F8EE /* HomeViewController.swift */; };
 		19856E901FBED89000D4F8EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19856E8E1FBED89000D4F8EE /* Main.storyboard */; };
@@ -24,6 +27,7 @@
 		198592941FC1927E0052C320 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592931FC1927E0052C320 /* LocationViewController.swift */; };
 		198592B71FC1A3980052C320 /* UIImageViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592B61FC1A3980052C320 /* UIImageViewX.swift */; };
 		1994C0CB1FC218A300F86883 /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */; };
+		19CEC8BE1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CEC8BD1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift */; };
 		A959CD331173DA5022532033 /* Pods_Chingel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,9 @@
 		1905C4261FC176EF00C62623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1905C4281FC1851600C62623 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		191C38B61FC22238000B1DA1 /* Chingel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chingel.entitlements; sourceTree = "<group>"; };
+		192E00F31FC4033400BF053F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZomatoNetworking.swift; sourceTree = "<group>"; };
+		192E00F71FC408B400BF053F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		19856E871FBED89000D4F8EE /* Chingel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chingel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19856E8A1FBED89000D4F8EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19856E8C1FBED89000D4F8EE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +68,7 @@
 		198592931FC1927E0052C320 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		198592B61FC1A3980052C320 /* UIImageViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewX.swift; sourceTree = "<group>"; };
 		1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewController.swift; sourceTree = "<group>"; };
+		19CEC8BD1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewController.swift; sourceTree = "<group>"; };
 		5F9448E96D86E80F1E27DE79 /* Pods-Chingel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.release.xcconfig"; sourceTree = "<group>"; };
 		AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chingel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11C890BC07AB5D4F70F08B9 /* Pods-Chingel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,8 +118,12 @@
 				19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */,
 				1905C4281FC1851600C62623 /* SignUpViewController.swift */,
 				198592931FC1927E0052C320 /* LocationViewController.swift */,
-				1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */,
 				198592911FC1884C0052C320 /* FirebaseReference.swift */,
+				192E00F71FC408B400BF053F /* TableViewCell.swift */,
+				1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */,
+				19CEC8BD1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift */,
+				192E00F31FC4033400BF053F /* Restaurant.swift */,
+				192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */,
 				19856E8E1FBED89000D4F8EE /* Main.storyboard */,
 				19856E941FBED89000D4F8EE /* Assets.xcassets */,
 				19856E961FBED89000D4F8EE /* LaunchScreen.storyboard */,
@@ -301,15 +313,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				198592921FC1884C0052C320 /* FirebaseReference.swift in Sources */,
+				192E00F81FC408B400BF053F /* TableViewCell.swift in Sources */,
 				19856EA01FBEFA4300D4F8EE /* UIButtonX.swift in Sources */,
+				19CEC8BE1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift in Sources */,
 				19856EAA1FBF1D0C00D4F8EE /* OnboardingViewController.swift in Sources */,
 				19856E931FBED89000D4F8EE /* Chingel.xcdatamodeld in Sources */,
 				19856EA81FBF19EE00D4F8EE /* OnboardingView.swift in Sources */,
 				198592941FC1927E0052C320 /* LocationViewController.swift in Sources */,
+				192E00F61FC403EC00BF053F /* ZomatoNetworking.swift in Sources */,
 				1905C4231FC1569800C62623 /* UITextFieldX.swift in Sources */,
 				19856E8D1FBED89000D4F8EE /* HomeViewController.swift in Sources */,
 				1905C4291FC1851600C62623 /* SignUpViewController.swift in Sources */,
 				198592B71FC1A3980052C320 /* UIImageViewX.swift in Sources */,
+				192E00F41FC4033400BF053F /* Restaurant.swift in Sources */,
 				1994C0CB1FC218A300F86883 /* RestaurantsListViewController.swift in Sources */,
 				19856E8B1FBED89000D4F8EE /* AppDelegate.swift in Sources */,
 				19856EB01FC06FC900D4F8EE /* LoginViewController.swift in Sources */,
