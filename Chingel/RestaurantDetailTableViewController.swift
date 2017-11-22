@@ -8,11 +8,17 @@
 
 import UIKit
 import SDWebImage
+import CoreLocation
+import UberRides
 
 class RestaurantDetailTableViewController: UITableViewController {
 
     @IBOutlet var table: UITableView!
     @IBOutlet weak var restaurantImage: UIImageView!
+    @IBOutlet weak var restaurantName: UILabel!
+    @IBOutlet weak var restaurantRating: UILabel!
+    @IBOutlet weak var numberOfVotes: UILabel!
+    @IBOutlet weak var restaurantAddress: UILabel!
     
     var headerHeight: CGFloat = 220
     var headerView : UIView!
@@ -20,6 +26,20 @@ class RestaurantDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        generateUberButton()
+        
+//        let button = RideRequestButton()
+//        view.addSubview(button)
+//        button.center = view.center
+        
+        restaurantName.text = restaurant?.name
+        restaurantRating.text = restaurant?.rating
+        restaurantRating.backgroundColor = hexStringToUIColor(hex: (restaurant?.ratingColor)!)
+        restaurantRating.layer.cornerRadius = 3.0
+        restaurantRating.layer.masksToBounds = true
+        numberOfVotes.text = "Based on \(String(describing: restaurant!.votes)) reviews"
+        restaurantAddress.text = restaurant?.address
         
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -72,6 +92,50 @@ class RestaurantDetailTableViewController: UITableViewController {
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
             UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
         }
+    }
+    
+    func generateUberButton(){
+        let button = RideRequestButton()
+        view.addSubview(button)
+
+        button.center = view.center
+        let ridesClient = RidesClient()
+        let dropOffLocation = CLLocation(latitude: 20.301647, longitude: 85.819135)
+        let pickUpLocation = CLLocation(latitude : 20.323706, longitude: 85.814981)
+        let builder = RideParametersBuilder()
+        builder.pickupLocation = pickUpLocation
+        builder.pickupNickname = "Home"
+        builder.dropoffLocation = dropOffLocation
+        builder.dropoffNickname = "Mayfair Lagoon, Bhubaneswar"
+
+        var productID = ""
+        ridesClient.fetchProducts(pickupLocation: pickUpLocation) { (product, response) in
+            productID = product[1].productID
+            print("🥒\(productID)")
+        }
+
+
+        ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
+
+            print(price[0].estimate!,"🍚")
+        }
+
+        ridesClient.fetchTimeEstimates(pickupLocation: pickUpLocation) { (time, response) in
+            print("🥕",time[0].estimate,"🥕")
+        }
+
+        ridesClient.fetchRideRequestEstimate(parameters: builder.build()) { (rideEstimate, response) in
+            builder.upfrontFare = rideEstimate?.fare
+            print(rideEstimate,"🥗")
+        }
+
+
+
+        builder.productID = productID
+
+        button.setContent()
+        button.rideParameters = builder.build()
+        button.loadRideInformation()
     }
     
 }

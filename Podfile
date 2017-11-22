@@ -19,5 +19,6 @@ pod 'SDWebImage'
 pod 'SDWebImage/WebP'
 pod 'GooglePlaces'
 pod 'IQKeyboardManager'
+pod 'UberRides'
 
 end
