@@ -10,8 +10,9 @@ import UIKit
 import SDWebImage
 import CoreLocation
 import UberRides
+import MapKit
 
-class RestaurantDetailTableViewController: UITableViewController {
+class RestaurantDetailTableViewController: UITableViewController, MKMapViewDelegate {
 
     @IBOutlet var table: UITableView!
     @IBOutlet weak var restaurantImage: UIImageView!
@@ -19,19 +20,23 @@ class RestaurantDetailTableViewController: UITableViewController {
     @IBOutlet weak var restaurantRating: UILabel!
     @IBOutlet weak var numberOfVotes: UILabel!
     @IBOutlet weak var restaurantAddress: UILabel!
+    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var directions: UIButtonX!
     
     var headerHeight: CGFloat = 220
     var headerView : UIView!
     var restaurant : Restaurant?
+    var userLocation : CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        generateUberButton()
         
-//        let button = RideRequestButton()
-//        view.addSubview(button)
-//        button.center = view.center
+       
+        
+        generateUberButton(userLocation : userLocation!, restaurantLocation : CLLocation(latitude: CLLocationDegrees(restaurant!.latitude)!, longitude: CLLocationDegrees(restaurant!.longitude)!), dropOffNickname: restaurant!.name)
+        
+        setupMap()
         
         restaurantName.text = restaurant?.name
         restaurantRating.text = restaurant?.rating
@@ -61,21 +66,27 @@ class RestaurantDetailTableViewController: UITableViewController {
         updateHeaderView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print(restaurant?.latitude,restaurant?.longitude,"🍱")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: "#C5170C")
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        UIApplication.shared.statusBarView?.backgroundColor = nil
+        RestaurantsListViewController.navigationTitleButton.tintColor = .white
+
+    }
 
 
     @IBAction func back(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
-    func updateHeaderView(){
-        var headerRect = CGRect(x: 0, y: -headerHeight, width: table.bounds.width, height: headerHeight)
-        if table.contentOffset.y < -headerHeight {
-            headerRect.origin.y = table.contentOffset.y
-            headerRect.size.height = -table.contentOffset.y
-        }
-        headerView.frame = headerRect
-    }
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateHeaderView()
@@ -94,19 +105,44 @@ class RestaurantDetailTableViewController: UITableViewController {
         }
     }
     
-    func generateUberButton(){
+    func updateHeaderView(){
+        var headerRect = CGRect(x: 0, y: -headerHeight, width: table.bounds.width, height: headerHeight)
+        if table.contentOffset.y < -headerHeight {
+            headerRect.origin.y = table.contentOffset.y
+            headerRect.size.height = -table.contentOffset.y
+        }
+        headerView.frame = headerRect
+    }
+    
+    func setupMap() {
+
+        print(restaurant?.latitude,restaurant?.longitude,"🍵")
+        map.delegate = self
+        let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(CLLocationDegrees(restaurant!.latitude)!, CLLocationDegrees(restaurant!.longitude)!)
+        let region : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        map.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = restaurant!.name
+        map.addAnnotation(annotation)
+    }
+    
+    
+    func generateUberButton(userLocation : CLLocation, restaurantLocation : CLLocation, dropOffNickname : String){
         let button = RideRequestButton()
         view.addSubview(button)
-
-        button.center = view.center
+        print("🍒",button.frame,"🍒")
+        button.frame = CGRect(x: 16, y: Int(directions.frame.origin.y + 298), width: 343, height: 50)
+        
         let ridesClient = RidesClient()
-        let dropOffLocation = CLLocation(latitude: 20.301647, longitude: 85.819135)
-        let pickUpLocation = CLLocation(latitude : 20.323706, longitude: 85.814981)
+        let dropOffLocation = restaurantLocation
+        let pickUpLocation = userLocation
         let builder = RideParametersBuilder()
         builder.pickupLocation = pickUpLocation
-        builder.pickupNickname = "Home"
+        builder.pickupNickname = "Current Location"
         builder.dropoffLocation = dropOffLocation
-        builder.dropoffNickname = "Mayfair Lagoon, Bhubaneswar"
+        builder.dropoffNickname = dropOffNickname
 
         var productID = ""
         ridesClient.fetchProducts(pickupLocation: pickUpLocation) { (product, response) in
@@ -117,7 +153,7 @@ class RestaurantDetailTableViewController: UITableViewController {
 
         ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
 
-            print(price[0].estimate!,"🍚")
+//            print(price[0].estimate,"🍚")
         }
 
         ridesClient.fetchTimeEstimates(pickupLocation: pickUpLocation) { (time, response) in

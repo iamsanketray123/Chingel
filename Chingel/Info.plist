@@ -2,45 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
-    
-    
-    <key>UberClientID</key>
-    <string>Qe5Da7BJAeGblIynsuGDOy7-AiJIkpfW</string>
-    <key>UberServerToken</key>
-    <string>-6MYlx8icjkjbzWCnxrL7P000V00Y29YC2A-6b2O</string>
-    <key>UberDisplayName</key>
-    <string>RideNow</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>uber</string>
-        <string>uberauth</string>
-    </array>
-    
-    
-    
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb198229360723228</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>198229360723228</string>
-	<key>FacebookDisplayName</key>
-	<string>Chingel</string>
-    
-    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -55,10 +16,45 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb198229360723228</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.209493751079-fnioinu1bn5pqnvp1nkgd09k7jbhp23v</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>198229360723228</string>
+	<key>FacebookDisplayName</key>
+	<string>Chingel</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>uber</string>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Chingel would like to access your Camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need location to display results</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Chingel would like to acces your Photo Library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -80,11 +76,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Chingel would like to acces your Photo Library</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Chingel would like to access your Camera</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need location to display results</string>
+	<key>UberClientID</key>
+	<string>Qe5Da7BJAeGblIynsuGDOy7-AiJIkpfW</string>
+	<key>UberDisplayName</key>
+	<string>RideNow</string>
+	<key>UberServerToken</key>
+	<string>-6MYlx8icjkjbzWCnxrL7P000V00Y29YC2A-6b2O</string>
 </dict>
 </plist>

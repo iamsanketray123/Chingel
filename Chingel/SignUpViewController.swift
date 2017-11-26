@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GoogleSignIn
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var emailId: UITextField!
@@ -20,11 +21,10 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         name.delegate = self
         emailId.delegate = self
         password.delegate = self
-        
     }
     @IBAction func uploadImage(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
@@ -228,3 +228,5 @@ extension SignUpViewController : UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true, completion: nil)
     }
 }
+
+

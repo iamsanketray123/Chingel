@@ -13,6 +13,8 @@
 		192E00F41FC4033400BF053F /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F31FC4033400BF053F /* Restaurant.swift */; };
 		192E00F61FC403EC00BF053F /* ZomatoNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */; };
 		192E00F81FC408B400BF053F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F71FC408B400BF053F /* TableViewCell.swift */; };
+		1938C17E1FC7F62A004880ED /* MKMapViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938C17D1FC7F62A004880ED /* MKMapViewX.swift */; };
+		1942BBF01FC95DFD00AC78CB /* ChangeLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1942BBEF1FC95DFD00AC78CB /* ChangeLocationViewController.swift */; };
 		19856E8B1FBED89000D4F8EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E8A1FBED89000D4F8EE /* AppDelegate.swift */; };
 		19856E8D1FBED89000D4F8EE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19856E8C1FBED89000D4F8EE /* HomeViewController.swift */; };
 		19856E901FBED89000D4F8EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19856E8E1FBED89000D4F8EE /* Main.storyboard */; };
@@ -52,6 +54,8 @@
 		192E00F31FC4033400BF053F /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZomatoNetworking.swift; sourceTree = "<group>"; };
 		192E00F71FC408B400BF053F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		1938C17D1FC7F62A004880ED /* MKMapViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewX.swift; sourceTree = "<group>"; };
+		1942BBEF1FC95DFD00AC78CB /* ChangeLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLocationViewController.swift; sourceTree = "<group>"; };
 		19856E871FBED89000D4F8EE /* Chingel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chingel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19856E8A1FBED89000D4F8EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19856E8C1FBED89000D4F8EE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				19856E9F1FBEFA4300D4F8EE /* UIButtonX.swift */,
 				1905C4221FC1569800C62623 /* UITextFieldX.swift */,
 				198592B61FC1A3980052C320 /* UIImageViewX.swift */,
+				1938C17D1FC7F62A004880ED /* MKMapViewX.swift */,
 				19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */,
 				1905C4281FC1851600C62623 /* SignUpViewController.swift */,
 				198592931FC1927E0052C320 /* LocationViewController.swift */,
@@ -122,6 +127,7 @@
 				192E00F71FC408B400BF053F /* TableViewCell.swift */,
 				1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */,
 				19CEC8BD1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift */,
+				1942BBEF1FC95DFD00AC78CB /* ChangeLocationViewController.swift */,
 				192E00F31FC4033400BF053F /* Restaurant.swift */,
 				192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */,
 				19856E8E1FBED89000D4F8EE /* Main.storyboard */,
@@ -237,6 +243,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Chingel/Pods-Chingel-resources.sh",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -276,6 +283,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
@@ -292,6 +300,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
@@ -323,7 +332,9 @@
 				19856EA81FBF19EE00D4F8EE /* OnboardingView.swift in Sources */,
 				198592941FC1927E0052C320 /* LocationViewController.swift in Sources */,
 				192E00F61FC403EC00BF053F /* ZomatoNetworking.swift in Sources */,
+				1942BBF01FC95DFD00AC78CB /* ChangeLocationViewController.swift in Sources */,
 				1905C4231FC1569800C62623 /* UITextFieldX.swift in Sources */,
+				1938C17E1FC7F62A004880ED /* MKMapViewX.swift in Sources */,
 				19856E8D1FBED89000D4F8EE /* HomeViewController.swift in Sources */,
 				1905C4291FC1851600C62623 /* SignUpViewController.swift in Sources */,
 				198592B71FC1A3980052C320 /* UIImageViewX.swift in Sources */,

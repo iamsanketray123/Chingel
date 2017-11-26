@@ -20,5 +20,6 @@ pod 'SDWebImage/WebP'
 pod 'GooglePlaces'
 pod 'IQKeyboardManager'
 pod 'UberRides'
+pod 'GoogleSignIn'
 
 end

@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import Firebase
+import CoreLocation
 
 class RestaurantsListViewController: UIViewController {
     
@@ -35,8 +36,13 @@ class RestaurantsListViewController: UIViewController {
             RestaurantsListViewController.locationName = locationName!
             RestaurantsListViewController.locationLatitude =  locationLatitude!
             RestaurantsListViewController.locationLongitude = locationLongitude!
+            print(RestaurantsListViewController.locationName,RestaurantsListViewController.locationLatitude,RestaurantsListViewController.locationLongitude,"🍕")
             
             self.createNavigationTitleButton(locationName : locationName!)
+            
+            RestaurantsListViewController.start = 0
+            self.restaurants = [Restaurant]()
+            self.table.reloadData()
             
             getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
                 
@@ -49,9 +55,27 @@ class RestaurantsListViewController: UIViewController {
         
     }
     
+
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print("🎾",RestaurantsListViewController.locationLatitude,RestaurantsListViewController.locationLongitude,"🎾")
+        UIApplication.shared.statusBarView?.backgroundColor = nil
+
+        
+//        print(restaurants.count)
+        RestaurantsListViewController.start = 0
+        self.restaurants = [Restaurant]()
+        table.reloadData()
+        
+        getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
+            
+            self.restaurants.append(restaurant)
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
+        })
     }
     
 //    This doesn't work even though all the superviews have user interaction enabled.
@@ -66,9 +90,9 @@ class RestaurantsListViewController: UIViewController {
 
     
     @IBAction func searchAfterSorting(_ sender: Any) {
-        print(restaurants.count)
+//        print(restaurants.count)
         RestaurantsListViewController.start = 0
-        restaurants = [Restaurant]()
+        self.restaurants = [Restaurant]()
         table.reloadData()
         
         getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
@@ -131,7 +155,7 @@ class RestaurantsListViewController: UIViewController {
     }
     
     @objc func selectLocation(button: UIButton) {
-//        performSegue(withIdentifier: "selectLocation", sender: self)
+        performSegue(withIdentifier: "changeLocation", sender: self)
         print("yet to implement")
     }
     
@@ -196,11 +220,15 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRestaurant = restaurants[indexPath.row]
-                performSegue(withIdentifier: "toDetailView", sender: self)
+        tableView.deselectRow(at: indexPath, animated : true)
+        performSegue(withIdentifier: "toDetailView", sender: self)
     }
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            let destination = segue.destination as! RestaurantDetailTableViewController
-            destination.restaurant = selectedRestaurant
+            if segue.identifier == "toDetailView" {
+                let destination = segue.destination as! RestaurantDetailTableViewController
+                destination.restaurant = selectedRestaurant
+                destination.userLocation = CLLocation(latitude: CLLocationDegrees(RestaurantsListViewController.locationLatitude)!, longitude: CLLocationDegrees(RestaurantsListViewController.locationLongitude)!)
+                }
         }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
