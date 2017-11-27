@@ -46,39 +46,54 @@ class RestaurantsListViewController: UIViewController {
             
             getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
                 
-                self.restaurants.append(restaurant)
+                self.restaurants.append(restaurant!)
                 DispatchQueue.main.async {
                     self.table.reloadData()
                 }
+                print(self.restaurants.count,"🍗")
+                
             })
         }
         
     }
     
-
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         print("🎾",RestaurantsListViewController.locationLatitude,RestaurantsListViewController.locationLongitude,"🎾")
         UIApplication.shared.statusBarView?.backgroundColor = nil
-
         
-//        print(restaurants.count)
+        
+        //        print(restaurants.count)
         RestaurantsListViewController.start = 0
         self.restaurants = [Restaurant]()
         table.reloadData()
         
+//        getNumberOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order) { (numberOfRestaurants) in
+//            print(numberOfRestaurants,"🥓")
+//            if numberOfRestaurants > 0 {
+//
+//            }
+//            else {
+//                print("No restaurants found")
+//            }
+//        }
         getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
             
-            self.restaurants.append(restaurant)
+            
+            self.restaurants.append(restaurant!)
             DispatchQueue.main.async {
                 self.table.reloadData()
             }
+            print(self.restaurants.count,"🍛")
+            
         })
+        
     }
     
-//    This doesn't work even though all the superviews have user interaction enabled.
+    //    This doesn't work even though all the superviews have user interaction enabled.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch : UITouch? = touches.first
         if touch?.view != sortingList {
@@ -87,19 +102,21 @@ class RestaurantsListViewController: UIViewController {
         }
     }
     
-
+    
     
     @IBAction func searchAfterSorting(_ sender: Any) {
-//        print(restaurants.count)
+        //        print(restaurants.count)
         RestaurantsListViewController.start = 0
         self.restaurants = [Restaurant]()
         table.reloadData()
         
         getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
             
-            self.restaurants.append(restaurant)
+            
+            self.restaurants.append(restaurant!)
             DispatchQueue.main.async {
                 self.table.reloadData()
+                
             }
         })
         
@@ -141,7 +158,7 @@ class RestaurantsListViewController: UIViewController {
     }
     
     
-
+    
     
     func createNavigationTitleButton(locationName : String) {
         RestaurantsListViewController.navigationTitleButton.setImage(UIImage(named: "markerIcon"), for: .normal)
@@ -183,8 +200,9 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        let restaurant = restaurants[indexPath.row]
         cell.img.image = nil
+        let restaurant = restaurants[indexPath.row]
+        //        cell.img.sd_setImage(with: nil, completed: nil)
         
         cell.backgroundCardView.backgroundColor = UIColor.white
         cell.contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
@@ -223,29 +241,30 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
         tableView.deselectRow(at: indexPath, animated : true)
         performSegue(withIdentifier: "toDetailView", sender: self)
     }
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "toDetailView" {
-                let destination = segue.destination as! RestaurantDetailTableViewController
-                destination.restaurant = selectedRestaurant
-                destination.userLocation = CLLocation(latitude: CLLocationDegrees(RestaurantsListViewController.locationLatitude)!, longitude: CLLocationDegrees(RestaurantsListViewController.locationLongitude)!)
-                }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailView" {
+            let destination = segue.destination as! RestaurantDetailTableViewController
+            destination.restaurant = selectedRestaurant
+            destination.userLocation = CLLocation(latitude: CLLocationDegrees(RestaurantsListViewController.locationLatitude)!, longitude: CLLocationDegrees(RestaurantsListViewController.locationLongitude)!)
         }
+    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//                DispatchQueue.main.async {
-//                    cell.alpha = 0
-//                    UIView.animate(withDuration: 0.5) {
-//                        cell.alpha = 1.0
-//                    }
-//                }
+        //                DispatchQueue.main.async {
+        //                    cell.alpha = 0
+        //                    UIView.animate(withDuration: 0.5) {
+        //                        cell.alpha = 1.0
+        //                    }
+        //                }
         let lastRestaurant = restaurants.count - 1
         if indexPath.row == lastRestaurant {
             
             getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
                 
-                self.restaurants.append(restaurant)
+                self.restaurants.append(restaurant!)
                 DispatchQueue.main.async {
                     self.table.reloadData()
+                    
                 }
             })
         }

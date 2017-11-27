@@ -8,7 +8,7 @@
 
 import UIKit
 
-func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String, completion : @escaping (_ restaurant: Restaurant) -> Void) {
+func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String, completion : @escaping (_ restaurant: Restaurant?) -> Void) {
     print("Finding restaurants")
     RestaurantsListViewController.start += 20
     let request = NSMutableURLRequest(url: URL(string: "https://developers.zomato.com/api/v2.1/search?start=\(start)&lat=\(lat)&lon=\(long)&sort=\(sort)&order=\(order)")!)
@@ -39,11 +39,13 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
             return
         }
         
+        
+        
         guard let nearbyRes = parsedResult["restaurants"] as? [AnyObject] else {
             print("Could not get restaurant list")
             return
         }
-            //            Iterate over all the available restaurants for the location
+        //            Iterate over all the available restaurants for the location
         for res in nearbyRes {
             guard let rest = res["restaurant"] as? [String:AnyObject] else {
                 print("Could not get restaurant")
@@ -144,3 +146,40 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
     }
     task.resume()
 }
+//func getNumberOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String,completion : @escaping (_ numberOfRestaurants : Int)->Void){
+//    let request = NSMutableURLRequest(url: URL(string: "https://developers.zomato.com/api/v2.1/search?start=\(start)&lat=\(lat)&lon=\(long)&sort=\(sort)&order=\(order)")!)
+//    request.addValue("107aa037e7df67d13089a966c701acc0", forHTTPHeaderField: "user-key")
+//    
+//    
+//    let session = URLSession.shared
+//    let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
+//        
+//        guard error == nil else{
+//            print("error while requesting data")
+//            return
+//        }
+//        guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+//            print("status code was other than 2xx")
+//            return
+//        }
+//        guard let data = data else {
+//            print("request for data failed")
+//            return
+//        }
+//        
+//        let parsedResult : [String:AnyObject]!
+//        do {
+//            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
+//        }catch {
+//            print("error parsing data")
+//            return
+//        }
+//        guard let numberOfRestaurants = parsedResult["results_found"] as? Int else {
+//            print("Could not get number of  restuaranst")
+//            return
+//        }
+//        completion(numberOfRestaurants)
+//    }
+//    task.resume()
+//}
+//

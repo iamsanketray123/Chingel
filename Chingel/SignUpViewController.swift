@@ -55,23 +55,37 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func signUpWithEmail(_ sender: Any) {
-        signUpUsingEmail()
+        do {
+            try signUpUsingEmail()
+        }catch SignupError.incompleteForm {
+            Alert.showBasic(title: "Incomplete Form", message: "Please fill out name, email and password fields", vc: self)
+        }catch SignupError.invalidEmail {
+            Alert.showBasic(title: "Invalid Email Format", message: "Please sure your email id is formatted correctly", vc: self)
+        }catch SignupError.incorrectPasswordLength {
+            Alert.showBasic(title: "Password Too Short", message: "Password should be a minimum of 6 characters", vc: self)
+        }catch {
+            Alert.showBasic(title: "Unable To Login", message: "There was an error while attempting to Signup", vc: self)
+        }
     }
     @IBAction func singUpWithFB(_ sender: Any) {
         facebookSignUp()
     }
     
-    func signUpUsingEmail() {
-        guard let name = name.text else {
-            return
-        }
-        guard let email = emailId.text else {
-            return
-        }
-        guard let password = password.text else {
-            return
-        }
+    func signUpUsingEmail() throws {
+        let name = self.name.text!
+        let email = emailId.text!
+        let password = self.password.text!
         
+        if email.isEmpty || password.isEmpty || name.isEmpty {
+            throw SignupError.incompleteForm
+        }
+        if !email.isValidEmail {
+            throw SignupError.invalidEmail
+        }
+        if password.count < 6 {
+            throw SignupError.incorrectPasswordLength
+        }
+
         
         if userImage.image != nil {
             let imageName = NSUUID().uuidString

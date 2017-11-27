@@ -21,5 +21,6 @@ pod 'GooglePlaces'
 pod 'IQKeyboardManager'
 pod 'UberRides'
 pod 'GoogleSignIn'
+pod 'SVProgressHUD' 
 
 end

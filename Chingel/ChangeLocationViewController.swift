@@ -50,6 +50,7 @@ class ChangeLocationViewController: UIViewController {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        manager.stopUpdatingLocation()
     }
     func getAddress(completion: ()-> Void) {
         print("Running get address")
@@ -166,7 +167,7 @@ extension ChangeLocationViewController : UITableViewDelegate, UITableViewDataSou
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = recentLocations[indexPath.row] as! RecentLocations
+        let location = recentLocations[indexPath.row]
         RestaurantsListViewController.navigationTitleButton.setTitle(location.locationName, for: .normal)
         RestaurantsListViewController.locationLatitude = "\(location.locationLatitude)"
         RestaurantsListViewController.locationLongitude = "\(location.locationLongitude)"

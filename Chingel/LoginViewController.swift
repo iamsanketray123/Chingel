@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import SVProgressHUD
 
 
 class LoginViewController: UIViewController {
@@ -30,7 +31,17 @@ class LoginViewController: UIViewController {
         
     }
     @IBAction func loginWithEmail(_ sender: Any) {
-        loginUsingEmail()
+        do{
+            try loginUsingEmail()
+        }catch LoginError.incompleteForm {
+            Alert.showBasic(title: "Incomplete Form", message: "Please fill out both email and password fields", vc: self)
+        }catch LoginError.invalidEmail {
+            Alert.showBasic(title: "Invalid Email Format", message: "Please sure your email id is formatted correctly", vc: self)
+        }catch LoginError.incorrectPasswordLength {
+            Alert.showBasic(title: "Password Too Short", message: "Password should be a minimum of 6 characters", vc: self)
+        }catch {
+            Alert.showBasic(title: "Unable To Login", message: "There was an error while attempting to Login", vc: self)
+        }
     }
     @IBAction func loginWithFB(_ sender: Any) {
         loginUsingFacebook()
@@ -66,13 +77,20 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func loginUsingEmail () {
-        guard let email = emailIdTextField.text else {
-            return
+    func loginUsingEmail() throws {
+        let email = emailIdTextField.text!
+        let password = passwordTextField.text!
+        
+        if email.isEmpty || password.isEmpty {
+            throw LoginError.incompleteForm
         }
-        guard let password = passwordTextField.text else {
-            return
+        if !email.isValidEmail {
+            throw LoginError.invalidEmail
         }
+        if password.count < 6 {
+            throw LoginError.incorrectPasswordLength
+        }
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 //handle error

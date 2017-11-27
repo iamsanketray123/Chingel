@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFm-dI-ve4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -281,15 +281,16 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWy-jr-m0X" customClass="UIButtonX" customModule="Chingel" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWy-jr-m0X" customClass="UIButtonX" customModule="Chingel" customModuleProvider="target">
                                 <rect key="frame" x="16" y="437" width="343" height="50"/>
                                 <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="l1p-Ne-Zx6"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="wRI-uM-p0F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
-                                <state key="normal" title="Login with Facebook">
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="-140" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Login with Facebook" image="fb">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -400,7 +401,7 @@
                                     <action selector="signUpWithEmail:" destination="oJN-N0-vYO" eventType="touchUpInside" id="KVz-0p-n0F"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vK-ql-30V" customClass="UIButtonX" customModule="Chingel" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vK-ql-30V" customClass="UIButtonX" customModule="Chingel" customModuleProvider="target">
                                 <rect key="frame" x="16" y="544" width="343" height="50"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -408,8 +409,9 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Mxg-MQ-mBh"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="luj-9h-fkC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
-                                <state key="normal" title="Signup with Facebook">
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="-125" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Signup with Facebook" image="fb">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -1179,6 +1181,9 @@ food is. Please share your Location.</string>
                                                             <real key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="getDirections:" destination="39c-ta-cPA" eventType="touchUpInside" id="HLN-Hn-YzR"/>
+                                                    </connections>
                                                 </button>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HKQ-d6-5Bu" customClass="MKMapViewX" customModule="Chingel" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="9" width="343" height="128"/>
@@ -1377,6 +1382,7 @@ food is. Please share your Location.</string>
         <image name="backIcon" width="19" height="33"/>
         <image name="directions" width="33" height="33"/>
         <image name="dismiss" width="33" height="33"/>
+        <image name="fb" width="33" height="33"/>
         <image name="food" width="5472" height="3648"/>
         <image name="image-3" width="4032" height="2272"/>
         <image name="locationBackground" width="5400" height="3604"/>
@@ -1388,6 +1394,6 @@ food is. Please share your Location.</string>
         <image name="userPassword" width="33" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Icl-O8-fEy"/>
+        <segue reference="gxs-CB-0Ld"/>
     </inferredMetricsTieBreakers>
 </document>

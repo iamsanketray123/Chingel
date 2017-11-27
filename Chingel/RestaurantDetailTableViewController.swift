@@ -31,9 +31,6 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-       
-        
         generateUberButton(userLocation : userLocation!, restaurantLocation : CLLocation(latitude: CLLocationDegrees(restaurant!.latitude)!, longitude: CLLocationDegrees(restaurant!.longitude)!), dropOffNickname: restaurant!.name)
         
         setupMap()
@@ -85,6 +82,14 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func getDirections(_ sender : Any) {
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            UIApplication.shared.open(URL(string:"comgooglemaps://?saddr=\(userLocation!.coordinate.latitude),\(userLocation!.coordinate.longitude)&daddr=\(restaurant!.latitude),\(restaurant!.longitude)&directionsmode=driving")!, options: [:], completionHandler: nil)
+        }else {
+            print("cant open google maps")
+        }
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -146,18 +151,27 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
 
         var productID = ""
         ridesClient.fetchProducts(pickupLocation: pickUpLocation) { (product, response) in
-            productID = product[1].productID
+            print(product.count,"🍚")
+            if product.count > 0 {
+                productID = product[0].productID
+            } else {
+                productID = ""
+            }
             print("🥒\(productID)")
         }
 
 
         ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
 
-//            print(price[0].estimate,"🍚")
+            if productID != "" {
+                print(price[0].estimate,"🍚")
+            }
         }
 
         ridesClient.fetchTimeEstimates(pickupLocation: pickUpLocation) { (time, response) in
-            print("🥕",time[0].estimate,"🥕")
+            if productID != "" {
+                print("🥕",time[0].estimate,"🥕")
+            }
         }
 
         ridesClient.fetchRideRequestEstimate(parameters: builder.build()) { (rideEstimate, response) in
