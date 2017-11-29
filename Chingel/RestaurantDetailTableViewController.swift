@@ -140,7 +140,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         let button = RideRequestButton()
         view.addSubview(button)
         print("🍒",button.frame,"🍒")
-        button.frame = CGRect(x: 16, y: Int(directions.frame.origin.y + 298), width: Int(directions.frame.width), height: 50)
+        button.frame = CGRect(x: 16, y: Int(directions.frame.origin.y + 298), width: Int(view.frame.width - 32), height: 50)
         
         let ridesClient = RidesClient()
         let dropOffLocation = restaurantLocation

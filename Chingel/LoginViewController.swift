@@ -78,6 +78,7 @@ class LoginViewController: UIViewController {
                 completion(error!, nil)
                 return
             }
+            
             //success logging in
             UserDefaults.standard.set(user?.uid, forKey: "uid") // Saving the uid to Userdefaults
             SVProgressHUD.dismiss()
@@ -93,9 +94,10 @@ class LoginViewController: UIViewController {
                 print("FB Login failed",error!.localizedDescription)
                 return
             }
-//            login Success
-
+            //            login Success
+            
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name,email,picture.type(large)"]).start { (connection, result, error) in
+                print("This got executed...")
                 guard error == nil else {
                     print("Found an error: \(error?.localizedDescription)")
                     return
@@ -108,16 +110,16 @@ class LoginViewController: UIViewController {
                     print("Could not get email id")
                     return
                 }
-//                Find out if an email id has been registered or not.
+                //                Find out if an email id has been registered or not.
                 databaseReference.child("users").queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observeSingleEvent(of: .value, with: { (snapshot) in
                     print(snapshot.childrenCount,"🍶")
-//                  snapshot.childrenCount == 0, Account has not been created yet.
+                    //                  snapshot.childrenCount == 0, Account has not been created yet.
                     if snapshot.childrenCount == 0 {
                         completion ( false)
                     }
+                    print("Executed")
                     
-                    
-//                     if snapshot.childrenCount is > 0, an account has been created already.
+                    //                     if snapshot.childrenCount is > 0, an account has been created already.
                     if snapshot.childrenCount > 0{
                         let accessToken = FBSDKAccessToken.current()
                         guard let accessTokenString = accessToken?.tokenString else {
@@ -134,21 +136,11 @@ class LoginViewController: UIViewController {
                             UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "uid")
                             //                successfully logged in
                             
-//                            self.performSegue(withIdentifier: "RestaurantsList", sender: self)
                             completion(true)
                         })
-                    }
-                    
-                    
+                    }  
                 })
-
             }
-            
-            
-            
-            
-            
-
         }
     }
 }

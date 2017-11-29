@@ -100,7 +100,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                 
                 storedImage.putData(uploadData, metadata: nil, completion: { (metaData, error) in
                     if error != nil {
-                        print(error?.localizedDescription)
+                        print(error?.localizedDescription,"🍣")
                         return
                     }
                     //                    Successfully uploaded image to Firebase Storage
@@ -216,7 +216,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                         return
                     }
                     self.saveUserInfoToFirebase(name: username, url: pictureURL, email: email, uid : (Auth.auth().currentUser?.uid)!)
-                    FBSDKLoginManager.init().logOut()
+                    
                 }
             })
             
