@@ -31,6 +31,8 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        RestaurantsListViewController.locationChanged = false
+        
         generateUberButton(userLocation : userLocation!, restaurantLocation : CLLocation(latitude: CLLocationDegrees(restaurant!.latitude)!, longitude: CLLocationDegrees(restaurant!.longitude)!), dropOffNickname: restaurant!.name)
         
         setupMap()
@@ -138,7 +140,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         let button = RideRequestButton()
         view.addSubview(button)
         print("🍒",button.frame,"🍒")
-        button.frame = CGRect(x: 16, y: Int(directions.frame.origin.y + 298), width: 343, height: 50)
+        button.frame = CGRect(x: 16, y: Int(directions.frame.origin.y + 298), width: Int(directions.frame.width), height: 50)
         
         let ridesClient = RidesClient()
         let dropOffLocation = restaurantLocation
@@ -161,12 +163,12 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         }
 
 
-        ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
-
-            if productID != "" {
-                print(price[0].estimate,"🍚")
-            }
-        }
+//        ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
+//
+//            if productID != "" {
+//                print(price[0].estimate,"🍚")
+//            }
+//        }
 
         ridesClient.fetchTimeEstimates(pickupLocation: pickUpLocation) { (time, response) in
             if productID != "" {
@@ -179,10 +181,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
             print(rideEstimate,"🥗")
         }
 
-
-
         builder.productID = productID
-
         button.setContent()
         button.rideParameters = builder.build()
         button.loadRideInformation()

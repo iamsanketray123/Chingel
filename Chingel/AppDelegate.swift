@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        if (UserDefaults.standard.object(forKey: "uid") == nil) {
 //            window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
 //        }
+
+        if UserDefaults.standard.object(forKey : "firstLaunchComplete") as? Bool == true{
+            window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+        }
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         

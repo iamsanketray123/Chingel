@@ -48,7 +48,7 @@ class LocationViewController: UIViewController {
                 let pm = placemarks![0] as! CLPlacemark
                 
                 self.updateLocationDetailsOfUser(locationName: pm.name!, locationLatitude: latitude, locationLongitude: longitude) {
-                    self.performSegue(withIdentifier: "RestaurantsHomeVC", sender: self)
+                    self.performSegue(withIdentifier: "RestaurantsListVC", sender: self)
                 }
             }
         }
@@ -89,7 +89,7 @@ extension LocationViewController: GMSAutocompleteViewControllerDelegate {
         
         
         dismiss(animated: false) {
-            self.performSegue(withIdentifier: "RestaurantsHomeVC", sender: self)
+            self.performSegue(withIdentifier: "RestaurantsListVC", sender: self)
         }
 
         

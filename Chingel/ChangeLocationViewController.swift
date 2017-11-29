@@ -37,6 +37,7 @@ class ChangeLocationViewController: UIViewController {
 
     
     @IBAction func dimiss(_ sender: Any) {
+        RestaurantsListViewController.locationChanged = false
         dismiss(animated: true, completion : nil)
     }
     @IBAction func selectLocationManually(_ sender: Any) {
@@ -110,6 +111,7 @@ extension ChangeLocationViewController: GMSAutocompleteViewControllerDelegate {
         RestaurantsListViewController.locationLatitude = "\(place.coordinate.latitude)"
         RestaurantsListViewController.locationLongitude = "\(place.coordinate.longitude)"
         RestaurantsListViewController.navigationTitleButton.setTitle(place.name, for: .normal)
+        RestaurantsListViewController.locationChanged = true
         
 //      save location to database using CoreData
         saveLocationUsingCoreData(name: place.name,latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
@@ -149,6 +151,7 @@ extension ChangeLocationViewController : CLLocationManagerDelegate {
         
         RestaurantsListViewController.locationLatitude = "\(latitude)"
         RestaurantsListViewController.locationLongitude = "\(longitude)"
+        RestaurantsListViewController.locationChanged = true
         
         getAddress {
             dismiss(animated: true, completion: nil)
@@ -171,6 +174,7 @@ extension ChangeLocationViewController : UITableViewDelegate, UITableViewDataSou
         RestaurantsListViewController.navigationTitleButton.setTitle(location.locationName, for: .normal)
         RestaurantsListViewController.locationLatitude = "\(location.locationLatitude)"
         RestaurantsListViewController.locationLongitude = "\(location.locationLongitude)"
+        RestaurantsListViewController.locationChanged = true
 
         dismiss(animated: true, completion: nil)
     }

@@ -10,6 +10,8 @@ import UIKit
 import SDWebImage
 import Firebase
 import CoreLocation
+import SVProgressHUD
+import FBSDKLoginKit
 
 class RestaurantsListViewController: UIViewController {
     
@@ -28,9 +30,16 @@ class RestaurantsListViewController: UIViewController {
     static var locationLongitude = ""
     static var sort = "rating"
     static var order = "desc"
+    static var locationChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        
+        
+        SVProgressHUD.show(withStatus: "Loading...")
+        SVProgressHUD.setDefaultMaskType(.gradient)
         
         getLocationDataFromFirebase { (locationName, locationLatitude, locationLongitude) in
             RestaurantsListViewController.locationName = locationName!
@@ -48,6 +57,7 @@ class RestaurantsListViewController: UIViewController {
                 
                 self.restaurants.append(restaurant!)
                 DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
                     self.table.reloadData()
                 }
                 print(self.restaurants.count,"🍗")
@@ -62,34 +72,30 @@ class RestaurantsListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("🎾",RestaurantsListViewController.locationLatitude,RestaurantsListViewController.locationLongitude,"🎾")
-        UIApplication.shared.statusBarView?.backgroundColor = nil
-        
-        
-        //        print(restaurants.count)
-        RestaurantsListViewController.start = 0
-        self.restaurants = [Restaurant]()
-        table.reloadData()
-        
-//        getNumberOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order) { (numberOfRestaurants) in
-//            print(numberOfRestaurants,"🥓")
-//            if numberOfRestaurants > 0 {
-//
-//            }
-//            else {
-//                print("No restaurants found")
-//            }
-//        }
-        getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
+        if RestaurantsListViewController.locationChanged {
+            SVProgressHUD.show(withStatus: "Loading...")
+            SVProgressHUD.setDefaultMaskType(.gradient)
             
+            print("🎾",RestaurantsListViewController.locationLatitude,RestaurantsListViewController.locationLongitude,"🎾")
+            UIApplication.shared.statusBarView?.backgroundColor = nil
             
-            self.restaurants.append(restaurant!)
-            DispatchQueue.main.async {
-                self.table.reloadData()
-            }
-            print(self.restaurants.count,"🍛")
+            RestaurantsListViewController.start = 0
+            self.restaurants = [Restaurant]()
+            table.reloadData()
             
-        })
+
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
+                
+                
+                self.restaurants.append(restaurant!)
+                DispatchQueue.main.async {
+                    self.table.reloadData()
+                    SVProgressHUD.dismiss()
+                }
+                print(self.restaurants.count,"🍛")
+                
+            })
+        }
         
     }
     
@@ -102,6 +108,13 @@ class RestaurantsListViewController: UIViewController {
         }
     }
     
+   @IBAction func logout() {
+//        FBSDKLoginManager().logOut()
+        try! Auth.auth().signOut()
+        UserDefaults.standard.set(nil, forKey: "uid")
+        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+        present(controller, animated: true, completion: nil)
+    }
     
     
     @IBAction func searchAfterSorting(_ sender: Any) {
@@ -173,7 +186,7 @@ class RestaurantsListViewController: UIViewController {
     
     @objc func selectLocation(button: UIButton) {
         performSegue(withIdentifier: "changeLocation", sender: self)
-        print("yet to implement")
+        
     }
     
     func getLocationDataFromFirebase (completion : @escaping (_ locationName: String?, _ locationLatitude : String?, _ locationLongitude : String?)-> Void) {

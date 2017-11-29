@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
+import SVProgressHUD
 
 class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     
@@ -21,7 +22,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         name.delegate = self
         emailId.delegate = self
         password.delegate = self
@@ -56,7 +57,12 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBAction func signUpWithEmail(_ sender: Any) {
         do {
-            try signUpUsingEmail()
+            try signUpUsingEmail(completion: { (error, success) in
+                if error != nil {
+                    Alert.showBasic(title: "Signup Error", message: "\(error!.localizedDescription)", vc: self)
+                }
+                self.performSegue(withIdentifier: "locationVC", sender: self)
+            })
         }catch SignupError.incompleteForm {
             Alert.showBasic(title: "Incomplete Form", message: "Please fill out name, email and password fields", vc: self)
         }catch SignupError.invalidEmail {
@@ -71,7 +77,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
         facebookSignUp()
     }
     
-    func signUpUsingEmail() throws {
+    func signUpUsingEmail(completion: @escaping (_ error : Error?, _ success: Bool?)->Void) throws {
         let name = self.name.text!
         let email = emailId.text!
         let password = self.password.text!
@@ -85,7 +91,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
         if password.count < 6 {
             throw SignupError.incorrectPasswordLength
         }
-
+        
         
         if userImage.image != nil {
             let imageName = NSUUID().uuidString
@@ -107,31 +113,44 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                         if let urlString = url?.absoluteString {
                             //                            Create User
                             
-                            
-                            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                                if error != nil {
-                                    print(error?.localizedDescription)
-                                    return
+                            DispatchQueue.global().async{
+                                DispatchQueue.main.async{
+                                    SVProgressHUD.show(withStatus: "Signing Up...")
+                                    SVProgressHUD.setDefaultMaskType(.gradient)
                                 }
-                                // registration successful
-                                guard let uid = user?.uid else {
-                                    return
-                                }
-                                
-                                UserDefaults.standard.set(uid, forKey: "uid")
-                                
-                                let userReference = databaseReference.child("users").child(uid)
-                                let values = ["username":name,"email":email,"pic":urlString,"locationName":"","locationLatitude":"","locationLongitude":""]
-                                
-                                userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                                     if error != nil {
-                                        print(error?.localizedDescription)
+//                                        print(error?.localizedDescription)
+                                        DispatchQueue.main.async {
+                                            SVProgressHUD.dismiss()
+                                        }
+                                        completion(error,nil)
                                         return
                                     }
-                                    // successfully saved user details
-                                    print("Successfully created user")
-                                    self.performSegue(withIdentifier: "locationVC", sender: self)
-                                })
+                                    // registration successful
+                                    guard let uid = user?.uid else {
+                                        return
+                                    }
+                                    
+                                    UserDefaults.standard.set(uid, forKey: "uid")
+                                    
+                                    let userReference = databaseReference.child("users").child(uid)
+                                    let values = ["username":name,"email":email,"pic":urlString,"locationName":"","locationLatitude":"","locationLongitude":""]
+                                    
+                                    userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                                        if error != nil {
+                                            print(error?.localizedDescription)
+                                            return
+                                        }
+                                        // successfully saved user details
+                                        print("Successfully created user")
+                                        DispatchQueue.main.async{
+                                            SVProgressHUD.dismiss()
+                                        }
+                                        completion(nil, true)
+//                                        self.performSegue(withIdentifier: "locationVC", sender: self)
+                                    })
+                                }
                             }
                         }
                     })
@@ -143,7 +162,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
     func facebookSignUp() {
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: self) { (result, error) in
             if error != nil {
-                print("FB login failed")
+                print("FB login failed",error!.localizedDescription)
                 return
             }// login Success
             
@@ -156,17 +175,17 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
             }
             
             let credentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
-
+            
             Auth.auth().signIn(with: credentials, completion: { (user, error) in
                 if error != nil {
                     print("Something went wrong with FB user", error?.localizedDescription)
                     return
                 }
                 print("Successfully logged in with user",Auth.auth().currentUser?.uid,"🍇")
-
-
+                
+                
                 UserDefaults.standard.set((Auth.auth().currentUser?.uid)!, forKey: "uid")
-
+                
                 FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name,email,picture.type(large)"]).start { (connection, result, error) in
                     guard error == nil else {
                         print("Found an error: \(error?.localizedDescription)")
@@ -197,9 +216,10 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                         return
                     }
                     self.saveUserInfoToFirebase(name: username, url: pictureURL, email: email, uid : (Auth.auth().currentUser?.uid)!)
+                    FBSDKLoginManager.init().logOut()
                 }
             })
-
+            
         }
     }
     
@@ -228,7 +248,7 @@ extension SignUpViewController : UITextFieldDelegate {
 
 extension SignUpViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-       
+        
         if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             self.userImage.image = editedImage
         } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {

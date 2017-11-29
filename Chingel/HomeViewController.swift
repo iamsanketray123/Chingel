@@ -28,6 +28,8 @@ class HomeViewController: UIViewController {
         yourRestaurant.alpha = 0
         goButton.alpha = 0
         letsGo.alpha = 0
+        
+        UserDefaults.standard.set(true, forKey: "firstLaunchComplete")
     
     }
     
