@@ -22,14 +22,21 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     @IBOutlet weak var restaurantAddress: UILabel!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var directions: UIButtonX!
+    @IBOutlet weak var gradientView: UIView!
     
     var headerHeight: CGFloat = 220
     var headerView : UIView!
     var restaurant : Restaurant?
     var userLocation : CLLocation?
     
+    static var viewIsDark = true
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupGradientView()
+        
         
         RestaurantsListViewController.locationChanged = false
         
@@ -97,19 +104,39 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateHeaderView()
-        
+
         var offset = (scrollView.contentOffset.y+220) / 110
         if offset > 1 {
             offset = 1
             self.navigationController?.navigationBar.tintColor = UIColor(hue: 4, saturation: offset, brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
             UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
+            makeViewLight()
             
         } else {
             self.navigationController?.navigationBar.tintColor = UIColor(hue: 1, saturation: offset, brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
             UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
+            makeViewDark()
         }
+    }
+    
+    fileprivate func setupGradientView() {
+        let newLayer = CAGradientLayer()
+        newLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
+        newLayer.frame = gradientView.frame
+        
+        gradientView.layer.addSublayer(newLayer)
+    }
+    
+    func makeViewDark() {
+        RestaurantDetailTableViewController.viewIsDark = true
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    func makeViewLight() {
+        RestaurantDetailTableViewController.viewIsDark = false
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func updateHeaderView(){
@@ -188,3 +215,13 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     }
     
 }
+extension UINavigationController {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        if RestaurantDetailTableViewController.viewIsDark {
+            return .lightContent
+        }else {
+            return .default
+        }
+    }
+}
+

@@ -41,7 +41,7 @@
 	<string>Chingel</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-        <string>comgooglemaps</string>
+		<string>comgooglemaps</string>
 		<string>uber</string>
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
@@ -83,5 +83,7 @@
 	<string>RideNow</string>
 	<key>UberServerToken</key>
 	<string>-6MYlx8icjkjbzWCnxrL7P000V00Y29YC2A-6b2O</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 </dict>
 </plist>

@@ -112,74 +112,53 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
                 print("Featured Image not found")
                 return
             }
+            //               11. online Delivery
+            guard let hasOnlineDelivery = rest["has_online_delivery"] as? Int else {
+                print("could not get online delivery status")
+                return
+            }
+            //               12. delivering now?
+            guard let isDeliveringNow = rest["is_delivering_now"] as? Int else {
+                print("could not get current delivery status")
+                return
+            }
+            //               13. has table booking?
+            guard let hasTableBooking = rest["has_table_booking"] as? Int else {
+                print("could not get table booking status")
+                return
+            }
             
             guard let ratingDetails = rest["user_rating"] else {
                 print("could not find ratings")
                 return
             }
-            //                11. aggregateRating
+            //                14. aggregateRating
             guard let aggregateRating = ratingDetails["aggregate_rating"] as? String else {
                 print("Can't find rating")
                 return
             }
             
-            //                12. ratingColor
+            //                15. ratingColor
             guard let ratingColor = ratingDetails["rating_color"] as? String else {
                 print("Can't find ratingColor")
                 return
             }
-            //              13. ratingText
+            //               16. ratingText
             guard let ratingText = ratingDetails["rating_text"] as? String else {
                 print("Can't find ratingText")
                 return
             }
-            //                14. votes
+            //                17. votes
             guard let votes = ratingDetails["votes"] as? String else {
                 print("Can't find votes")
                 return
             }
             
-            let restaurant = Restaurant(id: resID, name: name, address: address, locality: locality, latitude: latitude, longitude: longitude, cuisines: cuisines, costForTwo: averageCostForTwo, currency: currency, rating: aggregateRating, ratingText: ratingText, ratingColor: ratingColor, votes: votes, imageURLString: imageURLString)
+            let restaurant = Restaurant(id: resID, name: name, address: address, locality: locality, latitude: latitude, longitude: longitude, cuisines: cuisines, costForTwo: averageCostForTwo, currency: currency, rating: aggregateRating, ratingText: ratingText, ratingColor: ratingColor, votes: votes, imageURLString: imageURLString, hasOnlineDelivery: hasOnlineDelivery, isDeliveringNow: isDeliveringNow, hasTableBooking: hasTableBooking)
             
             completion(restaurant)
         }
     }
     task.resume()
 }
-//func getNumberOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String,completion : @escaping (_ numberOfRestaurants : Int)->Void){
-//    let request = NSMutableURLRequest(url: URL(string: "https://developers.zomato.com/api/v2.1/search?start=\(start)&lat=\(lat)&lon=\(long)&sort=\(sort)&order=\(order)")!)
-//    request.addValue("107aa037e7df67d13089a966c701acc0", forHTTPHeaderField: "user-key")
-//    
-//    
-//    let session = URLSession.shared
-//    let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-//        
-//        guard error == nil else{
-//            print("error while requesting data")
-//            return
-//        }
-//        guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-//            print("status code was other than 2xx")
-//            return
-//        }
-//        guard let data = data else {
-//            print("request for data failed")
-//            return
-//        }
-//        
-//        let parsedResult : [String:AnyObject]!
-//        do {
-//            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
-//        }catch {
-//            print("error parsing data")
-//            return
-//        }
-//        guard let numberOfRestaurants = parsedResult["results_found"] as? Int else {
-//            print("Could not get number of  restuaranst")
-//            return
-//        }
-//        completion(numberOfRestaurants)
-//    }
-//    task.resume()
-//}
-//
+
