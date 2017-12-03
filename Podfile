@@ -22,5 +22,6 @@ pod 'IQKeyboardManager'
 pod 'UberRides'
 pod 'GoogleSignIn'
 pod 'SVProgressHUD' 
+pod 'SideMenu'
 
 end

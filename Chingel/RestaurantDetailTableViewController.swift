@@ -23,6 +23,11 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var directions: UIButtonX!
     @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var cuisines: UILabel!
+    @IBOutlet weak var averageCost: UILabel!
+    @IBOutlet weak var hasOnlineDelivery: UIImageView!
+    @IBOutlet weak var isDeliveringNow: UIImageView!
+    @IBOutlet weak var hasTableBooking: UIImageView!
     
     var headerHeight: CGFloat = 220
     var headerView : UIView!
@@ -30,13 +35,13 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     var userLocation : CLLocation?
     
     static var viewIsDark = true
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupGradientView()
         
+        updateCuisinesAndPricing()
         
         RestaurantsListViewController.locationChanged = false
         
@@ -51,6 +56,8 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         restaurantRating.layer.masksToBounds = true
         numberOfVotes.text = "Based on \(String(describing: restaurant!.votes)) reviews"
         restaurantAddress.text = restaurant?.address
+        let url = URL(string: (restaurant?.imageURLString)!)
+        restaurantImage.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload])
         
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -65,8 +72,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         table.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
         table.contentOffset = CGPoint(x: 0, y: -headerHeight)
         
-        let url = URL(string: (restaurant?.imageURLString)!)
-        restaurantImage.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload])
+
 
         
         updateHeaderView()
@@ -87,6 +93,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
 
     }
 
+    
 
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
@@ -127,6 +134,16 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         newLayer.frame = gradientView.frame
         
         gradientView.layer.addSublayer(newLayer)
+    }
+    
+    func updateCuisinesAndPricing() {
+        cuisines.text = restaurant!.cuisines
+        averageCost.text = "\(restaurant!.currency) \(restaurant!.costForTwo) for two (approx.)"
+        
+        restaurant!.hasOnlineDelivery == 1 ? (hasOnlineDelivery.image = UIImage(named: "available")) : (hasOnlineDelivery.image = UIImage(named: "unavailable"))
+        restaurant!.isDeliveringNow == 1 ? (isDeliveringNow.image = UIImage(named: "available")) : (isDeliveringNow.image = UIImage(named: "unavailable"))
+        restaurant!.hasTableBooking == 1 ? (hasTableBooking.image = UIImage(named: "available")) : (hasTableBooking.image = UIImage(named: "unavailable"))
+        
     }
     
     func makeViewDark() {
@@ -190,12 +207,13 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         }
 
 
-//        ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
-//
-//            if productID != "" {
-//                print(price[0].estimate,"🍚")
-//            }
-//        }
+        ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
+
+            if price.count > 0 {
+                print(price[0].estimate,"🍚")
+            }
+            
+        }
 
         ridesClient.fetchTimeEstimates(pickupLocation: pickUpLocation) { (time, response) in
             if productID != "" {
@@ -214,6 +232,13 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         button.loadRideInformation()
     }
     
+//    open override var preferredStatusBarStyle: UIStatusBarStyle {
+//        if RestaurantDetailTableViewController.viewIsDark {
+//            return .lightContent
+//        }else {
+//            return .default
+//        }
+//    }
 }
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {

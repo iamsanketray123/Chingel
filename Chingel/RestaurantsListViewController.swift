@@ -12,6 +12,7 @@ import Firebase
 import CoreLocation
 import SVProgressHUD
 import FBSDKLoginKit
+import SideMenu
 
 class RestaurantsListViewController: UIViewController {
     
@@ -64,6 +65,7 @@ class RestaurantsListViewController: UIViewController {
                 
             })
         }
+        setupSideMenu()
         
     }
     
@@ -107,6 +109,11 @@ class RestaurantsListViewController: UIViewController {
             sortingList.isHidden = true
         }
     }
+    @IBAction func toggleSideMenu(_ sender: UIBarButtonItem) {
+        print("toogle side menu")
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+
+    }
     
    @IBAction func logout() {
 //        FBSDKLoginManager().logOut()
@@ -116,6 +123,18 @@ class RestaurantsListViewController: UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
+    fileprivate func setupSideMenu() {
+        let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "Left") as! UISideMenuNavigationController
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+//        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.default.menuPresentMode = .viewSlideInOut
+        SideMenuManager.default.menuWidth = 300
+        SideMenuManager.default.menuShadowColor = .black
+        SideMenuManager.default.menuShadowOpacity = 1
+        SideMenuManager.default.menuShadowRadius = 10
+        SideMenuManager.default.menuFadeStatusBar = false
+    }
     
     @IBAction func searchAfterSorting(_ sender: Any) {
         //        print(restaurants.count)

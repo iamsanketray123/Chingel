@@ -29,12 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().isEnableAutoToolbar = false
 
-//        if (UserDefaults.standard.object(forKey: "uid") == nil) {
-//            window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
-//        }
-
-        if UserDefaults.standard.object(forKey : "firstLaunchComplete") as? Bool == true{
-            window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+        if (UserDefaults.standard.object(forKey : "firstLaunchComplete") == nil) {
+            window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "HomeVC")
+        }else {
+            if (UserDefaults.standard.object(forKey: "uid") != nil) {
+                window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "RestaurantsListNVC")
+            }else {
+                window?.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+            }
         }
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

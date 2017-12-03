@@ -107,6 +107,7 @@ PODS:
   - SDWebImage/WebP (4.2.1):
     - libwebp
     - SDWebImage/Core
+  - SideMenu (3.1.4)
   - SVProgressHUD (2.2.2)
   - UberRides (0.7.0)
 
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - paper-onboarding
   - SDWebImage
   - SDWebImage/WebP
+  - SideMenu
   - SVProgressHUD
   - UberRides
 
@@ -152,9 +154,10 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   paper-onboarding: 7fcb8f2737edb32bd345d6e890578fff1a073fef
   SDWebImage: 1fa4c9edf525b744f002db89f3f5a38b3cd4c541
+  SideMenu: 99021e70b3f2eee65b5dd88e4274d09031b1221e
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   UberRides: 2e254e4de3acea4c4a4529c4d8455a2e4de51632
 
-PODFILE CHECKSUM: 0d93b7dcefb4b26d2a5ecdcf8d503e297c2ad73b
+PODFILE CHECKSUM: f7f729d00efca289b2f9fd773925de7c6708fe1f
 
 COCOAPODS: 1.3.1

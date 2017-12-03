@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
                 if error != nil {
                     Alert.showBasic(title: "Invalid Password", message: "Entered password is invalid. Please check again!", vc: self)
                 }
-                self.performSegue(withIdentifier: "RestaurantsList", sender: self)
+                self.performSegue(withIdentifier: "RestaurantsListNVC", sender: self)
             }
         }catch LoginError.incompleteForm {
             Alert.showBasic(title: "Incomplete Form", message: "Please fill out both email and password fields", vc: self)
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginWithFB(_ sender: Any) {
         loginUsingFacebook { (accountExists) in
             if accountExists {
-                self.performSegue(withIdentifier: "RestaurantsList", sender: self)
+                self.performSegue(withIdentifier: "RestaurantsListNVC", sender: self)
             }else {
                 Alert.showBasic(title: "User Not Found", message: "You don't have an account with us yet. Please click on the \"Signup Button\" to register. Thank You!", vc: self)
             }
