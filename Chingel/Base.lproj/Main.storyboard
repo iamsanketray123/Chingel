@@ -571,6 +571,23 @@
                                                             <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-0.png" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-8u-MD1">
+                                                            <rect key="frame" x="309" y="55" width="66" height="66"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="66" id="9Dg-tb-jvj"/>
+                                                                <constraint firstAttribute="width" constant="66" id="Akz-ze-gJx"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1w-2c-KhE">
+                                                            <rect key="frame" x="309" y="55" width="66" height="66"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="66" id="JMU-ab-IGH"/>
+                                                                <constraint firstAttribute="width" constant="66" id="yZX-Re-bfx"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <action selector="startAnimation:" destination="39c-ta-cPA" eventType="touchUpInside" id="Jf5-qt-3ai"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -582,11 +599,15 @@
                                                         <constraint firstItem="HJc-um-WnX" firstAttribute="top" secondItem="c6M-lF-mVR" secondAttribute="top" constant="8" id="RNX-Wc-Oht"/>
                                                         <constraint firstItem="VYJ-mE-xBp" firstAttribute="top" secondItem="HJc-um-WnX" secondAttribute="bottom" constant="8" id="aJY-Qp-uKy"/>
                                                         <constraint firstItem="FdM-Km-pjw" firstAttribute="top" secondItem="VYJ-mE-xBp" secondAttribute="bottom" constant="4" id="bCz-z3-7h7"/>
+                                                        <constraint firstItem="K1w-2c-KhE" firstAttribute="centerY" secondItem="c6M-lF-mVR" secondAttribute="centerY" id="dOu-ia-t93"/>
+                                                        <constraint firstAttribute="trailing" secondItem="rcy-8u-MD1" secondAttribute="trailing" id="gfW-Th-u1Q"/>
                                                         <constraint firstItem="QjB-1l-VAy" firstAttribute="leading" secondItem="c6M-lF-mVR" secondAttribute="leading" id="hVZ-AG-ro2"/>
                                                         <constraint firstItem="HJc-um-WnX" firstAttribute="leading" secondItem="c6M-lF-mVR" secondAttribute="leading" id="jLU-XQ-W1s"/>
                                                         <constraint firstAttribute="trailing" secondItem="dSQ-Os-XQd" secondAttribute="trailing" id="kQd-ev-CPO"/>
                                                         <constraint firstItem="dSQ-Os-XQd" firstAttribute="top" secondItem="VYJ-mE-xBp" secondAttribute="bottom" constant="10" id="rMd-UG-WZq"/>
                                                         <constraint firstAttribute="bottom" secondItem="QjB-1l-VAy" secondAttribute="bottom" id="rjz-Va-Loi"/>
+                                                        <constraint firstItem="rcy-8u-MD1" firstAttribute="centerY" secondItem="c6M-lF-mVR" secondAttribute="centerY" id="rmm-ey-4x2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="K1w-2c-KhE" secondAttribute="trailing" id="t4h-r0-FJa"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -858,6 +879,7 @@ Arabian</string>
                         <outlet property="gradientView" destination="9z2-HM-x57" id="h2K-f6-Dav"/>
                         <outlet property="hasOnlineDelivery" destination="igb-j1-LHc" id="61u-rS-0ry"/>
                         <outlet property="hasTableBooking" destination="Y6n-rk-2K8" id="0Vw-gQ-qLT"/>
+                        <outlet property="heartImage" destination="rcy-8u-MD1" id="s69-lq-MC2"/>
                         <outlet property="isDeliveringNow" destination="aNb-nU-j3Z" id="fJv-ub-hjV"/>
                         <outlet property="map" destination="HKQ-d6-5Bu" id="R2f-Xe-c1x"/>
                         <outlet property="numberOfVotes" destination="dSQ-Os-XQd" id="maf-2R-TbH"/>
@@ -1668,6 +1690,7 @@ we can tell you where the yummy food is. Please share your Location.</string>
         <image name="dismiss" width="33" height="33"/>
         <image name="fb" width="33" height="33"/>
         <image name="food" width="5472" height="3648"/>
+        <image name="heart-0.png" width="100" height="100"/>
         <image name="image-3" width="4032" height="2272"/>
         <image name="locationBackground" width="5400" height="3604"/>
         <image name="loginBackground" width="3840" height="5760"/>

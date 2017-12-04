@@ -28,7 +28,12 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     @IBOutlet weak var hasOnlineDelivery: UIImageView!
     @IBOutlet weak var isDeliveringNow: UIImageView!
     @IBOutlet weak var hasTableBooking: UIImageView!
+    @IBOutlet weak var heartImage: UIImageView!
+
     
+    var liked : Bool = false
+    var heartImages = [UIImage]()
+    var undoHeart = [UIImage]()
     var headerHeight: CGFloat = 220
     var headerView : UIView!
     var restaurant : Restaurant?
@@ -72,7 +77,8 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         table.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
         table.contentOffset = CGPoint(x: 0, y: -headerHeight)
         
-
+        heartImages = createImageArray(total: 24, imagePrefix: "heart")
+        undoHeart = reverseImageArray(total: 24, imagePrefix: "heart")
 
         
         updateHeaderView()
@@ -239,6 +245,53 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
 //            return .default
 //        }
 //    }
+    @IBAction func startAnimation(_ sender: UIButton) {
+        
+        if !liked {
+            animateHeart(heartImages) { (image) in
+                self.heartImage.image = image
+                self.liked = true
+                print("complete")
+            }
+        }else if liked {
+            print("need to animte back")
+            animateHeart(undoHeart, completion: { (image) in
+                self.heartImage.image = image
+                self.liked = false
+            })
+        }
+    }
+    
+    
+    func createImageArray (total : Int, imagePrefix : String) -> [UIImage] {
+        var imageArray : [UIImage] = []
+        for imageCount in 0..<total {
+            let imageName = "\(imagePrefix)-\(imageCount).png"
+            let image = UIImage(named: imageName)!
+            imageArray.append(image)
+        }
+        return imageArray
+    }
+    func reverseImageArray(total: Int, imagePrefix: String) -> [UIImage] {
+        var imageArray: [UIImage] = []
+        for imageCount in (0..<total).reversed() {
+            let imageName = "\(imagePrefix)-\(imageCount).png"
+            let image = UIImage(named: imageName)!
+            imageArray.append(image)
+        }
+        return imageArray
+    }
+    
+    func animateHeart(_ imageArray : [UIImage],completion: @escaping (_ image : UIImage?)->Void) {
+        
+        heartImage.animationImages = imageArray
+        heartImage.animationDuration = 1
+        heartImage.animationRepeatCount = 1
+        completion(imageArray.last!)
+        heartImage.startAnimating()
+        
+    }
+
 }
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
