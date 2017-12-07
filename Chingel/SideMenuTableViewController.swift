@@ -8,6 +8,8 @@
 
 import UIKit
 import SDWebImage
+import Firebase
+import SideMenu
 
 class SideMenuTableViewController: UITableViewController {
 
@@ -36,6 +38,25 @@ class SideMenuTableViewController: UITableViewController {
         self.tableView.backgroundView = tempImageView
 
     }
+    @IBAction func logout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        }catch {
+            print("Error while logging out")
+        }
+        UserDefaults.standard.set(nil, forKey: "uid")
+        
+        dismiss(animated: true) {
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+            UIApplication.topViewController()?.present(controller, animated: true)
+        }
+//        The following code leads to the error "Application tried to present modally an active controller <Chingel.RestaurantsListViewController"
+
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+//        UIApplication.topViewController()?.present(controller, animated: true)
+    }
+    
+    
     fileprivate func updateUserInfo(completion: @escaping (_ userImage : String?, _ userName: String?, _ userEmail: String?)->Void){
         let uid = UserDefaults.standard.object(forKey : "uid") as! String
         databaseReference.child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
@@ -48,3 +69,11 @@ class SideMenuTableViewController: UITableViewController {
         }
     }
 }
+
+
+
+
+
+
+
+

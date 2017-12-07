@@ -1,10 +1,11 @@
 //
-//  RestaurantDetailTableViewController.swift
+//  FavoriteRestaurantDetailTableViewController.swift
 //  Chingel
 //
-//  Created by Sanket  Ray on 21/11/17.
+//  Created by Sanket  Ray on 07/12/17.
 //  Copyright © 2017 Sanket  Ray. All rights reserved.
 //
+
 
 import UIKit
 import SDWebImage
@@ -12,8 +13,9 @@ import CoreLocation
 import UberRides
 import MapKit
 
-class RestaurantDetailTableViewController: UITableViewController, MKMapViewDelegate {
 
+class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapViewDelegate {
+    
     @IBOutlet var table: UITableView!
     @IBOutlet weak var restaurantImage: UIImageView!
     @IBOutlet weak var restaurantName: UILabel!
@@ -28,31 +30,28 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     @IBOutlet weak var hasOnlineDelivery: UIImageView!
     @IBOutlet weak var isDeliveringNow: UIImageView!
     @IBOutlet weak var hasTableBooking: UIImageView!
-    @IBOutlet weak var heartImage: UIImageView!
-
     
-    var liked : Bool = false
-    var heartImages = [UIImage]()
-    var undoHeart = [UIImage]()
+    
+    
     var headerHeight: CGFloat = 220
     var headerView : UIView!
-    var restaurant : Restaurant?
+    var restaurant : FavoriteRestaurants?
     var userLocation : CLLocation?
     
     static var viewIsDark = true
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         
         setupGradientView()
         
         updateCuisinesAndPricing()
         
-        RestaurantsListViewController.locationChanged = false
+//        RestaurantsListViewController.locationChanged = false
         
-        generateUberButton(userLocation : userLocation!, restaurantLocation : CLLocation(latitude: CLLocationDegrees(restaurant!.latitude)!, longitude: CLLocationDegrees(restaurant!.longitude)!), dropOffNickname: restaurant!.name)
+        generateUberButton(userLocation : userLocation!, restaurantLocation : CLLocation(latitude: CLLocationDegrees(restaurant!.latitude), longitude: CLLocationDegrees(restaurant!.longitude)), dropOffNickname: restaurant!.name!)
         
         setupMap()
         
@@ -61,7 +60,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         restaurantRating.backgroundColor = hexStringToUIColor(hex: (restaurant?.ratingColor)!)
         restaurantRating.layer.cornerRadius = 3.0
         restaurantRating.layer.masksToBounds = true
-        numberOfVotes.text = "Based on \(String(describing: restaurant!.votes)) reviews"
+        numberOfVotes.text = "Based on \(String(describing: restaurant!.votes!)) reviews"
         restaurantAddress.text = restaurant?.address
         let url = URL(string: (restaurant?.imageURLString)!)
         restaurantImage.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload])
@@ -79,21 +78,12 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         table.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
         table.contentOffset = CGPoint(x: 0, y: -headerHeight)
         
-        heartImages = createImageArray(total: 24, imagePrefix: "heart")
-        undoHeart = reverseImageArray(total: 24, imagePrefix: "heart")
-
+        
         
         updateHeaderView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(restaurant?.latitude,restaurant?.longitude,"🍱")
-        if (UserDefaults.standard.object(forKey: "\(restaurant!.id)") as? Bool == true) {
-            liked = true
-            print("Restaurant has been added to favorites before this")
-            heartImage.image = UIImage(named: "heart-23.png")
-        }
-    }
+
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -103,13 +93,13 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         self.navigationController?.navigationBar.shadowImage = nil
         UIApplication.shared.statusBarView?.backgroundColor = nil
         RestaurantsListViewController.navigationTitleButton.tintColor = .white
-
+        
     }
-
     
-
+    
+    
     @IBAction func back(_ sender: Any) {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -124,7 +114,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateHeaderView()
-
+        
         var offset = (scrollView.contentOffset.y+220) / 110
         if offset > 1 {
             offset = 1
@@ -151,7 +141,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     
     func updateCuisinesAndPricing() {
         cuisines.text = restaurant!.cuisines
-        averageCost.text = "\(restaurant!.currency) \(restaurant!.costForTwo) for two (approx.)"
+        averageCost.text = "\(restaurant!.currency!) \(restaurant!.costForTwo) for two (approx.)"
         
         restaurant!.hasOnlineDelivery == 1 ? (hasOnlineDelivery.image = UIImage(named: "available")) : (hasOnlineDelivery.image = UIImage(named: "unavailable"))
         restaurant!.isDeliveringNow == 1 ? (isDeliveringNow.image = UIImage(named: "available")) : (isDeliveringNow.image = UIImage(named: "unavailable"))
@@ -179,11 +169,11 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     }
     
     func setupMap() {
-
+        
         print(restaurant?.latitude,restaurant?.longitude,"🍵")
         map.delegate = self
         let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(CLLocationDegrees(restaurant!.latitude)!, CLLocationDegrees(restaurant!.longitude)!)
+        let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(CLLocationDegrees(restaurant!.latitude), CLLocationDegrees(restaurant!.longitude))
         let region : MKCoordinateRegion = MKCoordinateRegionMake(location, span)
         map.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
@@ -207,7 +197,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         builder.pickupNickname = "Current Location"
         builder.dropoffLocation = dropOffLocation
         builder.dropoffNickname = dropOffNickname
-
+        
         var productID = ""
         ridesClient.fetchProducts(pickupLocation: pickUpLocation) { (product, response) in
             print(product.count,"🍚")
@@ -218,97 +208,33 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
             }
             print("🥒\(productID)")
         }
-
-
+        
+        
         ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
-
+            
             if price.count > 0 {
                 print(price[0].estimate,"🍚")
             }
             
         }
-
+        
         ridesClient.fetchTimeEstimates(pickupLocation: pickUpLocation) { (time, response) in
             if productID != "" {
                 print("🥕",time[0].estimate,"🥕")
             }
         }
-
+        
         ridesClient.fetchRideRequestEstimate(parameters: builder.build()) { (rideEstimate, response) in
             builder.upfrontFare = rideEstimate?.fare
             print(rideEstimate,"🥗")
         }
-
+        
         builder.productID = productID
         button.setContent()
         button.rideParameters = builder.build()
         button.loadRideInformation()
     }
-    
-//    open override var preferredStatusBarStyle: UIStatusBarStyle {
-//        if RestaurantDetailTableViewController.viewIsDark {
-//            return .lightContent
-//        }else {
-//            return .default
-//        }
-//    }
-    @IBAction func startAnimation(_ sender: UIButton) {
-        
-        if !liked {
-            animateHeart(heartImages) { (image) in
-                self.heartImage.image = image
-                self.liked = true
-                self.addRestaurantToFavorites(rest: self.restaurant!)
-                print("complete")
-            }
-        }else if liked {
-            print("need to animte back")
-            animateHeart(undoHeart, completion: { (image) in
-                self.heartImage.image = image
-                self.liked = false
-                self.deleteRestaurantFromFavorites(rest: self.restaurant!)
-            })
-        }
-    }
-    
-    
-    func createImageArray (total : Int, imagePrefix : String) -> [UIImage] {
-        var imageArray : [UIImage] = []
-        for imageCount in 0..<total {
-            let imageName = "\(imagePrefix)-\(imageCount).png"
-            let image = UIImage(named: imageName)!
-            imageArray.append(image)
-        }
-        return imageArray
-    }
-    func reverseImageArray(total: Int, imagePrefix: String) -> [UIImage] {
-        var imageArray: [UIImage] = []
-        for imageCount in (0..<total).reversed() {
-            let imageName = "\(imagePrefix)-\(imageCount).png"
-            let image = UIImage(named: imageName)!
-            imageArray.append(image)
-        }
-        return imageArray
-    }
-    
-    func animateHeart(_ imageArray : [UIImage],completion: @escaping (_ image : UIImage?)->Void) {
-        
-        heartImage.animationImages = imageArray
-        heartImage.animationDuration = 1
-        heartImage.animationRepeatCount = 1
-        completion(imageArray.last!)
-        heartImage.startAnimating()
-        
-    }
 
 }
-extension UINavigationController {
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
-        if RestaurantDetailTableViewController.viewIsDark {
-            return .lightContent
-        }else {
-            return .default
-        }
-    }
-}
+
 

@@ -111,17 +111,12 @@ class RestaurantsListViewController: UIViewController {
     }
     @IBAction func toggleSideMenu(_ sender: UIBarButtonItem) {
         print("toogle side menu")
+        SideMenuManager.default.menuDismissOnPush = true
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
 
     }
     
-   @IBAction func logout() {
-//        FBSDKLoginManager().logOut()
-        try! Auth.auth().signOut()
-        UserDefaults.standard.set(nil, forKey: "uid")
-        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-        present(controller, animated: true, completion: nil)
-    }
+
     
     fileprivate func setupSideMenu() {
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "Left") as! UISideMenuNavigationController
@@ -188,7 +183,6 @@ class RestaurantsListViewController: UIViewController {
             self.sortingList.removeFromSuperview()
         }
     }
-    
     
     
     
