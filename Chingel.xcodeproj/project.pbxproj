@@ -14,6 +14,7 @@
 		192E00F61FC403EC00BF053F /* ZomatoNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */; };
 		192E00F81FC408B400BF053F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192E00F71FC408B400BF053F /* TableViewCell.swift */; };
 		1938C17E1FC7F62A004880ED /* MKMapViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1938C17D1FC7F62A004880ED /* MKMapViewX.swift */; };
+		193A68B81FD992970036E441 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193A68B71FD992970036E441 /* UpdateProfileViewController.swift */; };
 		193BA9E51FD83E4D00BF0746 /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193BA9E41FD83E4D00BF0746 /* UIViewX.swift */; };
 		193BA9E71FD8410C00BF0746 /* FavoriteRestaurantsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193BA9E61FD8410C00BF0746 /* FavoriteRestaurantsCollectionViewController.swift */; };
 		193BA9E91FD842E800BF0746 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193BA9E81FD842E700BF0746 /* CollectionViewCell.swift */; };
@@ -87,6 +88,7 @@
 		192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZomatoNetworking.swift; sourceTree = "<group>"; };
 		192E00F71FC408B400BF053F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1938C17D1FC7F62A004880ED /* MKMapViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewX.swift; sourceTree = "<group>"; };
+		193A68B71FD992970036E441 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		193BA9E41FD83E4D00BF0746 /* UIViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
 		193BA9E61FD8410C00BF0746 /* FavoriteRestaurantsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRestaurantsCollectionViewController.swift; sourceTree = "<group>"; };
 		193BA9E81FD842E700BF0746 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				191391431FD2B0FE0006E27A /* ContainerViewController.swift */,
 				192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */,
 				19856E8E1FBED89000D4F8EE /* Main.storyboard */,
+				193A68B71FD992970036E441 /* UpdateProfileViewController.swift */,
 				19578B711FD92F900081506E /* FavoriteRestaurantDetailTableViewController.swift */,
 				193BA9E81FD842E700BF0746 /* CollectionViewCell.swift */,
 				193BA9E61FD8410C00BF0746 /* FavoriteRestaurantsCollectionViewController.swift */,
@@ -480,6 +483,7 @@
 				192E00F41FC4033400BF053F /* Restaurant.swift in Sources */,
 				1994C0CB1FC218A300F86883 /* RestaurantsListViewController.swift in Sources */,
 				19856E8B1FBED89000D4F8EE /* AppDelegate.swift in Sources */,
+				193A68B81FD992970036E441 /* UpdateProfileViewController.swift in Sources */,
 				19856EB01FC06FC900D4F8EE /* LoginViewController.swift in Sources */,
 				198539521FD3F9B70081E0D4 /* SideMenuTableViewController.swift in Sources */,
 			);

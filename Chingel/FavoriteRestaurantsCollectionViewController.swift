@@ -99,7 +99,9 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
             print(index)
             selectedRestaurant = fetchedResultsController.object(at: indexPath)
         }
-        performSegue(withIdentifier: "FavoriteRestaurantDetail", sender: self)
+        if !editingEnabled {
+            performSegue(withIdentifier: "FavoriteRestaurantDetail", sender: self)
+        }
         if editingEnabled {
             cell?.backgroundColor = .gray
             cell?.alpha = 0.5
