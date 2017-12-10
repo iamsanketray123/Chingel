@@ -92,11 +92,15 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
             throw SignupError.incorrectPasswordLength
         }
         
+        DispatchQueue.main.async{
+            SVProgressHUD.show(withStatus: "Signing Up...")
+            SVProgressHUD.setDefaultMaskType(.gradient)
+        }
         
-        if userImage.image != nil {
+        if self.userImage.image != nil {
             let imageName = NSUUID().uuidString
             let storedImage = storageReference.child("profileImage").child(imageName)
-            if let uploadData = UIImagePNGRepresentation(userImage.image!) {
+            if let uploadData = UIImagePNGRepresentation(self.userImage.image!) {
                 
                 storedImage.putData(uploadData, metadata: nil, completion: { (metaData, error) in
                     if error != nil {
@@ -113,50 +117,48 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                         if let urlString = url?.absoluteString {
                             //                            Create User
                             
-                            DispatchQueue.global().async{
-                                DispatchQueue.main.async{
-                                    SVProgressHUD.show(withStatus: "Signing Up...")
-                                    SVProgressHUD.setDefaultMaskType(.gradient)
+                            
+                            
+                            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                                if error != nil {
+                                    //                                        print(error?.localizedDescription)
+                                    DispatchQueue.main.async {
+                                        SVProgressHUD.dismiss()
+                                    }
+                                    completion(error,nil)
+                                    return
                                 }
-                                Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                                // registration successful
+                                guard let uid = user?.uid else {
+                                    return
+                                }
+                                
+                                UserDefaults.standard.set(uid, forKey: "uid")
+                                
+                                let userReference = databaseReference.child("users").child(uid)
+                                let values = ["username":name,"email":email,"pic":urlString,"locationName":"","locationLatitude":"","locationLongitude":""]
+                                
+                                userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
                                     if error != nil {
-//                                        print(error?.localizedDescription)
-                                        DispatchQueue.main.async {
-                                            SVProgressHUD.dismiss()
-                                        }
-                                        completion(error,nil)
+                                        print(error?.localizedDescription)
                                         return
                                     }
-                                    // registration successful
-                                    guard let uid = user?.uid else {
-                                        return
+                                    // successfully saved user details
+                                    print("Successfully created user")
+                                    DispatchQueue.main.async{
+                                        SVProgressHUD.dismiss()
                                     }
-                                    
-                                    UserDefaults.standard.set(uid, forKey: "uid")
-                                    
-                                    let userReference = databaseReference.child("users").child(uid)
-                                    let values = ["username":name,"email":email,"pic":urlString,"locationName":"","locationLatitude":"","locationLongitude":""]
-                                    
-                                    userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                                        if error != nil {
-                                            print(error?.localizedDescription)
-                                            return
-                                        }
-                                        // successfully saved user details
-                                        print("Successfully created user")
-                                        DispatchQueue.main.async{
-                                            SVProgressHUD.dismiss()
-                                        }
-                                        completion(nil, true)
-//                                        self.performSegue(withIdentifier: "locationVC", sender: self)
-                                    })
-                                }
+                                    completion(nil, true)
+                                    //                                        self.performSegue(withIdentifier: "locationVC", sender: self)
+                                })
                             }
+                            
                         }
                     })
                 })
             }
         }
+        
     }
     
     func facebookSignUp() {

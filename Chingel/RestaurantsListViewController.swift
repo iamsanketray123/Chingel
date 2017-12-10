@@ -37,9 +37,6 @@ class RestaurantsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
-        
         SVProgressHUD.show(withStatus: "Loading...")
         SVProgressHUD.setDefaultMaskType(.gradient)
         
