@@ -20,6 +20,7 @@ class RestaurantsListViewController: UIViewController {
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var sortByButton: UIButton!
     @IBOutlet var sortingList: UIView!
+    @IBOutlet weak var searchButton: UIButton!
     
     var restaurants = [Restaurant]()
     var selectedRestaurant : Restaurant?
@@ -54,14 +55,30 @@ class RestaurantsListViewController: UIViewController {
             self.restaurants = [Restaurant]()
             self.table.reloadData()
             
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
-                
-                self.restaurants.append(restaurant!)
-                DispatchQueue.main.async {
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+                if (results != nil) && (results! > 1200000) {
+                    DispatchQueue.main.async {
+                        self.searchButton.isHidden = true
+                    }
                     SVProgressHUD.dismiss()
-                    self.table.reloadData()
+                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
+                    return
                 }
-                print(self.restaurants.count,"🍗")
+                
+                else if restaurant != nil {
+                    if (results != nil) && (results! < 1200000) {
+                        DispatchQueue.main.async {
+                            self.searchButton.isHidden = false
+                        }
+                        print(results,"🍛")
+                        self.restaurants.append(restaurant!)
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                            self.table.reloadData()
+                        }
+                        print(self.restaurants.count,"🍗")
+                    }
+                }
                 
             })
         }
@@ -86,16 +103,30 @@ class RestaurantsListViewController: UIViewController {
             table.reloadData()
             
 
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
                 
-                
-                self.restaurants.append(restaurant!)
-                DispatchQueue.main.async {
-                    self.table.reloadData()
+                if (results != nil) && (results! > 1200000) {
+                    DispatchQueue.main.async {
+                        self.searchButton.isHidden = true
+                    }
                     SVProgressHUD.dismiss()
+                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
+                    return
                 }
-                print(self.restaurants.count,"🍛")
-                
+                else if restaurant != nil {
+                    if (results != nil) && (results! < 1200000) {
+                        DispatchQueue.main.async {
+                            self.searchButton.isHidden = false
+                        }
+                        print(results,"🍛")
+                        self.restaurants.append(restaurant!)
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                            self.table.reloadData()
+                        }
+                        print(self.restaurants.count,"🍗")
+                    }
+                }
             })
         }
         
@@ -137,13 +168,13 @@ class RestaurantsListViewController: UIViewController {
         self.restaurants = [Restaurant]()
         table.reloadData()
         
-        getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
+        getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
             
-            
-            self.restaurants.append(restaurant!)
-            DispatchQueue.main.async {
-                self.table.reloadData()
-                
+            if restaurant != nil {
+                self.restaurants.append(restaurant!)
+                DispatchQueue.main.async {
+                    self.table.reloadData()
+                }
             }
         })
         
@@ -285,12 +316,13 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
         let lastRestaurant = restaurants.count - 1
         if indexPath.row == lastRestaurant {
             
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (restaurant) in
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
                 
-                self.restaurants.append(restaurant!)
-                DispatchQueue.main.async {
-                    self.table.reloadData()
-                    
+                if restaurant != nil {
+                    self.restaurants.append(restaurant!)
+                    DispatchQueue.main.async {
+                        self.table.reloadData()
+                    }
                 }
             })
         }

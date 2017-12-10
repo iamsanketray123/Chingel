@@ -8,7 +8,7 @@
 
 import UIKit
 
-func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String, completion : @escaping (_ restaurant: Restaurant?) -> Void) {
+func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String, completion : @escaping (_ results : Int?,_ restaurant: Restaurant?) -> Void) {
     print("Finding restaurants")
     RestaurantsListViewController.start += 20
     let request = NSMutableURLRequest(url: URL(string: "https://developers.zomato.com/api/v2.1/search?start=\(start)&lat=\(lat)&lon=\(long)&sort=\(sort)&order=\(order)")!)
@@ -39,7 +39,11 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
             return
         }
         
-        
+        guard let resultsFound = parsedResult["results_found"] as? Int else {
+            print("Could not get number of results")
+            return
+        }
+        completion(resultsFound,nil)
         
         guard let nearbyRes = parsedResult["restaurants"] as? [AnyObject] else {
             print("Could not get restaurant list")
@@ -156,7 +160,7 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
             
             let restaurant = Restaurant(id: resID, name: name, address: address, locality: locality, latitude: latitude, longitude: longitude, cuisines: cuisines, costForTwo: averageCostForTwo, currency: currency, rating: aggregateRating, ratingText: ratingText, ratingColor: ratingColor, votes: votes, imageURLString: imageURLString, hasOnlineDelivery: hasOnlineDelivery, isDeliveringNow: isDeliveringNow, hasTableBooking: hasTableBooking)
             
-            completion(restaurant)
+            completion(resultsFound,restaurant)
         }
     }
     task.resume()

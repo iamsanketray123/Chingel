@@ -471,6 +471,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchButton" destination="p1i-2R-qAG" id="3KV-2c-OEJ"/>
                         <outlet property="sortByButton" destination="sh4-KH-Rwa" id="iTP-FI-3uD"/>
                         <outlet property="sortingList" destination="TCJ-sX-fQc" id="vWk-EW-AeR"/>
                         <outlet property="table" destination="lo9-7H-2cW" id="juf-JD-8OC"/>
