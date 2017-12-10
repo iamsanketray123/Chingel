@@ -11,6 +11,7 @@ import SDWebImage
 import GooglePlaces
 import CoreLocation
 import Firebase
+import SVProgressHUD
 
 class UpdateProfileViewController: UIViewController {
 
@@ -29,12 +30,16 @@ class UpdateProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUserInfo { (imageUrlString, userName, userEmailID) in
+        updateUserInfo { (imageUrlString, userName, userEmailID, userLocationName, userLocationLatitude, userLocationLongitude) in
             let url = URL(string : imageUrlString!)
             self.profileImage.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload], completed: nil)
             self.headerImage.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload], completed: nil)
             self.userName.text = userName
             self.name.text = userName
+            self.userLocation.text = userLocationName
+            UpdateProfileViewController.newLocationName = userLocationName
+            UpdateProfileViewController.newLocationLatitude = CLLocationDegrees(userLocationLatitude!)
+            UpdateProfileViewController.newLocationLongitude = CLLocationDegrees(userLocationLongitude!)
         }
         userName.delegate = self
 
@@ -82,10 +87,18 @@ class UpdateProfileViewController: UIViewController {
         manager.stopUpdatingLocation()
     }
     @IBAction func saveChanges(_ sender: Any) {
-        updateChanges()
+        SVProgressHUD.show(withStatus: "Saving Changes...")
+        SVProgressHUD.setDefaultMaskType(.gradient)
+        updateChanges() { (success) in
+            if success! {
+                SVProgressHUD.dismiss()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
-    func updateChanges() {
+    func updateChanges(completion: @escaping (_ success : Bool?)-> Void) {
+
         if profileImage.image != nil {
             let imageName = NSUUID().uuidString
             let storedImage = storageReference.child("profileImage").child(imageName)
@@ -112,6 +125,7 @@ class UpdateProfileViewController: UIViewController {
                                 return
                             }
                             print("Successfully updated user details")
+                            completion(true)
                         }
                     })
                 })
@@ -138,14 +152,14 @@ class UpdateProfileViewController: UIViewController {
         }
     }
     
-    func updateUserInfo(completion: @escaping (_ userImage : String?, _ userName: String?, _ userEmail: String?)->Void){
+    func updateUserInfo(completion: @escaping (_ userImage : String?, _ userName: String?, _ userEmail: String?, _ userLocationName: String?, _ userLocationLatitude: String?, _ userLocationLongitude : String?)->Void){
         let uid = UserDefaults.standard.object(forKey : "uid") as! String
         databaseReference.child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let dict = snapshot.value as? [String:AnyObject] else {
                 print("Could not get dictionary")
                 return
             }
-            completion((dict["pic"] as! String), (dict["username"] as! String), (dict["email"] as! String))
+            completion((dict["pic"] as! String), (dict["username"] as! String), (dict["email"] as! String), (dict["locationName"] as! String),(dict["locationLatitude"] as! String), (dict["locationLongitude"] as! String))
             
         }
     }

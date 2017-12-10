@@ -24,7 +24,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let itemWidth = UIScreen.main.bounds.width/2 - 2
+        let itemWidth = UIScreen.main.bounds.width/2 - 1
         let idemHeight = UIScreen.main.bounds.height/2.75 - 2
         let layout = UICollectionViewFlowLayout()
         //        layout.sectionInset = UIEdgeInsetsMake(5,0,5,0)
