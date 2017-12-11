@@ -47,6 +47,10 @@ class UpdateProfileViewController: UIViewController {
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func nameTextField(_ sender: Any) {
+        name.text = userName.text
+    }
+    
     @IBAction func changeProfilePicture(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -170,6 +174,10 @@ extension UpdateProfileViewController : UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
 }
 extension UpdateProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

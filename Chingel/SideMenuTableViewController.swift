@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 import Firebase
 import SideMenu
+import StoreKit
 
 class SideMenuTableViewController: UITableViewController {
 
@@ -37,6 +38,9 @@ class SideMenuTableViewController: UITableViewController {
         tempImageView.contentMode = .scaleAspectFill
         self.tableView.backgroundView = tempImageView
 
+    }
+    @IBAction func rateOnAppStore(_ sender : Any) {
+            SKStoreReviewController.requestReview()
     }
     @IBAction func logout(_ sender: Any) {
         do {

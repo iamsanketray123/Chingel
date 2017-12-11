@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VEt-qy-gft">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VEt-qy-gft">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -226,9 +226,12 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="Feedback" image="feedback">
+                                                    <state key="normal" title="Rate Us!" image="rating">
                                                         <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="rateOnAppStore:" destination="7DA-eJ-Omx" eventType="touchUpInside" id="MJk-NI-Egl"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1906,6 +1909,9 @@ we can tell you where the yummy food is. Please share your Location.</string>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nameTextField:" destination="Cw1-We-ct5" eventType="editingChanged" id="2du-16-kCY"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqA-YN-Cub">
                                 <rect key="frame" x="16" y="326" width="139.5" height="30"/>
@@ -2545,7 +2551,6 @@ Arabian</string>
         <image name="directions" width="33" height="33"/>
         <image name="dismiss" width="33" height="33"/>
         <image name="fb" width="33" height="33"/>
-        <image name="feedback" width="44" height="44"/>
         <image name="food" width="5472" height="3648"/>
         <image name="heart-0.png" width="100" height="100"/>
         <image name="home" width="44" height="44"/>
@@ -2555,6 +2560,7 @@ Arabian</string>
         <image name="logout" width="44" height="44"/>
         <image name="menu" width="33" height="33"/>
         <image name="profile" width="44" height="44"/>
+        <image name="rating" width="44" height="44"/>
         <image name="restaurantLocation" width="44" height="44"/>
         <image name="searchIcon" width="26" height="26"/>
         <image name="target2" width="33" height="33"/>

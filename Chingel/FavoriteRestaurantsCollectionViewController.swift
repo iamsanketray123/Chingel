@@ -49,7 +49,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
     
     @IBAction func deleteFavoriteRestaurants(_ sender: Any) {
         
-        for restaurantIndex in index {
+        for restaurantIndex in index.sorted().reversed() {
             let restaurant = fetchedResultsController.object(at: restaurantIndex)
             UserDefaults.standard.set(nil, forKey: "\(restaurant.id)")
             managedContext.delete(restaurant)
