@@ -153,6 +153,9 @@
                                                     <state key="normal" title="Home" image="home">
                                                         <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="homeScreen:" destination="7DA-eJ-Omx" eventType="touchUpInside" id="cWT-XC-hTJ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2571,6 +2574,6 @@ Arabian</string>
         <image name="userPassword" width="33" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YMX-ya-BoH"/>
+        <segue reference="owN-op-Wkr"/>
     </inferredMetricsTieBreakers>
 </document>

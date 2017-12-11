@@ -42,6 +42,9 @@ class SideMenuTableViewController: UITableViewController {
     @IBAction func rateOnAppStore(_ sender : Any) {
             SKStoreReviewController.requestReview()
     }
+    @IBAction func homeScreen(_ sender: Any) {
+        dismiss(animated : true)
+    }
     @IBAction func logout(_ sender: Any) {
         do {
             try Auth.auth().signOut()

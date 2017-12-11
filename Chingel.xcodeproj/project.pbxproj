@@ -63,7 +63,7 @@
 		19D7749B1FD5193900E80355 /* heart-18.png in Resources */ = {isa = PBXBuildFile; fileRef = 19D774831FD5193800E80355 /* heart-18.png */; };
 		19D7749C1FD5193900E80355 /* heart-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 19D774841FD5193800E80355 /* heart-19.png */; };
 		19D7749E1FD5324E00E80355 /* RestaurantDetailVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7749D1FD5324D00E80355 /* RestaurantDetailVCExtension.swift */; };
-		A959CD331173DA5022532033 /* Pods_Chingel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */; };
+		DC58CAB3379C526A10B727B5 /* Pods_Chingel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D00058666511F1126A3E2EE /* Pods_Chingel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -139,9 +139,9 @@
 		19D774831FD5193800E80355 /* heart-18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-18.png"; sourceTree = "<group>"; };
 		19D774841FD5193800E80355 /* heart-19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-19.png"; sourceTree = "<group>"; };
 		19D7749D1FD5324D00E80355 /* RestaurantDetailVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVCExtension.swift; sourceTree = "<group>"; };
-		5F9448E96D86E80F1E27DE79 /* Pods-Chingel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.release.xcconfig"; sourceTree = "<group>"; };
-		AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chingel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E11C890BC07AB5D4F70F08B9 /* Pods-Chingel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.debug.xcconfig"; sourceTree = "<group>"; };
+		1D00058666511F1126A3E2EE /* Pods_Chingel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chingel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78ADABD32B065F1629DDEE0C /* Pods-Chingel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.release.xcconfig"; sourceTree = "<group>"; };
+		A866323A6F6895212D305012 /* Pods-Chingel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chingel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chingel/Pods-Chingel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A959CD331173DA5022532033 /* Pods_Chingel.framework in Frameworks */,
+				DC58CAB3379C526A10B727B5 /* Pods_Chingel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,8 +162,8 @@
 				19D7746C1FD5193800E80355 /* Heart Images */,
 				19856E891FBED89000D4F8EE /* Chingel */,
 				19856E881FBED89000D4F8EE /* Products */,
-				961D1ED3FD6ACE19A638AD50 /* Pods */,
-				9295C89DE44C358B4A9686F9 /* Frameworks */,
+				62BFEDF8DD4AC34A33509C48 /* Pods */,
+				513D6305B9FF0B66E2717C82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,19 +247,19 @@
 			path = "Heart Images";
 			sourceTree = "<group>";
 		};
-		9295C89DE44C358B4A9686F9 /* Frameworks */ = {
+		513D6305B9FF0B66E2717C82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AC04DABB39F2BEF6BCFBC7FD /* Pods_Chingel.framework */,
+				1D00058666511F1126A3E2EE /* Pods_Chingel.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		961D1ED3FD6ACE19A638AD50 /* Pods */ = {
+		62BFEDF8DD4AC34A33509C48 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E11C890BC07AB5D4F70F08B9 /* Pods-Chingel.debug.xcconfig */,
-				5F9448E96D86E80F1E27DE79 /* Pods-Chingel.release.xcconfig */,
+				A866323A6F6895212D305012 /* Pods-Chingel.debug.xcconfig */,
+				78ADABD32B065F1629DDEE0C /* Pods-Chingel.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -271,13 +271,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19856E9C1FBED89000D4F8EE /* Build configuration list for PBXNativeTarget "Chingel" */;
 			buildPhases = (
-				9795B2B9C1F6D681007BD345 /* [CP] Check Pods Manifest.lock */,
+				49778ADD566C9C31A392A5A0 /* [CP] Check Pods Manifest.lock */,
 				19856E831FBED89000D4F8EE /* Sources */,
 				19856E841FBED89000D4F8EE /* Frameworks */,
 				19856E851FBED89000D4F8EE /* Resources */,
-				C761E136D3749A1EC6A1DB40 /* [CP] Embed Pods Frameworks */,
-				023E2E57EBA483C18049D873 /* [CP] Copy Pods Resources */,
 				19856EA41FBF14B700D4F8EE /* Embed Frameworks */,
+				E3BA16133309B14A295B07E2 /* [CP] Embed Pods Frameworks */,
+				9FEC762B64462C96891718EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -366,7 +366,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		023E2E57EBA483C18049D873 /* [CP] Copy Pods Resources */ = {
+		49778ADD566C9C31A392A5A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Chingel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FEC762B64462C96891718EF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -385,25 +403,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chingel/Pods-Chingel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9795B2B9C1F6D681007BD345 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Chingel-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C761E136D3749A1EC6A1DB40 /* [CP] Embed Pods Frameworks */ = {
+		E3BA16133309B14A295B07E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -620,7 +620,7 @@
 		};
 		19856E9D1FBED89000D4F8EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E11C890BC07AB5D4F70F08B9 /* Pods-Chingel.debug.xcconfig */;
+			baseConfigurationReference = A866323A6F6895212D305012 /* Pods-Chingel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chingel/Chingel.entitlements;
@@ -637,7 +637,7 @@
 		};
 		19856E9E1FBED89000D4F8EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F9448E96D86E80F1E27DE79 /* Pods-Chingel.release.xcconfig */;
+			baseConfigurationReference = 78ADABD32B065F1629DDEE0C /* Pods-Chingel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Chingel/Chingel.entitlements;
