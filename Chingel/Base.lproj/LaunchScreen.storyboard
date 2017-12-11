@@ -32,8 +32,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.77254901960784317" green="0.090196078431372548" blue="0.047058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PhX-dG-dtj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="BCO-BI-8TS"/>
-                            <constraint firstItem="PhX-dG-dtj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="RH4-O8-VE5"/>
+                            <constraint firstItem="PhX-dG-dtj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="o5Q-sZ-H0h"/>
+                            <constraint firstItem="PhX-dG-dtj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="q3A-Nb-0XI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

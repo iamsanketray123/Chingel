@@ -229,7 +229,6 @@ class RestaurantsListViewController: UIViewController {
     
     @objc func selectLocation(button: UIButton) {
         performSegue(withIdentifier: "changeLocation", sender: self)
-        
     }
     
     func getLocationDataFromFirebase (completion : @escaping (_ locationName: String?, _ locationLatitude : String?, _ locationLongitude : String?)-> Void) {
