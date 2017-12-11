@@ -94,12 +94,12 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
         }
         
         if reachability.connection != .none {               //Check for internet connection
-
+            
             DispatchQueue.main.async{
                 SVProgressHUD.show(withStatus: "Signing Up...")
                 SVProgressHUD.setDefaultMaskType(.gradient)
             }
-        
+            
             if self.userImage.image != nil {
                 let imageName = NSUUID().uuidString
                 let storedImage = storageReference.child("profileImage").child(imageName)
@@ -152,13 +152,11 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                                         //                                        self.performSegue(withIdentifier: "locationVC", sender: self)
                                     })
                                 }
-                                
                             }
                         })
                     })
                 }
             }
-        
         } else {
             Alert.showBasic(title: "No Internet Connectivity", message: "Please check your internet connectivity and try again.", vc: self)
         }
@@ -221,10 +219,8 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                         return
                     }
                     self.saveUserInfoToFirebase(name: username, url: pictureURL, email: email, uid : (Auth.auth().currentUser?.uid)!)
-                    
                 }
             })
-            
         }
     }
     
@@ -240,8 +236,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
             }
             self.performSegue(withIdentifier: "locationVC", sender: self)
         }
-    }
-    
+    } 
 }
 
 extension SignUpViewController : UITextFieldDelegate {

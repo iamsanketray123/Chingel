@@ -24,6 +24,8 @@ class RestaurantsListViewController: UIViewController {
     
     var restaurants = [Restaurant]()
     var selectedRestaurant : Restaurant?
+    var refreshControl : UIRefreshControl!
+    let reachability = Reachability()!
     
     static var start = 0
     static var navigationTitleButton = UIButton(type: .system)
@@ -81,9 +83,69 @@ class RestaurantsListViewController: UIViewController {
             })
         }
         setupSideMenu()
+        setupRefreshControl()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: Notification.Name.reachabilityChanged, object: reachability)
+        do {
+            try reachability.startNotifier()
+        }catch {
+            print("could not start notifier")
+        }
         
     }
     
+    @objc func internetChanged(notification : Notification) {
+        let reachability = notification.object as! Reachability
+        if reachability.connection != .none {
+            print("we have internet")
+        }else {
+            SVProgressHUD.dismiss()
+            Alert.showBasic(title: "No Internet!", message: "Please check your internet connectivity and try again!", vc: self)
+        }
+    }
+    
+    func setupRefreshControl(){
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string : "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        table.addSubview(refreshControl)
+    }
+    
+    @objc func refresh() {
+        RestaurantsListViewController.start = 0
+        self.restaurants = [Restaurant]()
+        self.table.reloadData()
+        
+        getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+            if (results != nil) && (results! > 1200000) {
+                DispatchQueue.main.async {
+                    self.searchButton.isHidden = true
+                }
+                SVProgressHUD.dismiss()
+                print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
+                Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
+                return
+            }
+                
+            else if restaurant != nil {
+                if (results != nil) && (results! < 1200000) {
+                    DispatchQueue.main.async {
+                        self.searchButton.isHidden = false
+                    }
+                    print(results,"🍛")
+                    self.restaurants.append(restaurant!)
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.table.reloadData()
+                    }
+                    print(self.restaurants.count,"🍗")
+                }
+            }
+            DispatchQueue.main.async{
+              self.refreshControl.endRefreshing()
+            }
+        })
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -117,13 +179,13 @@ class RestaurantsListViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.searchButton.isHidden = false
                         }
-                        print(results,"🍛")
+//                        print(results,"🍛")
                         self.restaurants.append(restaurant!)
                         DispatchQueue.main.async {
                             SVProgressHUD.dismiss()
                             self.table.reloadData()
                         }
-                        print(self.restaurants.count,"🍗")
+//                        print(self.restaurants.count,"🍗")
                     }
                 }
             })

@@ -34,7 +34,7 @@
 		198592921FC1884C0052C320 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592911FC1884C0052C320 /* FirebaseReference.swift */; };
 		198592941FC1927E0052C320 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592931FC1927E0052C320 /* LocationViewController.swift */; };
 		198592B71FC1A3980052C320 /* UIImageViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198592B61FC1A3980052C320 /* UIImageViewX.swift */; };
-		198D0CFB1FDED860004F0165 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D0CFA1FDED85F004F0165 /* Reachability.swift */; };
+		198D0CFB1FDED860004F0165 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D0CFA1FDED85F004F0165 /* Connectivity.swift */; };
 		1994C0CB1FC218A300F86883 /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */; };
 		19A5C9541FCEA606006A052E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19A5C9531FCEA605006A052E /* GoogleService-Info.plist */; };
 		19CC27F91FCAF0EE00E913E8 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC27F81FCAF0EE00E913E8 /* HelperMethods.swift */; };
@@ -111,7 +111,7 @@
 		198592911FC1884C0052C320 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		198592931FC1927E0052C320 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		198592B61FC1A3980052C320 /* UIImageViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewX.swift; sourceTree = "<group>"; };
-		198D0CFA1FDED85F004F0165 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		198D0CFA1FDED85F004F0165 /* Connectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewController.swift; sourceTree = "<group>"; };
 		19A5C9531FCEA605006A052E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		19CC27F81FCAF0EE00E913E8 /* HelperMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
@@ -181,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				191C38B61FC22238000B1DA1 /* Chingel.entitlements */,
-				198D0CFA1FDED85F004F0165 /* Reachability.swift */,
 				19856E8A1FBED89000D4F8EE /* AppDelegate.swift */,
 				19856E8C1FBED89000D4F8EE /* HomeViewController.swift */,
 				19856EA91FBF1D0C00D4F8EE /* OnboardingViewController.swift */,
@@ -194,6 +193,7 @@
 				19CC27F81FCAF0EE00E913E8 /* HelperMethods.swift */,
 				19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */,
 				1905C4281FC1851600C62623 /* SignUpViewController.swift */,
+				198D0CFA1FDED85F004F0165 /* Connectivity.swift */,
 				198592931FC1927E0052C320 /* LocationViewController.swift */,
 				198592911FC1884C0052C320 /* FirebaseReference.swift */,
 				192E00F71FC408B400BF053F /* TableViewCell.swift */,
@@ -468,7 +468,7 @@
 				19CEC8BE1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift in Sources */,
 				19856EAA1FBF1D0C00D4F8EE /* OnboardingViewController.swift in Sources */,
 				19856E931FBED89000D4F8EE /* Chingel.xcdatamodeld in Sources */,
-				198D0CFB1FDED860004F0165 /* Reachability.swift in Sources */,
+				198D0CFB1FDED860004F0165 /* Connectivity.swift in Sources */,
 				19856EA81FBF19EE00D4F8EE /* OnboardingView.swift in Sources */,
 				193BA9E51FD83E4D00BF0746 /* UIViewX.swift in Sources */,
 				198592941FC1927E0052C320 /* LocationViewController.swift in Sources */,
