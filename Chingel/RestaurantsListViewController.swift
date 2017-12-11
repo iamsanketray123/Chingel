@@ -124,7 +124,7 @@ class RestaurantsListViewController: UIViewController {
                 SVProgressHUD.dismiss()
                 print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
                 Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
-                return
+                
             }
                 
             else if restaurant != nil {

@@ -38,9 +38,12 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     var headerView : UIView!
     var restaurant : Restaurant?
     var userLocation : CLLocation?
+    let restaurantTitlelabel = UILabel()
     
     static var viewIsDark = true
 
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,6 +85,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         heartImages = createImageArray(total: 24, imagePrefix: "heart")
         undoHeart = reverseImageArray(total: 24, imagePrefix: "heart")
 
+        setupRestaurantLabel()
         
         updateHeaderView()
     }
@@ -102,7 +106,8 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
         UIApplication.shared.statusBarView?.backgroundColor = nil
-        RestaurantsListViewController.navigationTitleButton.tintColor = .white
+        self.navigationController?.navigationBar.tintColor = .white
+        makeViewDark()
 
     }
 
@@ -132,12 +137,14 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
             self.navigationController?.navigationBar.tintColor = UIColor(hue: 4, saturation: offset, brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
             UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
+            restaurantTitlelabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: offset)
             makeViewLight()
             
         } else {
             self.navigationController?.navigationBar.tintColor = UIColor(hue: 1, saturation: offset, brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
             UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
+            restaurantTitlelabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: offset)
             makeViewDark()
         }
     }
@@ -148,6 +155,13 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         newLayer.frame = gradientView.frame
         
         gradientView.layer.addSublayer(newLayer)
+    }
+    fileprivate func setupRestaurantLabel() {
+        restaurantTitlelabel.text = restaurant!.name
+        restaurantTitlelabel.textColor = .clear
+        restaurantTitlelabel.font = UIFont(name: "Avenir Next", size: 16)
+        restaurantTitlelabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.navigationItem.titleView = restaurantTitlelabel
     }
     
     func updateCuisinesAndPricing() {
