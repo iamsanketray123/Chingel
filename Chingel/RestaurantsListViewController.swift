@@ -243,7 +243,6 @@ class RestaurantsListViewController: UIViewController {
             
             completion(dict["locationName"] as! String, dict["locationLatitude"] as! String, dict["locationLongitude"] as! String)
             
-            
         }
         
     }
@@ -258,7 +257,7 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         cell.img.image = nil
         let restaurant = restaurants[indexPath.row]
-        //        cell.img.sd_setImage(with: nil, completed: nil)
+        
         
         cell.backgroundCardView.backgroundColor = UIColor.white
         cell.contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
