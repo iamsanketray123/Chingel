@@ -99,7 +99,9 @@ class ChangeLocationViewController: UIViewController {
             print("Error fetching data from core data")
         }
     }
-    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension ChangeLocationViewController: GMSAutocompleteViewControllerDelegate {
     

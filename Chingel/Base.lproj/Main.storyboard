@@ -1792,7 +1792,7 @@ we can tell you where the yummy food is. Please share your Location.</string>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDE-Kq-uwa">
-                                            <rect key="frame" x="8" y="16" width="20" height="35"/>
+                                            <rect key="frame" x="14" y="20" width="20" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="00Z-ln-Vah"/>
                                                 <constraint firstAttribute="height" constant="35" id="X78-7m-wuC"/>
@@ -1805,8 +1805,8 @@ we can tell you where the yummy food is. Please share your Location.</string>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="EDE-Kq-uwa" firstAttribute="top" secondItem="1ub-fh-10k" secondAttribute="top" constant="16" id="Mp9-25-OW5"/>
-                                        <constraint firstItem="EDE-Kq-uwa" firstAttribute="leading" secondItem="1ub-fh-10k" secondAttribute="leading" constant="8" id="zwe-wE-YdV"/>
+                                        <constraint firstItem="EDE-Kq-uwa" firstAttribute="top" secondItem="1ub-fh-10k" secondAttribute="top" constant="20" id="Mp9-25-OW5"/>
+                                        <constraint firstItem="EDE-Kq-uwa" firstAttribute="leading" secondItem="1ub-fh-10k" secondAttribute="leading" constant="14" id="zwe-wE-YdV"/>
                                     </constraints>
                                 </view>
                                 <constraints>

@@ -260,13 +260,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         button.loadRideInformation()
     }
     
-//    open override var preferredStatusBarStyle: UIStatusBarStyle {
-//        if RestaurantDetailTableViewController.viewIsDark {
-//            return .lightContent
-//        }else {
-//            return .default
-//        }
-//    }
+
     @IBAction func startAnimation(_ sender: UIButton) {
         
         if !liked {
@@ -274,6 +268,9 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
                 self.heartImage.image = image
                 self.liked = true
                 self.addRestaurantToFavorites(rest: self.restaurant!)
+                DispatchQueue.main.async{
+                    self.showToast(message : "Restaurant saved to Favorites")
+                }
                 print("complete")
             }
         }else if liked {
@@ -282,6 +279,9 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
                 self.heartImage.image = image
                 self.liked = false
                 self.deleteRestaurantFromFavorites(rest: self.restaurant!)
+                DispatchQueue.main.async{
+                self.showToast(message : "Restaurant removed from Favorites")
+                }
             })
         }
     }
@@ -314,6 +314,23 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         completion(imageArray.last!)
         heartImage.startAnimating()
         
+    }
+    func showToast(message : String) {
+        let toastLabel = UILabel(frame: CGRect(x: 10, y: self.view.center.y, width: 355, height: 40))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 20;
+        toastLabel.clipsToBounds  =  true
+        self.table.addSubview(toastLabel)
+        UIView.animate(withDuration: 1, delay: 1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
     }
 
 }

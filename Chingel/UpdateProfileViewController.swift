@@ -100,6 +100,9 @@ class UpdateProfileViewController: UIViewController {
             }
         }
     }
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     func updateChanges(completion: @escaping (_ success : Bool?)-> Void) {
 
