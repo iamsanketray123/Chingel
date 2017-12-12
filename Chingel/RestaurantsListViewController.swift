@@ -216,7 +216,7 @@ class RestaurantsListViewController: UIViewController {
         SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
 //        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
         SideMenuManager.default.menuPresentMode = .viewSlideInOut
-        SideMenuManager.default.menuWidth = 300
+        SideMenuManager.default.menuWidth = (view.frame.width * 0.8)
         SideMenuManager.default.menuShadowColor = .black
         SideMenuManager.default.menuShadowOpacity = 1
         SideMenuManager.default.menuShadowRadius = 10
