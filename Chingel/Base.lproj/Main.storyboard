@@ -73,7 +73,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="cbf-mn-Zkj">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="cbf-mn-Zkj">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -317,7 +317,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="260" id="3D1-vM-itS" customClass="TableViewCell" customModule="Chingel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="260" id="3D1-vM-itS" customClass="TableViewCell" customModule="Chingel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3D1-vM-itS" id="wGb-lH-wzc">
@@ -1077,7 +1077,7 @@ Arabian</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="4ag-fU-mR1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="4ag-fU-mR1">
                                         <rect key="frame" x="0.0" y="28" width="351" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ag-fU-mR1" id="dKA-Uj-7KJ">
@@ -2083,30 +2083,47 @@ we can tell you where the yummy food is. Please share your Location.</string>
                                     <rect key="frame" x="0.0" y="0.0" width="181" height="242"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="700-di-caE" customClass="DesignView" customModule="Chingel" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="8" width="170" height="226"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="700-di-caE" customClass="DesignView" customModule="Chingel" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="165" height="226"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VFv-9g-W1o">
-                                                    <rect key="frame" x="4" y="4" width="162" height="160"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VFv-9g-W1o">
+                                                    <rect key="frame" x="4" y="4" width="157" height="160"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="TkF-Hu-CuV"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPr-Kd-dPy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPr-Kd-dPy">
                                                     <rect key="frame" x="4" y="168" width="157" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="rPN-QF-np3"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1i-n6-aRv">
-                                                    <rect key="frame" x="130" y="8" width="30" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1i-n6-aRv">
+                                                    <rect key="frame" x="127" y="8" width="30" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="NEA-ER-hSv"/>
+                                                        <constraint firstAttribute="height" constant="20" id="qNv-Fh-psh"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="12"/>
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="xPr-Kd-dPy" firstAttribute="leading" secondItem="700-di-caE" secondAttribute="leading" constant="4" id="Eea-lq-Nn4"/>
+                                                <constraint firstAttribute="trailing" secondItem="VFv-9g-W1o" secondAttribute="trailing" constant="4" id="HaA-40-TMb"/>
+                                                <constraint firstItem="VFv-9g-W1o" firstAttribute="leading" secondItem="700-di-caE" secondAttribute="leading" constant="4" id="Jg3-Te-hfZ"/>
+                                                <constraint firstItem="xPr-Kd-dPy" firstAttribute="top" secondItem="VFv-9g-W1o" secondAttribute="bottom" constant="4" id="Mbu-Fa-jUL"/>
+                                                <constraint firstAttribute="trailing" secondItem="xPr-Kd-dPy" secondAttribute="trailing" constant="4" id="P6R-4H-cj4"/>
+                                                <constraint firstItem="o1i-n6-aRv" firstAttribute="top" secondItem="700-di-caE" secondAttribute="top" constant="8" id="T6g-Ne-Iwe"/>
+                                                <constraint firstItem="VFv-9g-W1o" firstAttribute="top" secondItem="700-di-caE" secondAttribute="top" constant="4" id="U53-De-Zwb"/>
+                                                <constraint firstAttribute="trailing" secondItem="o1i-n6-aRv" secondAttribute="trailing" constant="8" id="phJ-wH-iFa"/>
+                                                <constraint firstAttribute="bottom" secondItem="xPr-Kd-dPy" secondAttribute="bottom" constant="8" id="zfa-E9-q6Z"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="5"/>
@@ -2127,6 +2144,12 @@ we can tell you where the yummy food is. Please share your Location.</string>
                                         </view>
                                     </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="700-di-caE" secondAttribute="bottom" constant="8" id="MXm-Dw-7o4"/>
+                                    <constraint firstAttribute="trailing" secondItem="700-di-caE" secondAttribute="trailing" constant="8" id="gU0-HP-rFC"/>
+                                    <constraint firstItem="700-di-caE" firstAttribute="top" secondItem="gCi-1J-iLr" secondAttribute="top" constant="8" id="kb7-LL-YNu"/>
+                                    <constraint firstItem="700-di-caE" firstAttribute="leading" secondItem="gCi-1J-iLr" secondAttribute="leading" constant="8" id="sCF-bw-wbR"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="image" destination="VFv-9g-W1o" id="QWC-0X-ck5"/>
                                     <outlet property="name" destination="xPr-Kd-dPy" id="dr2-o9-f90"/>
