@@ -343,7 +343,7 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
         cell.restaurantLocality.text = restaurant.address
         
         let url = URL(string : restaurant.imageURLString!)
-        cell.img.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload])
+        cell.img.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: [.continueInBackground,.progressiveDownload])
         
         return cell
     }

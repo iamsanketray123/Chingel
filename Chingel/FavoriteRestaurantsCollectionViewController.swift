@@ -160,7 +160,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         cell.rating.backgroundColor = hexStringToUIColor(hex: "\(favoriteRestaurant.ratingColor!)")
         
         let url = URL(string : favoriteRestaurant.imageURLString!)
-        cell.image.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload])
+        cell.image.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: [.continueInBackground,.progressiveDownload])
         
         return cell
     }

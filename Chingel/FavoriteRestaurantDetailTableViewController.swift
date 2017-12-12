@@ -63,7 +63,7 @@ class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapV
         numberOfVotes.text = "Based on \(String(describing: restaurant!.votes!)) reviews"
         restaurantAddress.text = restaurant?.address
         let url = URL(string: (restaurant?.imageURLString)!)
-        restaurantImage.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground,.progressiveDownload])
+        restaurantImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: [.continueInBackground,.progressiveDownload])
         
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
