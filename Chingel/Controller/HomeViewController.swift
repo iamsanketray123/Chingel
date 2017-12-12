@@ -64,6 +64,9 @@ class HomeViewController: UIViewController {
             self.letsGo.alpha = 1
         })
     }
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
 }
 

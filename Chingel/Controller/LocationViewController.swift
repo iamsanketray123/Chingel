@@ -18,10 +18,8 @@ class LocationViewController: UIViewController {
         super.viewDidLoad()
         
         print(UserDefaults.standard.object(forKey: "uid"))
-        
-        
-        
     }
+    
     @IBAction func autoLocation(_ sender: Any) {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -72,7 +70,9 @@ class LocationViewController: UIViewController {
         }
         completion()
     }
-    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 extension LocationViewController: GMSAutocompleteViewControllerDelegate {

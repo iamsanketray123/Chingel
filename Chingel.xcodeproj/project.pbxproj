@@ -161,7 +161,6 @@
 		19856E7E1FBED88F00D4F8EE = {
 			isa = PBXGroup;
 			children = (
-				19D7746C1FD5193800E80355 /* Heart Images */,
 				19856E891FBED89000D4F8EE /* Chingel */,
 				19856E881FBED89000D4F8EE /* Products */,
 				62BFEDF8DD4AC34A33509C48 /* Pods */,
@@ -182,41 +181,98 @@
 			children = (
 				191C38B61FC22238000B1DA1 /* Chingel.entitlements */,
 				19856E8A1FBED89000D4F8EE /* AppDelegate.swift */,
-				19856E8C1FBED89000D4F8EE /* HomeViewController.swift */,
-				19856EA91FBF1D0C00D4F8EE /* OnboardingViewController.swift */,
-				19856EA71FBF19EE00D4F8EE /* OnboardingView.swift */,
+				198592911FC1884C0052C320 /* FirebaseReference.swift */,
+				19856E991FBED89000D4F8EE /* Info.plist */,
+				19B2F2061FE04A3F0021B84C /* Model */,
+				19B2F2091FE04A650021B84C /* View */,
+				19B2F20A1FE04A840021B84C /* Controller */,
+				19B2F20B1FE04A8E0021B84C /* Assets */,
+				19B2F20C1FE04AA80021B84C /* Supporting Files */,
+			);
+			path = Chingel;
+			sourceTree = "<group>";
+		};
+		19B2F2061FE04A3F0021B84C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				19856E911FBED89000D4F8EE /* Chingel.xcdatamodeld */,
+				192E00F31FC4033400BF053F /* Restaurant.swift */,
+				19B2F2071FE04A4F0021B84C /* Clients */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		19B2F2071FE04A4F0021B84C /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				19B2F2081FE04A5A0021B84C /* Zomato */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		19B2F2081FE04A5A0021B84C /* Zomato */ = {
+			isa = PBXGroup;
+			children = (
+				192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */,
+			);
+			path = Zomato;
+			sourceTree = "<group>";
+		};
+		19B2F2091FE04A650021B84C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				192E00F71FC408B400BF053F /* TableViewCell.swift */,
+				193BA9E81FD842E700BF0746 /* CollectionViewCell.swift */,
 				19856E9F1FBEFA4300D4F8EE /* UIButtonX.swift */,
+				19856EA71FBF19EE00D4F8EE /* OnboardingView.swift */,
 				1905C4221FC1569800C62623 /* UITextFieldX.swift */,
 				198592B61FC1A3980052C320 /* UIImageViewX.swift */,
 				193BA9E41FD83E4D00BF0746 /* UIViewX.swift */,
 				1938C17D1FC7F62A004880ED /* MKMapViewX.swift */,
-				19CC27F81FCAF0EE00E913E8 /* HelperMethods.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		19B2F20A1FE04A840021B84C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				19856E8C1FBED89000D4F8EE /* HomeViewController.swift */,
+				19856EA91FBF1D0C00D4F8EE /* OnboardingViewController.swift */,
 				19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */,
 				1905C4281FC1851600C62623 /* SignUpViewController.swift */,
-				198D0CFA1FDED85F004F0165 /* Connectivity.swift */,
 				198592931FC1927E0052C320 /* LocationViewController.swift */,
-				198592911FC1884C0052C320 /* FirebaseReference.swift */,
-				192E00F71FC408B400BF053F /* TableViewCell.swift */,
 				1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */,
 				198539511FD3F9B70081E0D4 /* SideMenuTableViewController.swift */,
 				19CEC8BD1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift */,
 				19D7749D1FD5324D00E80355 /* RestaurantDetailVCExtension.swift */,
 				1942BBEF1FC95DFD00AC78CB /* ChangeLocationViewController.swift */,
-				192E00F31FC4033400BF053F /* Restaurant.swift */,
 				191391431FD2B0FE0006E27A /* ContainerViewController.swift */,
-				192E00F51FC403EC00BF053F /* ZomatoNetworking.swift */,
-				19856E8E1FBED89000D4F8EE /* Main.storyboard */,
 				193A68B71FD992970036E441 /* UpdateProfileViewController.swift */,
 				19578B711FD92F900081506E /* FavoriteRestaurantDetailTableViewController.swift */,
-				193BA9E81FD842E700BF0746 /* CollectionViewCell.swift */,
 				193BA9E61FD8410C00BF0746 /* FavoriteRestaurantsCollectionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		19B2F20B1FE04A8E0021B84C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				19856E8E1FBED89000D4F8EE /* Main.storyboard */,
 				19856E941FBED89000D4F8EE /* Assets.xcassets */,
 				19856E961FBED89000D4F8EE /* LaunchScreen.storyboard */,
-				19856E991FBED89000D4F8EE /* Info.plist */,
-				19A5C9531FCEA605006A052E /* GoogleService-Info.plist */,
-				19856E911FBED89000D4F8EE /* Chingel.xcdatamodeld */,
+				19D7746C1FD5193800E80355 /* Heart Images */,
 			);
-			path = Chingel;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		19B2F20C1FE04AA80021B84C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				19CC27F81FCAF0EE00E913E8 /* HelperMethods.swift */,
+				198D0CFA1FDED85F004F0165 /* Connectivity.swift */,
+				19A5C9531FCEA605006A052E /* GoogleService-Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		19D7746C1FD5193800E80355 /* Heart Images */ = {

@@ -22,6 +22,9 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
         onboardingView.dataSource = self
         onboardingView.delegate = self
     }
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     func onboardingWillTransitonToIndex(_ index: Int) {
         if index == 1 {

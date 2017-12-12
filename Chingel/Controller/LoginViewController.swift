@@ -143,6 +143,9 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 extension LoginViewController : UITextFieldDelegate {
