@@ -37,26 +37,30 @@ class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapV
     var headerView : UIView!
     var restaurant : FavoriteRestaurants?
     var userLocation : CLLocation?
+    let restaurantTitlelabel = UILabel()
     
     static var viewIsDark = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         setupGradientView()
         
         updateCuisinesAndPricing()
-        
-//        RestaurantsListViewController.locationChanged = false
         
         generateUberButton(userLocation : userLocation!, restaurantLocation : CLLocation(latitude: CLLocationDegrees(restaurant!.latitude), longitude: CLLocationDegrees(restaurant!.longitude)), dropOffNickname: restaurant!.name!)
         
         setupMap()
         
         restaurantName.text = restaurant?.name
-        restaurantRating.text = restaurant?.rating
+        
+        if restaurant?.ratingText == "Not rated" {
+            restaurantRating.text = "New"
+            restaurantRating.font = UIFont.systemFont(ofSize: 16)
+        }else {
+            restaurantRating.text = restaurant?.rating
+        }
+        
         restaurantRating.backgroundColor = hexStringToUIColor(hex: (restaurant?.ratingColor)!)
         restaurantRating.layer.cornerRadius = 3.0
         restaurantRating.layer.masksToBounds = true
@@ -69,18 +73,14 @@ class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapV
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        
-        
         headerView = table.tableHeaderView
         table.tableHeaderView = nil
         table.addSubview(headerView)
-        
         table.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
         table.contentOffset = CGPoint(x: 0, y: -headerHeight)
         
-        
-        
         updateHeaderView()
+        setupRestaurantLabel()
     }
     
 
@@ -92,11 +92,10 @@ class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapV
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
         UIApplication.shared.statusBarView?.backgroundColor = nil
-        RestaurantsListViewController.navigationTitleButton.tintColor = .white
+        self.navigationController?.navigationBar.tintColor = .white
+        makeViewDark()
         
     }
-    
-    
     
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -121,12 +120,14 @@ class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapV
             self.navigationController?.navigationBar.tintColor = UIColor(hue: 4, saturation: offset, brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
             UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
+            restaurantTitlelabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: offset)
             makeViewLight()
             
         } else {
             self.navigationController?.navigationBar.tintColor = UIColor(hue: 1, saturation: offset, brightness: 1, alpha: 1)
             self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
             UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: offset)
+            restaurantTitlelabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: offset)
             makeViewDark()
         }
     }
@@ -137,6 +138,13 @@ class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapV
         newLayer.frame = gradientView.frame
         
         gradientView.layer.addSublayer(newLayer)
+    }
+    fileprivate func setupRestaurantLabel() {
+        restaurantTitlelabel.text = restaurant!.name
+        restaurantTitlelabel.textColor = .clear
+        restaurantTitlelabel.font = UIFont(name: "Avenir Next", size: 16)
+        restaurantTitlelabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.navigationItem.titleView = restaurantTitlelabel
     }
     
     func updateCuisinesAndPricing() {

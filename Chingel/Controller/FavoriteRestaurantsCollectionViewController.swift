@@ -156,7 +156,13 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         let favoriteRestaurant = fetchedResultsController.object(at: indexPath)
         
         cell.name.text = favoriteRestaurant.name
-        cell.rating.text = favoriteRestaurant.rating
+
+        if favoriteRestaurant.ratingText == "Not rated" {
+            cell.rating.text = "New"
+        } else {
+            cell.rating.text = favoriteRestaurant.rating
+        }
+        
         cell.rating.backgroundColor = hexStringToUIColor(hex: "\(favoriteRestaurant.ratingColor!)")
         
         let url = URL(string : favoriteRestaurant.imageURLString!)

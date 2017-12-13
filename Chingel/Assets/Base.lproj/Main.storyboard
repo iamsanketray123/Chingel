@@ -1491,6 +1491,18 @@ Arabian</string>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puf-W3-FIb">
+                                <rect key="frame" x="8" y="20" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="IdD-Ab-2YT"/>
+                                    <constraint firstAttribute="width" constant="22" id="nSp-9b-RvK"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="dismiss"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="clw-as-Yoa" eventType="touchUpInside" id="MZ4-oX-do6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1510,9 +1522,11 @@ Arabian</string>
                             <constraint firstItem="dlm-Vf-Qgp" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" id="Jgg-JK-ydq"/>
                             <constraint firstItem="1g2-v8-trj" firstAttribute="leading" secondItem="Yyl-zf-Vwe" secondAttribute="leading" constant="204" id="NXA-Z3-8rX"/>
                             <constraint firstItem="Yyl-zf-Vwe" firstAttribute="trailing" secondItem="Z3A-1p-gsL" secondAttribute="trailing" constant="204" id="R3X-c5-Cp6"/>
+                            <constraint firstItem="Puf-W3-FIb" firstAttribute="leading" secondItem="Yyl-zf-Vwe" secondAttribute="leading" constant="8" id="RBa-wh-OdF"/>
                             <constraint firstItem="dlm-Vf-Qgp" firstAttribute="centerX" secondItem="s5s-bW-wHW" secondAttribute="centerX" id="Usg-X7-WGK"/>
                             <constraint firstItem="thb-ZE-VPB" firstAttribute="top" secondItem="zRV-2s-Hrf" secondAttribute="bottom" constant="8" id="UyN-yd-BBX"/>
                             <constraint firstItem="ZJa-33-ReG" firstAttribute="bottom" secondItem="Yyl-zf-Vwe" secondAttribute="bottom" id="XPa-Sz-iMD"/>
+                            <constraint firstItem="Puf-W3-FIb" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" id="XXW-Uf-S7K"/>
                             <constraint firstItem="ZJa-33-ReG" firstAttribute="centerX" secondItem="dlm-Vf-Qgp" secondAttribute="centerX" id="aOC-Ju-rQT"/>
                             <constraint firstItem="LMT-rq-acR" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" id="jAg-sp-WdE"/>
                             <constraint firstItem="Z3A-1p-gsL" firstAttribute="top" secondItem="zRV-2s-Hrf" secondAttribute="bottom" constant="28" id="kRx-ww-1Re"/>

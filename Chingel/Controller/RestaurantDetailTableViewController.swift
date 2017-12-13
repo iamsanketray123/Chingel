@@ -47,8 +47,6 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
         setupGradientView()
         
         updateCuisinesAndPricing()
@@ -60,7 +58,14 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         setupMap()
         
         restaurantName.text = restaurant?.name
-        restaurantRating.text = restaurant?.rating
+
+        if restaurant?.ratingText == "Not rated" {
+            restaurantRating.text = "New"
+            restaurantRating.font = UIFont.systemFont(ofSize: 16)
+        }else {
+            restaurantRating.text = restaurant?.rating
+        }
+        
         restaurantRating.backgroundColor = hexStringToUIColor(hex: (restaurant?.ratingColor)!)
         restaurantRating.layer.cornerRadius = 3.0
         restaurantRating.layer.masksToBounds = true
@@ -72,8 +77,6 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        
         
         headerView = table.tableHeaderView
         table.tableHeaderView = nil

@@ -55,10 +55,16 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
         
         self.present(actionSheet, animated: true, completion: nil)
     }
+    @IBAction func dismiss(_ sender: Any) {
+        dismiss(animated: true, completion : nil)
+    }
     
     @IBAction func signUpWithEmail(_ sender: Any) {
         do {
-            try signUpUsingEmail(completion: { (error, success) in
+            try signUpUsingEmail(completionForSignUp: { (uploadError,error, success) in
+                if uploadError != nil {
+                    Alert.showBasic(title: "Upload Error", message: "There was an error while uploading the image. Please try again", vc: self)
+                }
                 if error != nil {
                     Alert.showBasic(title: "Signup Error", message: "\(error!.localizedDescription)", vc: self)
                 }
@@ -78,7 +84,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
         facebookSignUp()
     }
     
-    func signUpUsingEmail(completion: @escaping (_ error : Error?, _ success: Bool?)->Void) throws {
+    func signUpUsingEmail(completionForSignUp: @escaping (_ uploadError: Error?, _ error : Error?, _ success: Bool?)->Void) throws {
         let name = self.name.text!
         let email = emailId.text!
         let password = self.password.text!
@@ -108,6 +114,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                     storedImage.putData(uploadData, metadata: nil, completion: { (metaData, error) in
                         if error != nil {
                             print(error?.localizedDescription,"🍣")
+                            completionForSignUp(error,nil,nil)
                             return
                         }
                         //                    Successfully uploaded image to Firebase Storage
@@ -125,7 +132,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                                         DispatchQueue.main.async {
                                             SVProgressHUD.dismiss()
                                         }
-                                        completion(error,nil)
+                                        completionForSignUp(nil,error,nil)
                                         return
                                     }
                                     // registration successful
@@ -148,7 +155,7 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
                                         DispatchQueue.main.async{
                                             SVProgressHUD.dismiss()
                                         }
-                                        completion(nil, true)
+                                        completionForSignUp(nil,nil, true)
                                         //                                        self.performSegue(withIdentifier: "locationVC", sender: self)
                                     })
                                 }
