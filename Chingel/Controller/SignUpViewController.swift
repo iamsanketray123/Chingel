@@ -244,9 +244,10 @@ class SignUpViewController: UIViewController, GIDSignInUIDelegate {
             self.performSegue(withIdentifier: "locationVC", sender: self)
         }
     }
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+//    open override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
+
 }
 
 extension SignUpViewController : UITextFieldDelegate {
