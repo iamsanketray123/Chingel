@@ -89,6 +89,7 @@ class LoginViewController: UIViewController {
     
     
     func loginUsingFacebook(completion : @escaping (_ accountExists : Bool)-> Void){
+        FBSDKLoginManager().logOut()
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: self) { (result, error) in
             if error != nil {
                 print("FB Login failed",error!.localizedDescription)
