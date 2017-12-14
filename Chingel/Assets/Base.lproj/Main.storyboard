@@ -1452,20 +1452,8 @@ Arabian</string>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puf-W3-FIb">
-                                <rect key="frame" x="8" y="20" width="22" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="IdD-Ab-2YT"/>
-                                    <constraint firstAttribute="width" constant="22" id="nSp-9b-RvK"/>
-                                </constraints>
-                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="back"/>
-                                <connections>
-                                    <action selector="dismiss:" destination="clw-as-Yoa" eventType="touchUpInside" id="MZ4-oX-do6"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userImage" translatesAutoresizingMaskIntoConstraints="NO" id="dlm-Vf-Qgp" customClass="UIImageViewX" customModule="Chingel" customModuleProvider="target">
-                                <rect key="frame" x="122" y="20" width="128" height="128"/>
+                                <rect key="frame" x="123" y="28" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="0W5-cY-eff"/>
                                     <constraint firstAttribute="width" constant="128" id="9Tw-FH-x1t"/>
@@ -1483,7 +1471,7 @@ Arabian</string>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMT-rq-acR" customClass="UIButtonX" customModule="Chingel" customModuleProvider="target">
-                                <rect key="frame" x="122" y="20" width="128" height="128"/>
+                                <rect key="frame" x="123" y="28" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="LA1-88-qgJ"/>
                                     <constraint firstAttribute="width" constant="128" id="vAV-AY-QZq"/>
@@ -1503,6 +1491,18 @@ Arabian</string>
                                     <action selector="uploadImage:" destination="clw-as-Yoa" eventType="touchUpInside" id="cq7-j4-ocC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Puf-W3-FIb">
+                                <rect key="frame" x="8" y="28" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="IdD-Ab-2YT"/>
+                                    <constraint firstAttribute="width" constant="22" id="nSp-9b-RvK"/>
+                                </constraints>
+                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="dismiss:" destination="clw-as-Yoa" eventType="touchUpInside" id="MZ4-oX-do6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1516,19 +1516,19 @@ Arabian</string>
                             <constraint firstItem="edm-VG-8I9" firstAttribute="leading" secondItem="Yyl-zf-Vwe" secondAttribute="leading" constant="16" id="Abd-7L-c8t"/>
                             <constraint firstItem="zRV-2s-Hrf" firstAttribute="leading" secondItem="Yyl-zf-Vwe" secondAttribute="leading" constant="16" id="F3s-0t-NNH"/>
                             <constraint firstItem="lr5-9x-GIe" firstAttribute="leading" secondItem="Yyl-zf-Vwe" secondAttribute="leading" constant="8" id="F6V-7j-2M6"/>
-                            <constraint firstItem="LMT-rq-acR" firstAttribute="centerX" secondItem="s5s-bW-wHW" secondAttribute="centerX" constant="-1.5" id="GJa-UH-FBm"/>
-                            <constraint firstItem="lr5-9x-GIe" firstAttribute="top" secondItem="dlm-Vf-Qgp" secondAttribute="bottom" constant="40" id="Hcs-YW-CEX"/>
+                            <constraint firstItem="LMT-rq-acR" firstAttribute="centerX" secondItem="s5s-bW-wHW" secondAttribute="centerX" constant="-0.5" id="GJa-UH-FBm"/>
+                            <constraint firstItem="lr5-9x-GIe" firstAttribute="top" secondItem="dlm-Vf-Qgp" secondAttribute="bottom" constant="32" id="Hcs-YW-CEX"/>
                             <constraint firstItem="Yyl-zf-Vwe" firstAttribute="trailing" secondItem="1g2-v8-trj" secondAttribute="trailing" constant="16" id="I5T-jB-Ag4"/>
-                            <constraint firstItem="dlm-Vf-Qgp" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" id="Jgg-JK-ydq"/>
+                            <constraint firstItem="dlm-Vf-Qgp" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" constant="8" id="Jgg-JK-ydq"/>
                             <constraint firstItem="1g2-v8-trj" firstAttribute="leading" secondItem="Yyl-zf-Vwe" secondAttribute="leading" constant="204" id="NXA-Z3-8rX"/>
                             <constraint firstItem="Yyl-zf-Vwe" firstAttribute="trailing" secondItem="Z3A-1p-gsL" secondAttribute="trailing" constant="204" id="R3X-c5-Cp6"/>
                             <constraint firstItem="Puf-W3-FIb" firstAttribute="leading" secondItem="Yyl-zf-Vwe" secondAttribute="leading" constant="8" id="RBa-wh-OdF"/>
-                            <constraint firstItem="dlm-Vf-Qgp" firstAttribute="centerX" secondItem="s5s-bW-wHW" secondAttribute="centerX" constant="-1.5" id="Usg-X7-WGK"/>
+                            <constraint firstItem="dlm-Vf-Qgp" firstAttribute="centerX" secondItem="s5s-bW-wHW" secondAttribute="centerX" constant="-0.5" id="Usg-X7-WGK"/>
                             <constraint firstItem="thb-ZE-VPB" firstAttribute="top" secondItem="zRV-2s-Hrf" secondAttribute="bottom" constant="8" id="UyN-yd-BBX"/>
                             <constraint firstItem="ZJa-33-ReG" firstAttribute="bottom" secondItem="Yyl-zf-Vwe" secondAttribute="bottom" id="XPa-Sz-iMD"/>
-                            <constraint firstItem="Puf-W3-FIb" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" id="XXW-Uf-S7K"/>
-                            <constraint firstItem="ZJa-33-ReG" firstAttribute="centerX" secondItem="dlm-Vf-Qgp" secondAttribute="centerX" constant="2.25" id="aOC-Ju-rQT"/>
-                            <constraint firstItem="LMT-rq-acR" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" id="jAg-sp-WdE"/>
+                            <constraint firstItem="Puf-W3-FIb" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" constant="8" id="XXW-Uf-S7K"/>
+                            <constraint firstItem="ZJa-33-ReG" firstAttribute="centerX" secondItem="dlm-Vf-Qgp" secondAttribute="centerX" constant="1.25" id="aOC-Ju-rQT"/>
+                            <constraint firstItem="LMT-rq-acR" firstAttribute="top" secondItem="Yyl-zf-Vwe" secondAttribute="top" constant="8" id="jAg-sp-WdE"/>
                             <constraint firstItem="Z3A-1p-gsL" firstAttribute="top" secondItem="zRV-2s-Hrf" secondAttribute="bottom" constant="28" id="kRx-ww-1Re"/>
                             <constraint firstItem="edm-VG-8I9" firstAttribute="top" secondItem="thb-ZE-VPB" secondAttribute="bottom" constant="8" id="ri2-5o-sqf"/>
                             <constraint firstItem="Yyl-zf-Vwe" firstAttribute="trailing" secondItem="edm-VG-8I9" secondAttribute="trailing" constant="16" id="wCv-9Z-Gt7"/>

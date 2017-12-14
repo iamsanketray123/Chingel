@@ -164,6 +164,8 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         }
         
         cell.rating.backgroundColor = hexStringToUIColor(hex: "\(favoriteRestaurant.ratingColor!)")
+        cell.rating.layer.cornerRadius = 2.5
+        cell.rating.layer.masksToBounds = true
         
         let url = URL(string : favoriteRestaurant.imageURLString!)
         cell.image.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: [.continueInBackground,.progressiveDownload])
