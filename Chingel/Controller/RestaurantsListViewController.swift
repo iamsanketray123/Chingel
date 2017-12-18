@@ -116,35 +116,44 @@ class RestaurantsListViewController: UIViewController {
         self.restaurants = [Restaurant]()
         self.table.reloadData()
         
-        getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
-            if (results != nil) && (results! > 1200000) {
-                DispatchQueue.main.async {
-                    self.searchButton.isHidden = true
-                }
-                SVProgressHUD.dismiss()
-                print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
-                Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
-                
-            }
-                
-            else if restaurant != nil {
-                if (results != nil) && (results! < 1200000) {
+        if reachability.connection != .none {
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+                if (results != nil) && (results! > 1200000) {
                     DispatchQueue.main.async {
-                        self.searchButton.isHidden = false
+                        self.searchButton.isHidden = true
                     }
-                    print(results,"🍛")
-                    self.restaurants.append(restaurant!)
-                    DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
-                        self.table.reloadData()
-                    }
-                    print(self.restaurants.count,"🍗")
+                    SVProgressHUD.dismiss()
+                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
+                    Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
+                    
                 }
-            }
+                    
+                else if restaurant != nil {
+                    if (results != nil) && (results! < 1200000) {
+                        DispatchQueue.main.async {
+                            self.searchButton.isHidden = false
+                        }
+                        print(results,"🍛")
+                        self.restaurants.append(restaurant!)
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                            self.table.reloadData()
+                        }
+                        print(self.restaurants.count,"🍗")
+                    }
+                }
+                DispatchQueue.main.async{
+                  self.refreshControl.endRefreshing()
+                }
+            })
+        }
+        else {
             DispatchQueue.main.async{
-              self.refreshControl.endRefreshing()
+                self.refreshControl.endRefreshing()
+                Alert.showBasic(title: "No Internet!", message: "Please check your internet connectivity and try again!", vc: self)
             }
-        })
+        }
+        
     }
     
     

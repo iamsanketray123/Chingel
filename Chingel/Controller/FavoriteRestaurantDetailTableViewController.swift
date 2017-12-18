@@ -105,8 +105,12 @@ class FavoriteRestaurantDetailTableViewController: UITableViewController, MKMapV
     @IBAction func getDirections(_ sender : Any) {
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
             UIApplication.shared.open(URL(string:"comgooglemaps://?saddr=\(userLocation!.coordinate.latitude),\(userLocation!.coordinate.longitude)&daddr=\(restaurant!.latitude),\(restaurant!.longitude)&directionsmode=driving")!, options: [:], completionHandler: nil)
-        }else {
-            print("cant open google maps")
+        }
+        if (UIApplication.shared.canOpenURL(URL(string: "http://maps.apple.com")!)) {
+            UIApplication.shared.open(URL(string:"http://maps.apple.com/?saddr=\(userLocation!.coordinate.latitude),\(userLocation!.coordinate.longitude)&daddr=\(restaurant!.latitude),\(restaurant!.longitude)&directionsmode=driving")!, options: [:], completionHandler: nil)
+        }
+        else {
+            Alert.showBasic(title: "Maps Not Found!", message: "Please install Google Maps/ Apple Maps to be able to use this feature to get directions to the Restaurant.", vc: self)
         }
     }
     

@@ -41,6 +41,7 @@
 	<string>Chingel</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+        <string>maps</string>
 		<string>comgooglemaps</string>
 		<string>uber</string>
 		<string>fbapi</string>

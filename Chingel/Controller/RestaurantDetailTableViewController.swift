@@ -13,7 +13,7 @@ import UberRides
 import MapKit
 
 class RestaurantDetailTableViewController: UITableViewController, MKMapViewDelegate {
-
+    
     @IBOutlet var table: UITableView!
     @IBOutlet weak var restaurantImage: UIImageView!
     @IBOutlet weak var restaurantName: UILabel!
@@ -29,7 +29,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     @IBOutlet weak var isDeliveringNow: UIImageView!
     @IBOutlet weak var hasTableBooking: UIImageView!
     @IBOutlet weak var heartImage: UIImageView!
-
+    
     
     var liked : Bool = false
     var heartImages = [UIImage]()
@@ -41,8 +41,8 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     let restaurantTitlelabel = UILabel()
     
     static var viewIsDark = true
-
-
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         setupMap()
         
         restaurantName.text = restaurant?.name
-
+        
         if restaurant?.ratingText == "Not rated" {
             restaurantRating.text = "New"
             restaurantRating.font = UIFont.systemFont(ofSize: 16)
@@ -87,7 +87,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         
         heartImages = createImageArray(total: 24, imagePrefix: "heart")
         undoHeart = reverseImageArray(total: 24, imagePrefix: "heart")
-
+        
         setupRestaurantLabel()
         
         updateHeaderView()
@@ -111,11 +111,11 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         UIApplication.shared.statusBarView?.backgroundColor = nil
         self.navigationController?.navigationBar.tintColor = .white
         makeViewDark()
-
+        
     }
-
     
-
+    
+    
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
         dismiss(animated: true, completion: nil)
@@ -125,15 +125,19 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
             UIApplication.shared.open(URL(string:"comgooglemaps://?saddr=\(userLocation!.coordinate.latitude),\(userLocation!.coordinate.longitude)&daddr=\(restaurant!.latitude),\(restaurant!.longitude)&directionsmode=driving")!, options: [:], completionHandler: nil)
-        }else {
-            Alert.showBasic(title: "Google Maps Not Found!", message: "Please install Google Maps to be able to use this feature to get directions to the Restaurant.", vc: self)
+        }
+        if (UIApplication.shared.canOpenURL(URL(string: "http://maps.apple.com")!)) {
+            UIApplication.shared.open(URL(string:"http://maps.apple.com/?saddr=\(userLocation!.coordinate.latitude),\(userLocation!.coordinate.longitude)&daddr=\(restaurant!.latitude),\(restaurant!.longitude)&directionsmode=driving")!, options: [:], completionHandler: nil)
+        }
+        else {
+            Alert.showBasic(title: "Maps Not Found!", message: "Please install Google Maps/ Apple Maps to be able to use this feature to get directions to the Restaurant.", vc: self)
         }
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateHeaderView()
-
+        
         var offset = (scrollView.contentOffset.y+220) / 110
         if offset > 1 {
             offset = 1
@@ -197,7 +201,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     }
     
     func setupMap() {
-
+        
         print(restaurant?.latitude,restaurant?.longitude,"🍵")
         map.delegate = self
         let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
@@ -225,7 +229,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         builder.pickupNickname = "Current Location"
         builder.dropoffLocation = dropOffLocation
         builder.dropoffNickname = dropOffNickname
-
+        
         var productID = ""
         ridesClient.fetchProducts(pickupLocation: pickUpLocation) { (product, response) in
             print(product.count,"🍚")
@@ -236,34 +240,34 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
             }
             print("🥒\(productID)")
         }
-
-
+        
+        
         ridesClient.fetchPriceEstimates(pickupLocation: pickUpLocation, dropoffLocation: dropOffLocation) { (price, response) in
-
+            
             if price.count > 0 {
                 print(price[0].estimate,"🍚")
             }
             
         }
-
+        
         ridesClient.fetchTimeEstimates(pickupLocation: pickUpLocation) { (time, response) in
             if productID != "" {
                 print("🥕",time[0].estimate,"🥕")
             }
         }
-
+        
         ridesClient.fetchRideRequestEstimate(parameters: builder.build()) { (rideEstimate, response) in
             builder.upfrontFare = rideEstimate?.fare
             print(rideEstimate,"🥗")
         }
-
+        
         builder.productID = productID
         button.setContent()
         button.rideParameters = builder.build()
         button.loadRideInformation()
     }
     
-
+    
     @IBAction func startAnimation(_ sender: UIButton) {
         
         if !liked {
@@ -283,7 +287,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
                 self.liked = false
                 self.deleteRestaurantFromFavorites(rest: self.restaurant!)
                 DispatchQueue.main.async{
-                self.showToast(message : "Restaurant removed from Favorites")
+                    self.showToast(message : "Restaurant removed from Favorites")
                 }
             })
         }
@@ -335,7 +339,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
             toastLabel.removeFromSuperview()
         })
     }
-
+    
 }
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
