@@ -54,13 +54,8 @@ class SideMenuTableViewController: UITableViewController {
         UserDefaults.standard.set(nil, forKey: "uid")
         
         dismiss(animated: true) {
-            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-            UIApplication.topViewController()?.present(controller, animated: true)
+            UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
         }
-//        The following code leads to the error "Application tried to present modally an active controller <Chingel.RestaurantsListViewController"
-
-//        let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-//        UIApplication.topViewController()?.present(controller, animated: true)
     }
     
     

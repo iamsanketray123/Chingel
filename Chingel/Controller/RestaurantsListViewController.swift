@@ -123,7 +123,6 @@ class RestaurantsListViewController: UIViewController {
                         self.searchButton.isHidden = true
                     }
                     SVProgressHUD.dismiss()
-                    //                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
                     Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
                     
                 }
@@ -380,12 +379,7 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //                DispatchQueue.main.async {
-        //                    cell.alpha = 0
-        //                    UIView.animate(withDuration: 0.5) {
-        //                        cell.alpha = 1.0
-        //                    }
-        //                }
+        
         let lastRestaurant = restaurants.count - 1
         if indexPath.row == lastRestaurant {
             
