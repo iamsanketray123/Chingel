@@ -267,21 +267,21 @@ class RestaurantsListViewController: UIViewController {
     @IBAction func sortingOptionTapped(_ sender: UIButton) {
         sortByButton.setTitle(sender.currentTitle, for: .normal)
         
-        if sender.currentTitle! == "Rating High to Low" {
-            RestaurantsListViewController.sort = "rating"
-            RestaurantsListViewController.order = "desc"
-        }
-        else if sender.currentTitle! == "Price High to Low" {
-            RestaurantsListViewController.sort = "cost"
-            RestaurantsListViewController.order = "desc"
-        }
-        else if sender.currentTitle! == "Rating Low to High" {
-            RestaurantsListViewController.sort = "rating"
-            RestaurantsListViewController.order = "asc"
-        }
-        else if sender.currentTitle! == "Price Low to High" {
-            RestaurantsListViewController.sort = "cost"
-            RestaurantsListViewController.order = "asc"
+        switch sender.currentTitle! {
+            case "Rating High to Low":
+                RestaurantsListViewController.sort = "rating"
+                RestaurantsListViewController.order = "desc"
+            case "Price High to Low":
+                RestaurantsListViewController.sort = "cost"
+                RestaurantsListViewController.order = "desc"
+            case "Rating Low to High":
+                RestaurantsListViewController.sort = "rating"
+                RestaurantsListViewController.order = "asc"
+            case "Price Low to High":
+                RestaurantsListViewController.sort = "cost"
+                RestaurantsListViewController.order = "asc"
+            default:
+                print()
         }
         
         UIView.animate(withDuration: 0.2) {
