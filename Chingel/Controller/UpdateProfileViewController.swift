@@ -24,6 +24,7 @@ class UpdateProfileViewController: UIViewController {
     static var newLocationName : String?
     static var newLocationLatitude : CLLocationDegrees?
     static var newLocationLongitude : CLLocationDegrees?
+    let reachability = Reachability()!
     
     let manager = CLLocationManager()
 
@@ -43,6 +44,23 @@ class UpdateProfileViewController: UIViewController {
         }
         userName.delegate = self
 
+        NotificationCenter.default.addObserver(self, selector: #selector(internetConnectionChanged), name: Notification.Name.reachabilityChanged, object: reachability)
+        do {
+            try reachability.startNotifier()
+        }catch {
+            print("could not start notifier")
+        }
+        
+    }
+    
+    @objc func internetConnectionChanged(notification : Notification) {
+        let reachability = notification.object as! Reachability
+        if reachability.connection != .none {
+            print("we have internet")
+        }else {
+            SVProgressHUD.dismiss()
+            Alert.showBasic(title: "No Internet!", message: "Please check your internet connectivity and try again!", vc: self)
+        }
     }
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -91,13 +109,17 @@ class UpdateProfileViewController: UIViewController {
         manager.stopUpdatingLocation()
     }
     @IBAction func saveChanges(_ sender: Any) {
-        SVProgressHUD.show(withStatus: "Saving Changes...")
-        SVProgressHUD.setDefaultMaskType(.gradient)
-        updateChanges() { (success) in
-            if success! {
-                SVProgressHUD.dismiss()
-                self.dismiss(animated: true, completion: nil)
+        if reachability.connection != .none {
+            SVProgressHUD.show(withStatus: "Saving Changes...")
+            SVProgressHUD.setDefaultMaskType(.gradient)
+            updateChanges() { (success) in
+                if success! {
+                    SVProgressHUD.dismiss()
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
+        }else {
+            Alert.showBasic(title: "No Internet!", message: "Please check your internet connectivity and try again!", vc: self)
         }
     }
     open override var preferredStatusBarStyle: UIStatusBarStyle {

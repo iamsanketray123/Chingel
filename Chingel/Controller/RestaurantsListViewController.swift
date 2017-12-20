@@ -85,7 +85,7 @@ class RestaurantsListViewController: UIViewController {
         setupSideMenu()
         setupRefreshControl()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: Notification.Name.reachabilityChanged, object: reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(internetConnectionChanged), name: Notification.Name.reachabilityChanged, object: reachability)
         do {
             try reachability.startNotifier()
         }catch {
@@ -94,7 +94,7 @@ class RestaurantsListViewController: UIViewController {
         
     }
     
-    @objc func internetChanged(notification : Notification) {
+    @objc func internetConnectionChanged(notification : Notification) {
         let reachability = notification.object as! Reachability
         if reachability.connection != .none {
             print("we have internet")
@@ -233,21 +233,23 @@ class RestaurantsListViewController: UIViewController {
     }
     
     @IBAction func searchAfterSorting(_ sender: Any) {
-        //        print(restaurants.count)
-        RestaurantsListViewController.start = 0
-        self.restaurants = [Restaurant]()
-        table.reloadData()
+        if reachability.connection != .none {
+            RestaurantsListViewController.start = 0
+            self.restaurants = [Restaurant]()
+            table.reloadData()
         
-        getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
-            
-            if restaurant != nil {
-                self.restaurants.append(restaurant!)
-                DispatchQueue.main.async {
-                    self.table.reloadData()
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+                
+                if restaurant != nil {
+                    self.restaurants.append(restaurant!)
+                    DispatchQueue.main.async {
+                        self.table.reloadData()
+                    }
                 }
-            }
-        })
-        
+            })
+        }else {
+            Alert.showBasic(title: "No Internet!", message: "Please check your internet connectivity and try again!", vc: self)
+        }
     }
     
     @IBAction func sortByAction(_ sender: Any) {

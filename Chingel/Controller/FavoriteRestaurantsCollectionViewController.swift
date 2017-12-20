@@ -38,14 +38,20 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         }catch{
             print("An error occured while fetching favorite restaurants")
         }
+        
         let longPressGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         longPressGesture.minimumPressDuration = 1
-        
         longPressGesture.delegate = self
         self.collection.addGestureRecognizer(longPressGesture)
         
+
     }
-    
+  
+    override func viewDidAppear(_ animated: Bool) {
+        if collection.indexPathsForVisibleItems.count != 0 {
+            showToast(message: "Long press on a restaurant to enable deletion!")
+        }
+    }
     
     @IBAction func deleteFavoriteRestaurants(_ sender: Any) {
         
@@ -171,6 +177,26 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         cell.image.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: [.continueInBackground,.progressiveDownload])
         
         return cell
+    }
+    func showToast(message : String) {
+        let toastLabel = UILabel(frame: CGRect(x: 5, y: self.view.center.y, width: (view.frame.width - 10), height: 40))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
+        toastLabel.adjustsFontForContentSizeCategory = true
+        toastLabel.adjustsFontSizeToFitWidth = true
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.numberOfLines = 0
+        toastLabel.layer.cornerRadius = 20;
+        toastLabel.clipsToBounds  =  true
+        self.collection.addSubview(toastLabel)
+        UIView.animate(withDuration: 1, delay: 3, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
     }
 
 }
