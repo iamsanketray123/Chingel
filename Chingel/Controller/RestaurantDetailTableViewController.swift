@@ -202,7 +202,6 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     
     func setupMap() {
         
-        print(restaurant?.latitude,restaurant?.longitude,"🍵")
         map.delegate = self
         let span : MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         let location : CLLocationCoordinate2D = CLLocationCoordinate2DMake(CLLocationDegrees(restaurant!.latitude)!, CLLocationDegrees(restaurant!.longitude)!)
@@ -218,7 +217,6 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     func generateUberButton(userLocation : CLLocation, restaurantLocation : CLLocation, dropOffNickname : String){
         let button = RideRequestButton()
         view.addSubview(button)
-        print("🍒",button.frame,"🍒")
         button.frame = CGRect(x: 16, y: Int(directions.frame.origin.y + 298), width: Int(view.frame.width - 32), height: 50)
         
         let ridesClient = RidesClient()

@@ -12,10 +12,9 @@ import SDWebImage
 import CoreLocation
 
 class FavoriteRestaurantsCollectionViewController: UICollectionViewController, UIGestureRecognizerDelegate {
-
+    
     @IBOutlet var collection: UICollectionView!
     @IBOutlet weak var trash: UIBarButtonItem!
-    
     
     var editingEnabled = false
     var index = [IndexPath]()
@@ -44,9 +43,8 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         longPressGesture.delegate = self
         self.collection.addGestureRecognizer(longPressGesture)
         
-
     }
-  
+    
     override func viewDidAppear(_ animated: Bool) {
         if collection.indexPathsForVisibleItems.count != 0 {
             showToast(message: "Long press on a restaurant to enable deletion!")
@@ -71,8 +69,6 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         editingEnabled = false
     }
     
-    
-    
     @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
         if longPressGestureRecognizer.state == .began {
             print("Hello")
@@ -80,7 +76,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
             trash.isEnabled = true
             collection.allowsMultipleSelection = true
             let touchPoint = longPressGestureRecognizer.location(in: self.view)
-
+            
             if let indexPath = collection.indexPathForItem(at: touchPoint) {
                 index.append(indexPath)
                 print(index)
@@ -123,7 +119,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = .clear
         cell?.alpha = 1
-
+        
         if editingEnabled && index.count == 0 {
             print(index,"🥕")
             trash.isEnabled = false
@@ -162,7 +158,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         let favoriteRestaurant = fetchedResultsController.object(at: indexPath)
         
         cell.name.text = favoriteRestaurant.name
-
+        
         if favoriteRestaurant.ratingText == "Not rated" {
             cell.rating.text = "New"
         } else {
@@ -198,7 +194,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
             toastLabel.removeFromSuperview()
         })
     }
-
+    
 }
 
 

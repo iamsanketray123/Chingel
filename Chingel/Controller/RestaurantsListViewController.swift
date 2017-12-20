@@ -64,7 +64,7 @@ class RestaurantsListViewController: UIViewController {
                     Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
                     return
                 }
-                
+                    
                 else if restaurant != nil {
                     if (results != nil) && (results! < 1200000) {
                         DispatchQueue.main.async {
@@ -123,7 +123,7 @@ class RestaurantsListViewController: UIViewController {
                         self.searchButton.isHidden = true
                     }
                     SVProgressHUD.dismiss()
-                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
+                    //                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
                     Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
                     
                 }
@@ -133,7 +133,6 @@ class RestaurantsListViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.searchButton.isHidden = false
                         }
-                        print(results,"🍛")
                         self.restaurants.append(restaurant!)
                         DispatchQueue.main.async {
                             SVProgressHUD.dismiss()
@@ -143,19 +142,25 @@ class RestaurantsListViewController: UIViewController {
                     }
                 }
                 DispatchQueue.main.async{
-                  self.refreshControl.endRefreshing()
+                    self.refreshControl.endRefreshing()
                 }
             })
         }
         else {
             DispatchQueue.main.async{
-                self.refreshControl.endRefreshing()
-                Alert.showBasic(title: "No Internet!", message: "Please check your internet connectivity and try again!", vc: self)
+                self.showAlert(title: "No Ineternet!", message: "Please chcek your internet connectivity and try again!", vc: self)
             }
         }
         
     }
     
+    func showAlert(title: String, message : String, vc : UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            self.refreshControl.endRefreshing()
+        }))
+        vc.present(alert, animated : true)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -171,7 +176,7 @@ class RestaurantsListViewController: UIViewController {
             self.restaurants = [Restaurant]()
             table.reloadData()
             
-
+            
             getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
                 
                 if (results != nil) && (results! > 1200000) {
@@ -179,7 +184,7 @@ class RestaurantsListViewController: UIViewController {
                         self.searchButton.isHidden = true
                     }
                     SVProgressHUD.dismiss()
-                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
+//                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
                     Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
                     return
                 }
@@ -188,13 +193,11 @@ class RestaurantsListViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.searchButton.isHidden = false
                         }
-//                        print(results,"🍛")
                         self.restaurants.append(restaurant!)
                         DispatchQueue.main.async {
                             SVProgressHUD.dismiss()
                             self.table.reloadData()
                         }
-//                        print(self.restaurants.count,"🍗")
                     }
                 }
             })
@@ -214,16 +217,16 @@ class RestaurantsListViewController: UIViewController {
         print("toogle side menu")
         SideMenuManager.default.menuDismissOnPush = true
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-
+        
     }
     
-
+    
     
     fileprivate func setupSideMenu() {
         let menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "Left") as! UISideMenuNavigationController
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-//        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        //        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
         SideMenuManager.default.menuPresentMode = .viewSlideInOut
         SideMenuManager.default.menuWidth = (view.frame.width * 0.8)
         SideMenuManager.default.menuShadowColor = .black
@@ -237,7 +240,7 @@ class RestaurantsListViewController: UIViewController {
             RestaurantsListViewController.start = 0
             self.restaurants = [Restaurant]()
             table.reloadData()
-        
+            
             getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
                 
                 if restaurant != nil {
