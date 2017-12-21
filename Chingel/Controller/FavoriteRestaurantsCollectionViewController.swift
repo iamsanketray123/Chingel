@@ -15,9 +15,10 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
     
     @IBOutlet var collection: UICollectionView!
     @IBOutlet weak var trash: UIBarButtonItem!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    var editingEnabled = false
-    var index = [IndexPath]()
+//    var editingEnabled = false
+//    var index = [IndexPath]()
     var selectedRestaurant : FavoriteRestaurants?
     
     override func viewDidLoad() {
@@ -38,55 +39,66 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
             print("An error occured while fetching favorite restaurants")
         }
         
-        let longPressGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-        longPressGesture.minimumPressDuration = 1
-        longPressGesture.delegate = self
-        self.collection.addGestureRecognizer(longPressGesture)
+//        let longPressGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+//        longPressGesture.minimumPressDuration = 1
+//        longPressGesture.delegate = self
+//        self.collection.addGestureRecognizer(longPressGesture)
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if collection.indexPathsForVisibleItems.count != 0 {
-            showToast(message: "Long press on a restaurant to enable deletion!")
-        }
+//    override func viewDidAppear(_ animated: Bool) {
+//        if collection.indexPathsForVisibleItems.count != 0 {
+//            showToast(message: "Long press on a restaurant to enable deletion!")
+//        }
+//    }
+
+    @IBAction func back(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
+    }
+    @IBAction func doneAction(_ sender: Any) {
+        doneButton.isEnabled = false
+        trash.isEnabled = true
     }
     
     @IBAction func deleteFavoriteRestaurants(_ sender: Any) {
         
-        for restaurantIndex in index.sorted().reversed() {
-            let restaurant = fetchedResultsController.object(at: restaurantIndex)
-            UserDefaults.standard.set(nil, forKey: "\(restaurant.id)")
-            managedContext.delete(restaurant)
-            do{
-                try managedContext.save()
-            }catch {
-                print("Error while saving")
-            }
-        }
-        index = [IndexPath]()
+//        for restaurantIndex in index.sorted().reversed() {
+//            let restaurant = fetchedResultsController.object(at: restaurantIndex)
+//            UserDefaults.standard.set(nil, forKey: "\(restaurant.id)")
+//            managedContext.delete(restaurant)
+//            do{
+//                try managedContext.save()
+//            }catch {
+//                print("Error while saving")
+//            }
+//        }
+//        index = [IndexPath]()
+//        trash.isEnabled = false
+//        collection.allowsMultipleSelection = false
+//        editingEnabled = false
+        showToast(message: "Tap on any restaurant to delete!")
         trash.isEnabled = false
-        collection.allowsMultipleSelection = false
-        editingEnabled = false
+        doneButton.isEnabled = true
     }
     
-    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
-        if longPressGestureRecognizer.state == .began {
-            print("Hello")
-            editingEnabled = true
-            trash.isEnabled = true
-            collection.allowsMultipleSelection = true
-            let touchPoint = longPressGestureRecognizer.location(in: self.view)
-            
-            if let indexPath = collection.indexPathForItem(at: touchPoint) {
-                index.append(indexPath)
-                print(index)
-                let cell = collectionView?.cellForItem(at: indexPath)
-                cell?.backgroundColor = .gray
-                cell?.alpha = 0.5
-                collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: [])
-            }
-        }
-    }
+//    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+//        if longPressGestureRecognizer.state == .began {
+//            editingEnabled = true
+//            trash.isEnabled = true
+//            collection.allowsMultipleSelection = true
+//            let touchPoint = longPressGestureRecognizer.location(in: self.view)
+//
+//            if let indexPath = collection.indexPathForItem(at: touchPoint) {
+//                index.append(indexPath)
+//                print(index)
+//                let cell = collectionView?.cellForItem(at: indexPath)
+//                cell?.backgroundColor = .gray
+//                cell?.alpha = 0.5
+//                collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: [])
+//            }
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as! FavoriteRestaurantDetailTableViewController
@@ -95,40 +107,54 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        if (cell?.isSelected)! && !editingEnabled {
-            collectionView.deselectItem(at: indexPath, animated : true)
-            print(index)
+//        let cell = collectionView.cellForItem(at: indexPath)
+//        if (cell?.isSelected)! && !editingEnabled {
+//            collectionView.deselectItem(at: indexPath, animated : true)
+//            print(index)
+//            selectedRestaurant = fetchedResultsController.object(at: indexPath)
+//        }
+//        if !editingEnabled {
+//            performSegue(withIdentifier: "FavoriteRestaurantDetail", sender: self)
+//        }
+//        if editingEnabled {
+//            cell?.backgroundColor = .gray
+//            cell?.alpha = 0.5
+//            index = collectionView.indexPathsForSelectedItems!
+//            print(index.count)
+//        }
+        if doneButton.isEnabled {
+            let restaurant = fetchedResultsController.object(at: indexPath)
+            UserDefaults.standard.set(nil, forKey: "\(restaurant.id)")
+            managedContext.delete(restaurant)
+            do{
+                try managedContext.save()
+            }catch {
+                print("Error while saving")
+            }
+        }else {
             selectedRestaurant = fetchedResultsController.object(at: indexPath)
-        }
-        if !editingEnabled {
             performSegue(withIdentifier: "FavoriteRestaurantDetail", sender: self)
         }
-        if editingEnabled {
-            cell?.backgroundColor = .gray
-            cell?.alpha = 0.5
-            index = collectionView.indexPathsForSelectedItems!
-            print(index.count)
-        }
     }
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if let ind = collectionView.indexPathsForSelectedItems {
-            index = ind
-        }
-        print(index,"🍈")
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = .clear
-        cell?.alpha = 1
-        
-        if editingEnabled && index.count == 0 {
-            print(index,"🥕")
-            trash.isEnabled = false
-            collection.allowsMultipleSelection = false
-            editingEnabled = false
-            print("This is working")
-            
-        }
-    }
+    
+//    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        if let ind = collectionView.indexPathsForSelectedItems {
+//            index = ind
+//        }
+//        print(index,"🍈")
+//        let cell = collectionView.cellForItem(at: indexPath)
+//        cell?.backgroundColor = .clear
+//        cell?.alpha = 1
+//
+//        if editingEnabled && index.count == 0 {
+//            print(index,"🥕")
+//            trash.isEnabled = false
+//            collection.allowsMultipleSelection = false
+//            editingEnabled = false
+//            print("This is working")
+//
+//        }
+//    }
     
     lazy var fetchedResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<FavoriteRestaurants> in
         let fetchRequest = NSFetchRequest<FavoriteRestaurants>(entityName : "FavoriteRestaurants")
@@ -176,7 +202,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
     }
     func showToast(message : String) {
         let toastLabel = UILabel(frame: CGRect(x: 5, y: self.view.center.y, width: (view.frame.width - 10), height: 40))
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
         toastLabel.textAlignment = .center;
         toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
@@ -188,7 +214,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         toastLabel.layer.cornerRadius = 20;
         toastLabel.clipsToBounds  =  true
         self.collection.addSubview(toastLabel)
-        UIView.animate(withDuration: 1, delay: 3, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1, delay: 2, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()

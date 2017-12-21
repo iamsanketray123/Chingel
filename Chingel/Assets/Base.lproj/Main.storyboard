@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -2178,14 +2179,27 @@ we can tell you where the yummy food is. Please share your Location.</string>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="aEV-Mk-s3D">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="trash" id="Ylf-oE-Gyg">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="backIcon" id="Int-6d-3bw">
+                                <connections>
+                                    <action selector="back:" destination="tZJ-kL-UcW" id="yIg-sr-inU"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="trash" id="Ylf-oE-Gyg">
+                                <connections>
+                                    <action selector="deleteFavoriteRestaurants:" destination="tZJ-kL-UcW" id="GwC-SP-ach"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="bKR-pL-Chf">
                             <connections>
-                                <action selector="deleteFavoriteRestaurants:" destination="tZJ-kL-UcW" id="GwC-SP-ach"/>
+                                <action selector="doneAction:" destination="tZJ-kL-UcW" id="f0k-bi-4Wy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collection" destination="g2v-Ou-GOX" id="Hpg-ge-pqo"/>
+                        <outlet property="doneButton" destination="bKR-pL-Chf" id="2kx-HQ-Cy1"/>
                         <outlet property="trash" destination="Ylf-oE-Gyg" id="dIH-lT-f3P"/>
                         <segue destination="M3a-B3-1N3" kind="show" identifier="FavoriteRestaurantDetail" id="EcV-ID-8Hb"/>
                     </connections>
