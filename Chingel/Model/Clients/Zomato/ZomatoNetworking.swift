@@ -8,7 +8,7 @@
 
 import UIKit
 
-func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String, completion : @escaping (_ results : Int?,_ restaurant: Restaurant?) -> Void) {
+func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, order: String, completion : @escaping (_ statusCode : Int?,_ results : Int?,_ restaurant: Restaurant?) -> Void) {
     print("Finding restaurants")
     RestaurantsListViewController.start += 20
     let request = NSMutableURLRequest(url: URL(string: "https://developers.zomato.com/api/v2.1/search?start=\(start)&lat=\(lat)&lon=\(long)&sort=\(sort)&order=\(order)")!)
@@ -26,6 +26,8 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
             print("status code was other than 2xx")
             return
         }
+        completion(statusCode,nil,nil)
+        
         guard let data = data else {
             print("request for data failed")
             return
@@ -43,7 +45,7 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
             print("Could not get number of results")
             return
         }
-        completion(resultsFound,nil)
+        completion(nil,resultsFound,nil)
         
         guard let nearbyRes = parsedResult["restaurants"] as? [AnyObject] else {
             print("Could not get restaurant list")
@@ -160,7 +162,7 @@ func getListOfRestaurants(start: Int, lat: String, long: String, sort : String, 
             
             let restaurant = Restaurant(id: resID, name: name, address: address, locality: locality, latitude: latitude, longitude: longitude, cuisines: cuisines, costForTwo: averageCostForTwo, currency: currency, rating: aggregateRating, ratingText: ratingText, ratingColor: ratingColor, votes: votes, imageURLString: imageURLString, hasOnlineDelivery: hasOnlineDelivery, isDeliveringNow: isDeliveringNow, hasTableBooking: hasTableBooking)
             
-            completion(resultsFound,restaurant)
+            completion(nil,resultsFound,restaurant)
         }
     }
     task.resume()

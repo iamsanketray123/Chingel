@@ -54,13 +54,17 @@ class RestaurantsListViewController: UIViewController {
             self.restaurants = [Restaurant]()
             self.table.reloadData()
             
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (statusCode, results, restaurant) in
+
+                if statusCode != nil && statusCode! < 200 && statusCode! > 299 {
+                    SVProgressHUD.dismiss()
+                    Alert.showBasic(title: "Something Went Wrong", message: "We were unable to fetch data from Zomato. This should be fixed soon. Please try again later.", vc: self)
+                }
                 if (results != nil) && (results! > 1200000) {
                     DispatchQueue.main.async {
                         self.searchButton.isHidden = true
                     }
                     SVProgressHUD.dismiss()
-                    print("🍛🍛🍛🍛🍛🍛","Need to display nothing","🍛🍛🍛🍛🍛🍛")
                     Alert.showBasic(title: "No Results Found!", message: "No Zomato registered restaurants were found for the location. Please select another location.", vc: self)
                     return
                 }
@@ -70,7 +74,7 @@ class RestaurantsListViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.searchButton.isHidden = false
                         }
-                        print(results,"🍛")
+                        
                         self.restaurants.append(restaurant!)
                         DispatchQueue.main.async {
                             SVProgressHUD.dismiss()
@@ -117,7 +121,12 @@ class RestaurantsListViewController: UIViewController {
         self.table.reloadData()
         
         if reachability.connection != .none {
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (statusCode, results, restaurant) in
+                
+                if statusCode != nil && statusCode! < 200 && statusCode! > 299 {
+                    SVProgressHUD.dismiss()
+                    Alert.showBasic(title: "Something Went Wrong", message: "We were unable to fetch data from Zomato. This should be fixed soon. Please try again later.", vc: self)
+                }
                 if (results != nil) && (results! > 1200000) {
                     DispatchQueue.main.async {
                         self.searchButton.isHidden = true
@@ -176,7 +185,12 @@ class RestaurantsListViewController: UIViewController {
             table.reloadData()
             
             
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (statusCode, results, restaurant) in
+                
+                if statusCode != nil && statusCode! < 200 && statusCode! > 299 {
+                    SVProgressHUD.dismiss()
+                    Alert.showBasic(title: "Something Went Wrong", message: "We were unable to fetch data from Zomato. This should be fixed soon. Please try again later.", vc: self)
+                }
                 
                 if (results != nil) && (results! > 1200000) {
                     DispatchQueue.main.async {
@@ -240,7 +254,12 @@ class RestaurantsListViewController: UIViewController {
             self.restaurants = [Restaurant]()
             table.reloadData()
             
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (statusCode, results, restaurant) in
+                
+                if statusCode != nil && statusCode! < 200 && statusCode! > 299 {
+                    SVProgressHUD.dismiss()
+                    Alert.showBasic(title: "Something Went Wrong", message: "We were unable to fetch data from Zomato. This should be fixed soon. Please try again later.", vc: self)
+                }
                 
                 if restaurant != nil {
                     self.restaurants.append(restaurant!)
@@ -383,7 +402,12 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
         let lastRestaurant = restaurants.count - 1
         if indexPath.row == lastRestaurant {
             
-            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (results, restaurant) in
+            getListOfRestaurants(start: RestaurantsListViewController.start, lat: RestaurantsListViewController.locationLatitude, long: RestaurantsListViewController.locationLongitude, sort: RestaurantsListViewController.sort, order: RestaurantsListViewController.order, completion: { (statusCode, results, restaurant) in
+                
+                if statusCode != nil && statusCode! < 200 && statusCode! > 299 {
+                    SVProgressHUD.dismiss()
+                    Alert.showBasic(title: "Something Went Wrong", message: "We were unable to fetch data from Zomato. This should be fixed soon. Please try again later.", vc: self)
+                }
                 
                 if restaurant != nil {
                     self.restaurants.append(restaurant!)
