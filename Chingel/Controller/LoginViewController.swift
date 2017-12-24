@@ -25,6 +25,14 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        emailIdTextField.text = ""
+        passwordTextField.text = ""
+        
+    }
     @IBAction func segueToSignUp (_ sender : Any) {
         performSegue(withIdentifier: "SignupVC", sender: self)
     }

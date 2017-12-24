@@ -80,7 +80,7 @@ class RestaurantsListViewController: UIViewController {
                             SVProgressHUD.dismiss()
                             self.table.reloadData()
                         }
-                        print(self.restaurants.count,"🍗")
+//                        print(self.restaurants.count,"🍗")
                     }
                 }
                 
@@ -90,6 +90,7 @@ class RestaurantsListViewController: UIViewController {
         setupRefreshControl()
         
         NotificationCenter.default.addObserver(self, selector: #selector(internetConnectionChanged), name: Notification.Name.reachabilityChanged, object: reachability)
+        
         do {
             try reachability.startNotifier()
         }catch {
@@ -146,7 +147,7 @@ class RestaurantsListViewController: UIViewController {
                             SVProgressHUD.dismiss()
                             self.table.reloadData()
                         }
-                        print(self.restaurants.count,"🍗")
+//                        print(self.restaurants.count,"🍗")
                     }
                 }
                 DispatchQueue.main.async{

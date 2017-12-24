@@ -20,6 +20,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
 //    var editingEnabled = false
 //    var index = [IndexPath]()
     var selectedRestaurant : FavoriteRestaurants?
+    var restaurantTitlelabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,7 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
 //        longPressGesture.minimumPressDuration = 1
 //        longPressGesture.delegate = self
 //        self.collection.addGestureRecognizer(longPressGesture)
-        
+        setupTitle()
     }
     
 //    override func viewDidAppear(_ animated: Bool) {
@@ -80,6 +81,14 @@ class FavoriteRestaurantsCollectionViewController: UICollectionViewController, U
         showToast(message: "Tap on any restaurant to delete!")
         trash.isEnabled = false
         doneButton.isEnabled = true
+    }
+    
+    func setupTitle(){
+        restaurantTitlelabel.text = "Favorites"
+        restaurantTitlelabel.textColor = .white
+        restaurantTitlelabel.font = UIFont(name: "Avenir Next", size: 16)
+        restaurantTitlelabel.font = UIFont.boldSystemFont(ofSize: 16)
+        self.navigationItem.titleView = restaurantTitlelabel
     }
     
 //    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {

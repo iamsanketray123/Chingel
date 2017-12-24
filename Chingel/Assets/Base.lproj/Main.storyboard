@@ -2186,6 +2186,7 @@ we can tell you where the yummy food is. Please share your Location.</string>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="trash" id="Ylf-oE-Gyg">
+                                <inset key="imageInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <action selector="deleteFavoriteRestaurants:" destination="tZJ-kL-UcW" id="GwC-SP-ach"/>
                                 </connections>
@@ -2529,6 +2530,7 @@ Arabian</string>
                                                     <rect key="frame" x="16" y="199" width="343" height="42"/>
                                                     <color key="backgroundColor" red="0.015686274510000001" green="0.58039215690000001" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="VrF-TD-JhA"/>
                                                         <constraint firstAttribute="height" constant="42" id="iCw-ll-cC1"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2545,9 +2547,8 @@ Arabian</string>
                                                         <action selector="getDirections:" destination="M3a-B3-1N3" eventType="touchUpInside" id="Yq1-t6-0GZ"/>
                                                     </connections>
                                                 </button>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cq0-AC-Q48" customClass="MKMapViewX" customModule="Chingel" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="9" width="343" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cq0-AC-Q48" customClass="MKMapViewX" customModule="Chingel" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="53" width="343" height="84"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="8"/>
@@ -2559,9 +2560,16 @@ Arabian</string>
                                                 </mapView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="KQ9-Xt-U3T" firstAttribute="leading" secondItem="0SX-pg-yL3" secondAttribute="leading" constant="16" id="3wj-aG-UoP"/>
                                                 <constraint firstItem="KQ9-Xt-U3T" firstAttribute="bottom" secondItem="0SX-pg-yL3" secondAttribute="bottomMargin" constant="2" id="4ZI-fN-F2D"/>
+                                                <constraint firstItem="cq0-AC-Q48" firstAttribute="top" secondItem="0SX-pg-yL3" secondAttribute="topMargin" constant="-22" id="6Ja-qO-iFL"/>
+                                                <constraint firstAttribute="trailing" secondItem="KQ9-Xt-U3T" secondAttribute="trailing" constant="16" id="6Ny-li-jkf"/>
                                                 <constraint firstItem="KQ9-Xt-U3T" firstAttribute="leading" secondItem="0SX-pg-yL3" secondAttribute="leadingMargin" id="Be0-4a-6d0"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="KQ9-Xt-U3T" secondAttribute="trailing" id="SWl-yS-J84"/>
+                                                <constraint firstAttribute="bottom" secondItem="KQ9-Xt-U3T" secondAttribute="bottom" constant="8.5" id="bUg-vN-Y7Q"/>
+                                                <constraint firstItem="KQ9-Xt-U3T" firstAttribute="top" secondItem="cq0-AC-Q48" secondAttribute="bottom" constant="62" id="ddB-zL-Rxx"/>
+                                                <constraint firstAttribute="trailing" secondItem="cq0-AC-Q48" secondAttribute="trailing" constant="16" id="xFF-Po-AVL"/>
+                                                <constraint firstItem="cq0-AC-Q48" firstAttribute="leading" secondItem="0SX-pg-yL3" secondAttribute="leading" constant="16" id="xVZ-1n-HGI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

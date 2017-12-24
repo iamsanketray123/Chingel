@@ -89,8 +89,8 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         undoHeart = reverseImageArray(total: 24, imagePrefix: "heart")
         
         setupRestaurantLabel()
-        
         updateHeaderView()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
