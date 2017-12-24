@@ -20,7 +20,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     @IBOutlet weak var restaurantRating: UILabel!
     @IBOutlet weak var numberOfVotes: UILabel!
     @IBOutlet weak var restaurantAddress: UILabel!
-    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var map: MKMapViewX!
     @IBOutlet weak var directions: UIButtonX!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var cuisines: UILabel!
@@ -42,20 +42,18 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     
     static var viewIsDark = true
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupGradientView()
-        
         updateCuisinesAndPricing()
-        
+        setupMap()
+        setupRestaurantLabel()
+
         RestaurantsListViewController.locationChanged = false
         
         generateUberButton(userLocation : userLocation!, restaurantLocation : CLLocation(latitude: CLLocationDegrees(restaurant!.latitude)!, longitude: CLLocationDegrees(restaurant!.longitude)!), dropOffNickname: restaurant!.name)
         
-        setupMap()
         
         restaurantName.text = restaurant?.name
         
@@ -87,10 +85,10 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         
         heartImages = createImageArray(total: 24, imagePrefix: "heart")
         undoHeart = reverseImageArray(total: 24, imagePrefix: "heart")
-        
-        setupRestaurantLabel()
+
         updateHeaderView()
-        
+
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -157,6 +155,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
     }
     
     fileprivate func setupGradientView() {
+        gradientView.frame = CGRect(x: 0, y: 0, width: Int(view.frame.width), height: 64)
         let newLayer = CAGradientLayer()
         newLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
         newLayer.frame = gradientView.frame
@@ -211,6 +210,8 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         annotation.coordinate = location
         annotation.title = restaurant!.name
         map.addAnnotation(annotation)
+        
+        map.frame = CGRect(x: 16, y: 9, width: Int(view.frame.width - 32), height: 128)
     }
     
     

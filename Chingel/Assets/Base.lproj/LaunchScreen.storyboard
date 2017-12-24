@@ -29,9 +29,27 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgj-Re-fDa">
+                                <rect key="frame" x="116.5" y="371" width="142.5" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="O27-hh-ZeZ"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="RESTAURANT FINDER">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" size="14" name="AvenirNext-Medium"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.77254901960784317" green="0.090196078431372548" blue="0.047058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="zgj-Re-fDa" firstAttribute="top" secondItem="PhX-dG-dtj" secondAttribute="bottom" constant="8" id="UBa-R0-ebK"/>
+                            <constraint firstItem="zgj-Re-fDa" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="cJj-z0-7SJ"/>
                             <constraint firstItem="PhX-dG-dtj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="o5Q-sZ-H0h"/>
                             <constraint firstItem="PhX-dG-dtj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="q3A-Nb-0XI"/>
                         </constraints>
