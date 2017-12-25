@@ -241,15 +241,15 @@
 				19856EAF1FC06FC900D4F8EE /* LoginViewController.swift */,
 				1905C4281FC1851600C62623 /* SignUpViewController.swift */,
 				198592931FC1927E0052C320 /* LocationViewController.swift */,
-				1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */,
 				198539511FD3F9B70081E0D4 /* SideMenuTableViewController.swift */,
+				1994C0CA1FC218A300F86883 /* RestaurantsListViewController.swift */,
 				19CEC8BD1FC47CDC0056F61E /* RestaurantDetailTableViewController.swift */,
 				19D7749D1FD5324D00E80355 /* RestaurantDetailVCExtension.swift */,
 				1942BBEF1FC95DFD00AC78CB /* ChangeLocationViewController.swift */,
 				191391431FD2B0FE0006E27A /* ContainerViewController.swift */,
 				193A68B71FD992970036E441 /* UpdateProfileViewController.swift */,
-				19578B711FD92F900081506E /* FavoriteRestaurantDetailTableViewController.swift */,
 				193BA9E61FD8410C00BF0746 /* FavoriteRestaurantsCollectionViewController.swift */,
+				19578B711FD92F900081506E /* FavoriteRestaurantDetailTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

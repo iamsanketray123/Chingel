@@ -56,6 +56,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         
         
         restaurantName.text = restaurant?.name
+        restaurantName.adjustsFontSizeToFitWidth = true 
         
         if restaurant?.ratingText == "Not rated" {
             restaurantRating.text = "New"
@@ -69,6 +70,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         restaurantRating.layer.masksToBounds = true
         numberOfVotes.text = "Based on \(String(describing: restaurant!.votes)) reviews"
         restaurantAddress.text = restaurant?.address
+        restaurantAddress.adjustsFontSizeToFitWidth = true
         let url = URL(string: (restaurant?.imageURLString)!)
         restaurantImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: [.continueInBackground,.progressiveDownload])
         

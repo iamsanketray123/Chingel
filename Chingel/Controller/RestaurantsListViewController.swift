@@ -374,6 +374,7 @@ extension RestaurantsListViewController : UITableViewDataSource, UITableViewDele
         cell.rating.layer.masksToBounds = true
         cell.restaurantName.text = restaurant.name
         cell.restaurantLocality.text = restaurant.address
+        cell.restaurantLocality.adjustsFontSizeToFitWidth = true
         
         let url = URL(string : restaurant.imageURLString!)
         cell.img.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholder"), options: [.continueInBackground,.progressiveDownload])
