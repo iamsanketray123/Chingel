@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -34,14 +34,14 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3.0</string>
 	<key>FacebookAppID</key>
 	<string>198229360723228</string>
 	<key>FacebookDisplayName</key>
 	<string>Chingel</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-        <string>maps</string>
+		<string>maps</string>
 		<string>comgooglemaps</string>
 		<string>uber</string>
 		<string>fbapi</string>

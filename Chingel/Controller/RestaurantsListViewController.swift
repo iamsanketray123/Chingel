@@ -174,6 +174,7 @@ class RestaurantsListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
         if RestaurantsListViewController.locationChanged {
             SVProgressHUD.show(withStatus: "Loading...")
             SVProgressHUD.setDefaultMaskType(.gradient)
@@ -308,7 +309,7 @@ class RestaurantsListViewController: UIViewController {
             self.sortingList.removeFromSuperview()
         }
     }
-    
+ 
     
     
     func createNavigationTitleButton(locationName : String) {

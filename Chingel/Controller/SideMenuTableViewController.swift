@@ -54,7 +54,9 @@ class SideMenuTableViewController: UITableViewController {
         UserDefaults.standard.set(nil, forKey: "uid")
         
         dismiss(animated: true) {
-            UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
+//            UIApplication.topViewController()?.dismiss(animated: true, completion: nil)
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+            UIApplication.topViewController()?.present(controller, animated: true)
         }
     }
     
