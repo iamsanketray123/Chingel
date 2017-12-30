@@ -55,11 +55,19 @@ class OnboardingViewController: UIViewController, PaperOnboardingDataSource, Pap
         let titleFont = UIFont(name: "AvenirNext-Bold", size: 24)!
         let descriptionFont = UIFont(name: "AvenirNext-Regular", size: 18)!
         
-        return [(#imageLiteral(resourceName: "dish"), "Find the Perfect Place", "Search from thousands of Restaurants and find the place, that suits your taste.", UIImage(),backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
-                
-                (#imageLiteral(resourceName: "car"), "Ride with Uber", "After you have found the right palce, ride with Uber or get the directions to the place", UIImage(),backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
-                
-                (#imageLiteral(resourceName: "login"), "Register", "But first, you need to register with us :)", UIImage(),backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)][index]
+        if UIScreen.main.bounds.size.height == 480 || UIScreen.main.bounds.size.height == 1024{
+            return [(#imageLiteral(resourceName: "dish"), "Find the Perfect Place", "Search from thousands of Restaurants and find the place, that suits your taste.", UIImage(),backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
+                    
+                    (#imageLiteral(resourceName: "car"), "Ride with Uber", "After you have found the right palce, ride with Uber or get the directions to the place", UIImage(),backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
+                    
+                    (#imageLiteral(resourceName: "login"), "Register", "", UIImage(),backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)][index]
+        } else {
+            return [(#imageLiteral(resourceName: "dish"), "Find the Perfect Place", "Search from thousands of Restaurants and find the place, that suits your taste.", UIImage(),backgroundColorOne, UIColor.white, UIColor.white, titleFont, descriptionFont),
+                    
+                    (#imageLiteral(resourceName: "car"), "Ride with Uber", "After you have found the right palce, ride with Uber or get the directions to the place", UIImage(),backgroundColorTwo, UIColor.white, UIColor.white, titleFont, descriptionFont),
+                    
+                    (#imageLiteral(resourceName: "login"), "Register", "But first, you need to register with us :)", UIImage(),backgroundColorThree, UIColor.white, UIColor.white, titleFont, descriptionFont)][index]
+        }
         
     }
 }

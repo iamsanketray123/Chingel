@@ -21,7 +21,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let screenHeight = UIScreen.main.bounds.size.height
+        
+        print(screenHeight,"🥕")
+        if screenHeight == 480 || screenHeight == 1024{
+            let mainView = UIStoryboard(name: "9.7inchiPad", bundle: nil)
+            print("this git exwcuted:")
+            if (UserDefaults.standard.object(forKey : "firstLaunchComplete") == nil) {
+                window?.rootViewController = mainView.instantiateViewController(withIdentifier: "HomeVC")
+            }else {
+                if (UserDefaults.standard.object(forKey: "uid") != nil) {
+                    window?.rootViewController = mainView.instantiateViewController(withIdentifier: "RestaurantsListNVC")
+                }else {
+                    window?.rootViewController = mainView.instantiateViewController(withIdentifier: "LoginVC")
+                }
+            }
+        }
+        
         FirebaseApp.configure()
         GMSPlacesClient.provideAPIKey("AIzaSyBDLujeGZ2bOQnWvk5BtZBi66h0GUHREKc")
 

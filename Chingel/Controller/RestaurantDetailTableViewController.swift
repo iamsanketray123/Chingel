@@ -324,7 +324,7 @@ class RestaurantDetailTableViewController: UITableViewController, MKMapViewDeleg
         
     }
     func showToast(message : String) {
-        let toastLabel = UILabel(frame: CGRect(x: 10, y: self.view.center.y, width: (view.frame.width - 20), height: 40))
+        let toastLabel = UILabel(frame: CGRect(x: 10, y: (self.view.center.y - 40), width: (view.frame.width - 20), height: 40))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
         toastLabel.textAlignment = .center;
